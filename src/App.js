@@ -2,8 +2,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Privacy from "./components/pages/Privacy";
-import Terms_Service from "./components/pages/Terms_Service";
-import Contact_us from "./components/pages/Contact_us";
+import TermsService from "./components/pages/TermsService";
+import ContactUs from "./components/pages/ContactUs";
 import Layout from "./components/UI/Layout";
 
 function App() {
@@ -30,7 +30,7 @@ function App() {
           path="/terms"
           element={
             <Layout>
-              <Terms_Service />
+              <TermsService />
             </Layout>
           }
         />
@@ -38,7 +38,7 @@ function App() {
           path="/contact"
           element={
             <Layout>
-              <Contact_us />
+              <ContactUs />
             </Layout>
           }
         />

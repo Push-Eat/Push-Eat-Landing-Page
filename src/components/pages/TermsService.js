@@ -1,12 +1,12 @@
 import React from "react";
+import TermsText from "../TermsText";
 import ContentService from "../ContentService";
-import PrivacyText from "../PrivacyText";
 
 function Privacy() {
   return (
     <>
-      <ContentService title="Privacy Policy" lastUpdated="03/05/2025">
-        <PrivacyText />
+      <ContentService title="Terms of Service" lastUpdated="03/04/2025">
+        <TermsText />
       </ContentService>
     </>
   );

@@ -43,14 +43,14 @@ function Home() {
               Just Great Food!
             </h1>
             <div className={Styles.buttons}>
-              <a href="#" className={Styles.google}>
+              <a href="google.com" className={Styles.google}>
                 <FontAwesomeIcon
                   icon={faGooglePlay}
                   className={Styles.app_icon}
                 />
                 Download on Google Play
               </a>
-              <a href="#" className={Styles.apple}>
+              <a href="aple.com" className={Styles.apple}>
                 <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
                 Download on App Store
               </a>

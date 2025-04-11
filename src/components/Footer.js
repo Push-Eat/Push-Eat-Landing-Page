@@ -13,16 +13,16 @@ function Footer() {
         </div>
         <ul className={Styles.links}>
           <li>
-            <a href="#">About Us</a>
+            <a href="/about">About Us</a>
           </li>
           <li>
-            <a href="#">Services</a>
+            <a href="/terms">Services</a>
           </li>
           <li>
-            <a href="#">Terms & Conditions</a>
+            <a href="terms">Terms & Conditions</a>
           </li>
           <li>
-            <a href="#">Privacy Policy</a>
+            <a href="privacy">Privacy Policy</a>
           </li>
         </ul>
       </div>

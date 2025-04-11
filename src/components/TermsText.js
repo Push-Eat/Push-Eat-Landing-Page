@@ -1,6 +1,6 @@
-import styles from "./Terms_text.module.css";
+import styles from "./TermsText.module.css";
 
-export default function Terms_text() {
+export default function TermsText() {
   return (
     <div className={styles.container}>
       <h1 className={styles.mainHeading}>Welcome to PushEat!</h1>
@@ -24,11 +24,12 @@ export default function Terms_text() {
           By accessing or using our Services, you confirm that you can form a
           binding contract with PushEat, that you accept these Terms, and that
           you agree to comply with them. Your access to and use of our Services
-          is also subject to our <a href="#">Privacy Policy</a> and{" "}
-          <a href="#">Community Guidelines</a>, which are incorporated into
-          these Terms by reference. If you are accessing or using the Services
-          on behalf of a business or entity, you represent and warrant that you
-          are authorized to bind that business or entity to these Terms.
+          is also subject to our <a href="/privacy">Privacy Policy</a> and{" "}
+          <a href="guidelines">Community Guidelines</a>, which are incorporated
+          into these Terms by reference. If you are accessing or using the
+          Services on behalf of a business or entity, you represent and warrant
+          that you are authorized to bind that business or entity to these
+          Terms.
         </p>
       </section>
 

@@ -3,7 +3,7 @@ import Styles from "./Help_content.module.css";
 import { FaPhoneAlt, FaEnvelope, FaUser, FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
-function Help_content() {
+function HelpContent() {
   return (
     <div className={Styles.container}>
       {/* Left Side Contact Info */}
@@ -64,4 +64,4 @@ function Help_content() {
   );
 }
 
-export default Help_content;
+export default HelpContent;

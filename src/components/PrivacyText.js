@@ -1,7 +1,7 @@
 import React from "react";
-import Styles from "./Privacy_text.module.css";
+import Styles from "./PrivacyText.module.css";
 
-function Privacy_text() {
+function PrivacyText() {
   return (
     <div className={Styles.wrapper}>
       <div className={Styles.section}>
@@ -241,4 +241,4 @@ function Privacy_text() {
   );
 }
 
-export default Privacy_text;
+export default PrivacyText;

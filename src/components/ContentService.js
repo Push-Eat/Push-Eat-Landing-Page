@@ -1,9 +1,9 @@
 import React from "react";
-import Styles from "./Content_service.module.css";
+import Styles from "./ContentService.module.css";
 import Navbar from "./Navbar";
 import frame from "../assets/frame.png";
 
-function Content_service({ title, lastUpdated, children }) {
+function ContentService({ title, lastUpdated, children }) {
   return (
     <div>
       <section className={Styles.services_wrapper}>
@@ -25,4 +25,4 @@ function Content_service({ title, lastUpdated, children }) {
   );
 }
 
-export default Content_service;
+export default ContentService;
