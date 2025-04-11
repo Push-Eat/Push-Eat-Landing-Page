@@ -1,5 +1,5 @@
 import React from "react";
-import Styles from "./Help_content.module.css";
+import Styles from "./HelpContent.module.css";
 import { FaPhoneAlt, FaEnvelope, FaUser, FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 
