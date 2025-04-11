@@ -1,7 +1,6 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import Styles from "./Navbar.module.css";
-import logo from "../assets/Logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faXTwitter,
@@ -17,7 +16,7 @@ function Navbar() {
       <div className={Styles.navbar}>
         <div className={Styles.logo}>
           <Link to="/">
-            <img src={logo} alt="PushEat Logo" />
+            <img src="/Logo.png" alt="PushEat Logo" />
           </Link>
         </div>
 

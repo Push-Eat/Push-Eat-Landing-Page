@@ -8,7 +8,7 @@ function Footer() {
     <footer className={Styles.footer}>
       <div className={Styles.top}>
         <div className={Styles.logo}>
-          <img src=".logo.png" alt="PushEat Logo" />
+          <img src="/Logo.png" alt="PushEat Logo" />
         </div>
         <ul className={Styles.links}>
           <li>
