@@ -5,9 +5,9 @@ import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "./Navbar";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import carousel1 from "../assets/carousel1.png";
-import carousel2 from "../assets/carousel2.png";
-import carousel3 from "../assets/carousel3.png";
+// import carousel1 from "../assets/carousel1.png";
+// import carousel2 from "../assets/carousel2.png";
+// import carousel3 from "../assets/carousel3.png";
 
 function Home() {
   return (
@@ -23,13 +23,13 @@ function Home() {
           className={Styles.carousel}
         >
           <div>
-            <img src={carousel1} alt="food" />
+            <img src="/carousel1.png" alt="food" />
           </div>
           <div>
-            <img src={carousel2} alt="food" />
+            <img src="/carousel2.png" alt="food" />
           </div>
           <div>
-            <img src={carousel3} alt="food" />
+            <img src="/carousel3.png" alt="food" />
           </div>
         </Carousel>
         <div className={Styles.navbar}>
