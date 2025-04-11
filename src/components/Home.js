@@ -5,9 +5,6 @@ import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 import Navbar from "./Navbar";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-// import carousel1 from "../assets/carousel1.png";
-// import carousel2 from "../assets/carousel2.png";
-// import carousel3 from "../assets/carousel3.png";
 
 function Home() {
   return (

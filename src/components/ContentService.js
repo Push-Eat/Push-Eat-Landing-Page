@@ -1,14 +1,13 @@
 import React from "react";
 import Styles from "./ContentService.module.css";
 import Navbar from "./Navbar";
-import frame from "../assets/frame.png";
 
 function ContentService({ title, lastUpdated, children }) {
   return (
     <div>
       <section className={Styles.services_wrapper}>
         <div className={Styles.services}>
-          <img src={frame} alt="services" />
+          <img src="/frame.png" alt="services" />
         </div>
         <div className={Styles.navbar}>
           <Navbar />
