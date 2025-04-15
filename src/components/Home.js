@@ -1,37 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Styles from "./Home.module.css";
+import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
-import Navbar from "./Navbar";
-import { Carousel } from "react-responsive-carousel";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
+const images = ["/carousel1.png", "/carousel2.png", "/carousel3.png"];
 
 function Home() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prevIndex) =>
+        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+      );
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={Styles.home_wrapper}>
       <section className={Styles.carousel_wrapper}>
-        <Carousel
-          autoPlay
-          infiniteLoop
-          showThumbs={false}
-          showStatus={false}
-          interval={4000}
-          transitionTime={1000}
-          className={Styles.carousel}
-        >
-          <div>
-            <img src="/carousel1.png" alt="food" />
-          </div>
-          <div>
-            <img src="/carousel2.png" alt="food" />
-          </div>
-          <div>
-            <img src="/carousel3.png" alt="food" />
-          </div>
-        </Carousel>
+        {images.map((src, index) => (
+          <img
+            key={index}
+            src={src}
+            alt="carousel"
+            className={`${Styles.fade_image} ${
+              index === currentIndex ? Styles.visible : ""
+            }`}
+          />
+        ))}
+        <div className={Styles.dots}>
+          {images.map((_, index) => (
+            <div
+              key={index}
+              className={`${Styles.dot} ${
+                index === currentIndex ? Styles.activeDot : ""
+              }`}
+            ></div>
+          ))}
+        </div>
+
         <div className={Styles.navbar}>
           <Navbar />
         </div>
+
         <div className={Styles.home_content}>
           <div className={Styles.content}>
             <h1>
@@ -40,14 +55,14 @@ function Home() {
               Just Great Food!
             </h1>
             <div className={Styles.buttons}>
-              <a href="google.com" className={Styles.google}>
+              <a href="https://google.com" className={Styles.google}>
                 <FontAwesomeIcon
                   icon={faGooglePlay}
                   className={Styles.app_icon}
                 />
                 Download on Google Play
               </a>
-              <a href="aple.com" className={Styles.apple}>
+              <a href="https://apple.com" className={Styles.apple}>
                 <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
                 Download on App Store
               </a>
@@ -55,6 +70,7 @@ function Home() {
           </div>
         </div>
       </section>
+
       <section>
         <div className={Styles.third_section_content}>
           <h1>Ready for the best food deals?</h1>

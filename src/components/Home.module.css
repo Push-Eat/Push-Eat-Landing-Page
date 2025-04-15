@@ -1,122 +1,155 @@
 .carousel_wrapper {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    background-color: black;
-  }
-  
-  .carousel {
-    width: 100%;
-    height: auto;
-    z-index: 0;
-  }
-  
-  .carousel img {
-    width: 100%;
-    height: auto;
-    object-fit: contain; 
-    display: block;
-  }
-  
-  .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding-top:20px;
-    padding-bottom:20px;
-    z-index: 10;
-  }
-  
-  
-  .home_content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    padding-bottom: 60px;
-    color: white;
-    max-width: 90%;
-    margin: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100%;
-    box-sizing: border-box;
-  }
-  
-  
-  
-  
-  .content {
-    margin-top: 50px;
-    width: 786px;
-  }
-  
-  .content h1 {
-    text-align: left;
-    font-weight: 800;
-    font-size: 80px;
-    line-height: 100.56px;
-    letter-spacing: 4%;
-    vertical-align: middle;
-  }
-  
-  .buttons {
-    display: flex;
-    gap: 16px;
-    margin-top: 20px;
-    width: 567px;
-  }
-  
-  .buttons a {
-    display: inline-block;
-    background-color: black;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-family: Averta;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 28px;
-    letter-spacing: 0%;
-    text-align: center;
-    vertical-align: middle;
-  }
-  
-  .app_icon {
-    margin-right: 5px;
-  }
-  .buttons a.google {
-    background-color: #1e1e1e;
-  }
-  
-  .buttons a.apple {
-    background-color: #000;
-  }
-  
-  .third_section_content {
-    width: 816;
-    height: 179;
-    left: 231.5px;
-    gap: 24px;
-  }
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
 
-  .third_section_content h1 {
-    font-family: Averta, sans-serif;
-    font-weight: 700;
-    font-size: 60px;
-    line-height: 72px;
-    letter-spacing: -2%;
-  }
+.fade_image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  opacity: 0;
+  transition: opacity 2s ease-in-out;
+  z-index: 0;
+}
 
-  .third_section_content p {
-    font-family: Poppins, sans-serif;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 30px;
-    letter-spacing: 0%;
-    text-align: center;
-  }
+
+.visible {
+  opacity: 1;
+  z-index: 0;
+}
+
+
+.dot {
+  width: 8px;
+  height: 5px;
+  border: 2px solid #ccc; 
+  border-radius: 50%;
+  transition: all 0.4s ease;
+}
+
+.activeDot {
+  width: 32px; 
+  height: 7px;
+  background-color: #fff;
+  border-radius: 999px; 
+  border: none;
+}
+
+.dots {
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+}
+
+
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding-top:20px;
+  padding-bottom:20px;
+  z-index: 10;
+}
+
+
+.home_content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  padding-bottom: 60px;
+  color: white;
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100%;
+  box-sizing: border-box;
+}
+
+
+.content {
+  margin-top: 50px;
+  width: 786px;
+}
+
+.content h1 {
+  text-align: left;
+  font-weight: 800;
+  font-size: 80px;
+  line-height: 100.56px;
+  letter-spacing: 4%;
+  vertical-align: middle;
+}
+
+.buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 20px;
+  width: 567px;
+}
+
+.buttons a {
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: Averta;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.app_icon {
+  margin-right: 5px;
+}
+.buttons a.google {
+  background-color: #1e1e1e;
+}
+
+.buttons a.apple {
+  background-color: #000;
+}
+
+.third_section_content {
+  width: 816;
+  height: 179;
+  left: 231.5px;
+  gap: 24px;
+}
+
+.third_section_content h1 {
+  font-family: Averta, sans-serif;
+  font-weight: 700;
+  font-size: 60px;
+  line-height: 72px;
+  letter-spacing: -2%;
+}
+
+.third_section_content p {
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  letter-spacing: 0%;
+  text-align: center;
+}
