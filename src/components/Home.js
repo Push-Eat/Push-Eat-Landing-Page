@@ -14,7 +14,7 @@ function Home() {
       setCurrentIndex((prevIndex) =>
         prevIndex === images.length - 1 ? 0 : prevIndex + 1
       );
-    }, 2000);
+    }, 1000);
 
     return () => clearInterval(interval);
   }, []);
