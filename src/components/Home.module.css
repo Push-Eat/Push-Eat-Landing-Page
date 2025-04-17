@@ -12,9 +12,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: fill; 
+  object-fit: cover; /* changed */
   opacity: 0;
-  transition: opacity 3.5s ease-in-out; 
+  transition: opacity 3.5s ease-in-out;
   z-index: 0;
 }
 
@@ -34,7 +34,7 @@
 .dot {
   width: 8px;
   height: 5px;
-  border: 2px solid #ccc; 
+  border: 2px solid #ccc;
   border-radius: 50%;
   transition: all 3s ease;
 }
@@ -42,31 +42,20 @@
 .activeDot {
   width: 32px;
   height: 3px;
-  background-color: #fff; 
-  border: 2px solid #fff; 
-  border-radius: 999px; 
+  background-color: #fff;
+  border: 2px solid #fff;
+  border-radius: 999px;
 }
-
-
-.dots {
-  position: absolute;
-  bottom: 48px;
-  right: 85px; 
-  display: flex;
-  gap: 10px;
-}
-
 
 .navbar {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  padding-top:20px;
-  padding-bottom:20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   z-index: 10;
 }
-
 
 .home_content {
   position: absolute;
@@ -84,7 +73,6 @@
   min-height: 100%;
   box-sizing: border-box;
 }
-
 
 .content {
   margin-top: 50px;
@@ -118,16 +106,15 @@
   font-weight: 700;
   font-size: 18px;
   line-height: 28px;
-  letter-spacing: 0%;
   text-align: center;
-  vertical-align: middle;
 }
 
 .app_icon {
   margin-right: 5px;
 }
+
 .buttons a.google {
-  background-color: #1e1e1e;
+  background-color: #000;
 }
 
 .buttons a.apple {
@@ -135,8 +122,8 @@
 }
 
 .third_section_content {
-  width: 816;
-  height: 179;
+  width: 816px;
+  height: 179px;
   left: 231.5px;
   gap: 24px;
 }
@@ -146,7 +133,6 @@
   font-weight: 700;
   font-size: 60px;
   line-height: 72px;
-  letter-spacing: -2%;
 }
 
 .third_section_content p {
@@ -154,6 +140,67 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 30px;
-  letter-spacing: 0%;
   text-align: center;
-} 
+}
+
+@media (min-width: 769px) and (max-width: 945px) {
+  .content h1 {
+  font-size: 60px;
+ }
+}
+
+/* RESPONSIVE MOBILE */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
+
+  .home_content {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    max-width: 90%;
+    margin: auto;
+    text-align: center;
+  }
+
+  .content {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .content h1 {
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .buttons a {
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 0;
+  }
+
+  .dots {
+    bottom: 24px;
+    right: 50%;
+    transform: translateX(50%);
+    gap: 8px;
+  }
+
+  .third_section_content h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .third_section_content p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
