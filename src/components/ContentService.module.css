@@ -34,7 +34,7 @@ html, body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1;
+    z-index: 20; /* Increase z-index */
     padding-bottom: 60px;
     color: white;
     max-width: 90%;
@@ -46,7 +46,15 @@ html, body {
     box-sizing: border-box;
     margin-bottom: 0;
     margin-top: 0;
+    align-items: center;
+    text-align: center;
+
   }
+
+  .content {
+    margin-top: 160px;
+  }
+  
 
   .content .last_update {
     font-family: Averta;
@@ -71,3 +79,80 @@ html, body {
 
   }
   
+  @media (max-width: 1130px) {
+    .content {
+      margin-top: 210px;
+    }
+
+    .content .last_update {
+      font-size: 30px;
+    }
+  
+    .content p {
+      font-size: 13px;
+    }
+  }
+
+  @media (min-width: 1001px) and (max-width: 1054px) {
+
+    .content .last_update {
+      font-size: 22px;
+    }
+  
+    .content p {
+      font-size: 12px;
+    }
+  }
+
+
+  @media (max-width: 1048px) {
+    .content {
+      margin-top: 210px;
+    }
+  }
+
+
+  @media (max-width: 1000px) {
+    .services img {
+      width: 100vw;
+      height: 500px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .content .last_update {
+      font-size: 42px;
+    }
+  
+    .content p {
+      font-size: 16px;
+    }
+  }
+
+
+
+  @media (max-width: 768px) {
+    .content .last_update {
+      font-size: 40px;
+    }
+  
+    .content p {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .content .last_update {
+      font-size: 30px;
+    }
+  
+    .content p {
+      font-size: 12px;
+    }
+  }
+  
+
+
+
+
+ 

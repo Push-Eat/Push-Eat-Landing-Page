@@ -23,7 +23,11 @@ function Navbar() {
       <div className={Styles.navbar}>
         <div className={Styles.logo}>
           <Link to="/">
-            <img src="/Logo.png" alt="PushEat Logo" />
+            <img
+              src="/Logo.svg"
+              alt="PushEat Logo"
+              className={Styles.logo_img}
+            />
           </Link>
         </div>
 

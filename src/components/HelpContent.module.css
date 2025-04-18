@@ -129,3 +129,19 @@ html, body {
     background: linear-gradient(to right, #00b248, #00c853);
   }
   
+
+
+
+  @media (max-width: 900px) {
+    .container {
+      display: block;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .contactInfo {
+      margin-bottom: 60px;
+      justify-content: center;
+      align-items: center;
+    }
+  }

@@ -60,4 +60,17 @@
   .pattern {
     display: none;
   }
+
+
+  @media (max-width: 768px) {
+    .links {
+      display: contents;
+      align-items: center;
+    }
+
+    .links li a {
+      align-items: center;
+      text-align: center;
+    }
+  }
   

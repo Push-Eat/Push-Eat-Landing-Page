@@ -5,7 +5,7 @@ import Navbar from "./Navbar";
 function ContentService({ title, lastUpdated, children }) {
   return (
     <div>
-      <section className={Styles.services_wrapper}>
+      <section className={Styles.service_wrapper}>
         <div className={Styles.services}>
           <img src="/frame.png" alt="services" />
         </div>

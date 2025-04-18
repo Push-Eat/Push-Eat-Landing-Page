@@ -12,10 +12,7 @@ function Footer() {
         </div>
         <ul className={Styles.links}>
           <li>
-            <a href="/about">About Us</a>
-          </li>
-          <li>
-            <a href="/terms">Services</a>
+            <a href="/about">Contact Us</a>
           </li>
           <li>
             <a href="terms">Terms & Conditions</a>
