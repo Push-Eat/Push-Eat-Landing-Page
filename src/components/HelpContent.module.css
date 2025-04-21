@@ -9,7 +9,6 @@ html, body {
     align-items: flex-start;
     gap: 3rem;
     padding: 3rem;
-    font-family: Arial, sans-serif;
     max-width: 90%;
     margin: auto;
   }
@@ -21,7 +20,7 @@ html, body {
   
   .contactInfo h2 {
     font-size: 1.5rem;
-    font-weight: bold;
+    font-weight: 800;
     margin-bottom: 0.5rem;
     text-align: left;
   }
@@ -70,7 +69,6 @@ html, body {
   
   .inputGroup label {
     margin-bottom: 0.5rem;
-    font-weight: 500;
     text-align: left;
  
   }
@@ -81,7 +79,6 @@ html, body {
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 0.5rem 0.75rem;
-    /* background-color: #f5f4f4; */
   }
   
   .inputIcon input {
@@ -119,12 +116,13 @@ html, body {
     padding: 0.75rem;
     border: none;
     border-radius: 999px;
+    font-family: 'Averta', sans-serif;
     font-weight: 600;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;
-  }
-  
+}
+
   .button:hover {
     background: linear-gradient(to right, #00b248, #00c853);
   }
@@ -132,16 +130,91 @@ html, body {
 
 
 
-  @media (max-width: 900px) {
+  @media (min-width: 501px) and (max-width: 900px) {
     .container {
-      display: block;
+      display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
     }
-
+  
+    .contactInfo,
+    .formWrapper {
+      max-width: 100%;
+      text-align: center;
+      margin: 0 auto;
+    }
+  
+    .contactInfo h2,
+    .contactInfo p,
+    .infoItem {
+      text-align: center;
+    }
+  
     .contactInfo {
       margin-bottom: 60px;
-      justify-content: center;
-      align-items: center;
     }
   }
+  
+  @media (max-width: 500px) {
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+  
+    .contactInfo,
+    .formWrapper {
+      display: flex; /* 💥 make them flex column too */
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .contactInfo h2 {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+  
+    .contactInfo p {
+      font-size: 1rem;
+      text-align: center;
+    }
+  
+    .infoItem {
+      text-align: center;
+      font-size: 0.5rem;
+    }
+  
+    .formWrapper {
+      padding: 1.5rem;
+      margin-right: 0;
+      text-align: center;
+    }
+  
+    .inputIcon {
+      flex-direction: row;
+      padding: 0.4rem;
+    }
+  
+    .inputIcon input {
+      font-size: 0.5rem;
+    }
+  
+    .countryCode {
+      font-size: 0.5rem;
+    }
+  
+    textarea {
+      font-size: 0.5rem;
+    }
+  
+    .button {
+      width: 100%;
+      font-size: 0.55rem;
+    }
+  }
+  
+  

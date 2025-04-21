@@ -1,5 +1,6 @@
 import React from "react";
 import Styles from "./Footer.module.css";
+import { Link } from "react-router-dom";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -8,17 +9,23 @@ function Footer() {
     <footer className={Styles.footer}>
       <div className={Styles.top}>
         <div className={Styles.logo}>
-          <img src="/Logo.png" alt="PushEat Logo" />
+          <Link to="/">
+            <img
+              src={`${process.env.PUBLIC_URL}/Logo.svg`}
+              alt="PushEat Logo"
+              className={Styles.logo_img}
+            />
+          </Link>
         </div>
         <ul className={Styles.links}>
           <li>
-            <a href="/about">Contact Us</a>
+            <Link to="/contact">Contact Us</Link>
           </li>
           <li>
-            <a href="terms">Terms & Conditions</a>
+            <Link to="/terms">Terms & Conditions</Link>
           </li>
           <li>
-            <a href="privacy">Privacy Policy</a>
+            <Link to="/privacy">Privacy Policy</Link>
           </li>
         </ul>
       </div>

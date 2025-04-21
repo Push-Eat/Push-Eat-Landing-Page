@@ -13,8 +13,7 @@
     color: #222;
     margin-bottom: 0.5rem;
     text-align: left;
-    font-family: Averta;
-    font-weight: 600;
+    font-weight: 800;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: 0%;
@@ -24,10 +23,9 @@
   
   .section h3 {
     font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 800;
     margin: 1rem 0 0.5rem;
     text-align: left;
-    font-family: Averta;
     font-weight: 600;
     line-height: 30px;
     letter-spacing: 0%;
@@ -38,8 +36,6 @@
   .section p {
     line-height: 1.6;
     color: #333;
-    font-family: Averta;
-    font-weight: 300;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: 0%;
@@ -52,8 +48,6 @@
     list-style-type: disc;
     color: #444;
     text-align: left;
-    font-family: Averta;
-    font-weight: 300;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: 0%;
@@ -64,8 +58,6 @@
     color: #4a90e2;
     text-decoration: underline;
     text-align: left;
-    font-family: Averta;
-    font-weight: 300;
     font-size: 20px;
     line-height: 30px;
     letter-spacing: 0%;

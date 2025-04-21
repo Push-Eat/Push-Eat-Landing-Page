@@ -71,7 +71,7 @@ function Home() {
         </div>
       </section>
 
-      <section>
+      {/* <section>
         <div className={Styles.third_section_content}>
           <h1>Ready for the best food deals?</h1>
           <p>
@@ -79,7 +79,7 @@ function Home() {
             much fun. Here are 3 steps to get the best food deals.
           </p>
         </div>
-      </section>
+      </section> */}
     </div>
   );
 }

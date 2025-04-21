@@ -55,9 +55,7 @@ html, body {
     margin-top: 160px;
   }
   
-
   .content .last_update {
-    font-family: Averta;
     font-weight: 800;
     font-size: 80px;
     line-height: 120%;
@@ -69,8 +67,6 @@ html, body {
   }
 
   .content p {
-    font-family: Poppins;
-    font-weight: 400;
     font-size: 18px;
     line-height: 18px;
     letter-spacing: 0%;

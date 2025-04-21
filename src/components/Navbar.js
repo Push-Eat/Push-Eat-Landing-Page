@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import Styles from "./Navbar.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBarsStaggered, faTimes } from "@fortawesome/free-solid-svg-icons"; // New icons for menu
+import { faBarsStaggered, faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   faXTwitter,
   faFacebookF,
@@ -13,10 +13,15 @@ import {
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    setMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [location]);
 
   return (
     <div className={Styles.navbar_content}>
@@ -24,7 +29,7 @@ function Navbar() {
         <div className={Styles.logo}>
           <Link to="/">
             <img
-              src="/Logo.svg"
+              src={`${process.env.PUBLIC_URL}/Logo.svg`}
               alt="PushEat Logo"
               className={Styles.logo_img}
             />
@@ -44,7 +49,6 @@ function Navbar() {
             className={({ isActive }) =>
               isActive ? `${Styles.link} ${Styles.active}` : Styles.link
             }
-            onClick={() => setMenuOpen(false)}
           >
             Terms of Service
           </NavLink>
@@ -53,7 +57,6 @@ function Navbar() {
             className={({ isActive }) =>
               isActive ? `${Styles.link} ${Styles.active}` : Styles.link
             }
-            onClick={() => setMenuOpen(false)}
           >
             Privacy Policy
           </NavLink>
@@ -62,11 +65,11 @@ function Navbar() {
             className={({ isActive }) =>
               isActive ? `${Styles.link} ${Styles.active}` : Styles.link
             }
-            onClick={() => setMenuOpen(false)}
           >
             Contact Us
           </NavLink>
         </div>
+
         <div className={Styles.social_icons}>
           <FontAwesomeIcon icon={faInstagram} className={Styles.social_icon} />
           <FontAwesomeIcon icon={faXTwitter} className={Styles.social_icon} />
