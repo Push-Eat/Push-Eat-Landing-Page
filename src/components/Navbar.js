@@ -71,11 +71,40 @@ function Navbar() {
         </div>
 
         <div className={Styles.social_icons}>
-          <FontAwesomeIcon icon={faInstagram} className={Styles.social_icon} />
-          <FontAwesomeIcon icon={faXTwitter} className={Styles.social_icon} />
-          <FontAwesomeIcon icon={faFacebookF} className={Styles.social_icon} />
-          <FontAwesomeIcon icon={faLinkedinIn} className={Styles.social_icon} />
-          <FontAwesomeIcon icon={faTiktok} className={Styles.social_icon} />
+          <a
+            href="https://www.instagram.com/justpusheat?igsh=YTk4M3UzOG5oZ3Vz"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className={Styles.social_icon}
+            />
+          </a>
+          <a
+            href="https://x.com/JustPushEat?t=qNbqSe_LYWqt-4pt9XGXVw&s=09"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faXTwitter} className={Styles.social_icon} />
+          </a>
+          <a
+            href="https://www.linkedin.com/company/pusheat/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={faLinkedinIn}
+              className={Styles.social_icon}
+            />
+          </a>
+          <a
+            href="https://www.tiktok.com/@justpusheat?_t=ZM-8vlrPWZgula&_r=1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon icon={faTiktok} className={Styles.social_icon} />
+          </a>
         </div>
       </div>
     </div>

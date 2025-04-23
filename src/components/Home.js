@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Styles from "./Home.module.css";
-import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 
@@ -65,10 +64,6 @@ function Home() {
             ></div>
           ))}
         </div>
-
-        {/* <div className={Styles.navbar}>
-          <Navbar />
-        </div> */}
 
         <div className={Styles.home_content}>
           <div className={Styles.content}>
