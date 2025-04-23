@@ -20,6 +20,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Averta';
+  src: url('./assets/font/Averta-Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
 
 html, body {
   margin: 0;

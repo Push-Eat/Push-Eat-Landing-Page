@@ -5,7 +5,7 @@ import ContentService from "../ContentService";
 function Privacy() {
   return (
     <>
-      <ContentService title="Terms of Service" lastUpdated="03/04/2025">
+      <ContentService title={"Terms of\nService"} lastUpdated="03/04/2025">
         <TermsText />
       </ContentService>
     </>

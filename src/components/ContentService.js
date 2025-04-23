@@ -15,7 +15,9 @@ function ContentService({ title, lastUpdated, children }) {
         <div className={Styles.service_content}>
           <div className={Styles.content}>
             <h1 className={Styles.last_update}>{title}</h1>
-            <p>{lastUpdated}</p>
+            <p>
+              Last Updated: <span>{lastUpdated}</span>
+            </p>
           </div>
         </div>
       </section>

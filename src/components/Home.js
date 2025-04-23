@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Helmet } from "react-helmet-async";
 import Styles from "./Home.module.css";
 import Navbar from "./Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +22,28 @@ function Home() {
 
   return (
     <div className={Styles.home_wrapper}>
+      <Helmet>
+        <title>PushEat - No Stress, Just Great Food!</title>
+        <meta
+          name="description"
+          content="Order delicious meals fast and easy with PushEat. No stress, just great food!"
+        />
+        <meta
+          name="keywords"
+          content="PushEat, food delivery, fast food, order food online"
+        />
+        <meta
+          property="og:title"
+          content="PushEat - No Stress, Just Great Food!"
+        />
+        <meta
+          property="og:description"
+          content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
+        />
+        <meta property="og:image" content="/Logo.png" />{" "}
+        <meta property="og:url" content="https://pusheat.com" />
+        <meta property="og:type" content="website" />
+      </Helmet>
       <section className={Styles.carousel_wrapper}>
         {images.map((src, index) => (
           <img

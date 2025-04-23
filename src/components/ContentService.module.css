@@ -72,7 +72,11 @@ html, body {
     letter-spacing: 0%;
     text-align: center;
     margin-top: 0;
+  }
 
+  .content span {
+    font-style: italic;
+    font-weight: 200;
   }
   
   @media (max-width: 1130px) {
@@ -92,18 +96,28 @@ html, body {
   @media (min-width: 1001px) and (max-width: 1054px) {
 
     .content .last_update {
-      font-size: 22px;
+      font-size: 27px;
     }
   
     .content p {
-      font-size: 12px;
+      font-size: 16px;
     }
   }
 
 
   @media (max-width: 1048px) {
     .content {
-      margin-top: 210px;
+      margin-top: 200px;
+    }
+
+    .content .last_update {
+      font-size: 27px;
+      margin-bottom: 3px;
+    }
+
+    .content p {
+      font-size: 16px;
+      margin-bottom: 13px;
     }
   }
 
@@ -117,7 +131,8 @@ html, body {
     }
 
     .content .last_update {
-      font-size: 42px;
+      font-size: 50px;
+      margin-bottom: 10px;
     }
   
     .content p {
@@ -129,18 +144,28 @@ html, body {
 
   @media (max-width: 768px) {
     .content .last_update {
-      font-size: 40px;
+      font-size: 60px;
+    }
+
+    .content {
+      margin-top: 100px;
+    }
+    .last_update {
+      display: block;
+      white-space: pre-line;
+      line-height: 1.2;
     }
   
     .content p {
       font-size: 14px;
+      margin-top: 20px;;
     }
   }
   
   @media (max-width: 480px) {
-    .content .last_update {
+    /* .content .last_update {
       font-size: 30px;
-    }
+    } */
   
     .content p {
       font-size: 12px;
