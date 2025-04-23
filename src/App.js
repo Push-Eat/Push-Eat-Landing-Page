@@ -8,7 +8,14 @@ import ContactUs from "./components/pages/ContactUs";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route
+        path="/"
+        element={
+          <Layout>
+            <Home />
+          </Layout>
+        }
+      />
       <Route
         path="/privacy"
         element={

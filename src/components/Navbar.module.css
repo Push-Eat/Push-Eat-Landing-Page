@@ -1,13 +1,25 @@
-.navbar_content {
-  max-width: 90%;
-  margin: auto;
+* {
+  margin: 0;
+  padding: 0;
 }
+.navbar_content {
+  position: absolute; /* make it float */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* make sure it sits above everything */
+  max-width: 100%; /* remove the 90% width you had before */
+  padding-top: 20px; /* optional: add some spacing */
+}
+
 
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 5px 10px;
+  max-width: 90%;
+  margin: auto;
 }
 
 .logo_img {

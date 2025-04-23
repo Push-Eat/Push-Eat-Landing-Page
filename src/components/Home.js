@@ -66,9 +66,9 @@ function Home() {
           ))}
         </div>
 
-        <div className={Styles.navbar}>
+        {/* <div className={Styles.navbar}>
           <Navbar />
-        </div>
+        </div> */}
 
         <div className={Styles.home_content}>
           <div className={Styles.content}>
