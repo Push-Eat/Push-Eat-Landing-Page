@@ -31,6 +31,8 @@ function Home() {
           name="keywords"
           content="PushEat, food delivery, fast food, order food online"
         />
+
+        {/* Open Graph */}
         <meta
           property="og:title"
           content="PushEat - No Stress, Just Great Food!"
@@ -39,10 +41,29 @@ function Home() {
           property="og:description"
           content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
         />
-        <meta property="og:image" content="/Logo.png" />{" "}
-        <meta property="og:url" content="https://pusheat.com" />
+        <meta
+          property="og:image"
+          content="https://pusheat1.netlify.app/Logo.png"
+        />
+        <meta property="og:url" content="https://pusheat1.netlify.app" />
         <meta property="og:type" content="website" />
+
+        {/* Twitter card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta
+          name="twitter:title"
+          content="PushEat - No Stress, Just Great Food!"
+        />
+        <meta
+          name="twitter:description"
+          content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
+        />
+        <meta
+          name="twitter:image"
+          content="https://pusheat1.netlify.app/Logo.png"
+        />
       </Helmet>
+
       <section className={Styles.carousel_wrapper}>
         {images.map((src, index) => (
           <img
