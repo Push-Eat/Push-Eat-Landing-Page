@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/UI/Layout";
+import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Privacy from "./components/pages/Privacy";
 import TermsService from "./components/pages/TermsService";
@@ -7,40 +8,21 @@ import ContactUs from "./components/pages/ContactUs";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <Layout>
-            <Home />
-          </Layout>
-        }
-      />
-      <Route
-        path="/privacy"
-        element={
-          <Layout>
-            <Privacy />
-          </Layout>
-        }
-      />
-      <Route
-        path="/terms"
-        element={
-          <Layout>
-            <TermsService />
-          </Layout>
-        }
-      />
-      <Route
-        path="/contact"
-        element={
-          <Layout>
-            <ContactUs />
-          </Layout>
-        }
-      />
-    </Routes>
+    <>
+      <Navbar />
+
+      <Routes>
+        {/* Home page – no Layout, but still has Navbar */}
+        <Route path="/" element={<Home />} />
+
+        {/* Other pages – wrapped in Layout (which has Footer + layout structure) */}
+        <Route element={<Layout />}>
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/terms" element={<TermsService />} />
+          <Route path="/contact" element={<ContactUs />} />
+        </Route>
+      </Routes>
+    </>
   );
 }
 
