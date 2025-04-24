@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBarsStaggered, faTimes } from "@fortawesome/free-solid-svg-icons";
 import {
   faXTwitter,
-  faFacebookF,
   faLinkedinIn,
   faTiktok,
   faInstagram,

@@ -21,9 +21,15 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    images.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+  }, []);
+
   return (
     <div className={Styles.home_wrapper}>
-      ;
       <Helmet>
         <title>PushEat - No Stress, Just Great Food!</title>
         <meta
@@ -65,6 +71,8 @@ function Home() {
           <img
             key={index}
             src={src}
+            rel="preload"
+            loading="eager"
             alt="carousel"
             className={`${Styles.fade_image} ${
               index === currentIndex ? Styles.visible : ""
