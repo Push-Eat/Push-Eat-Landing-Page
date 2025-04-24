@@ -6,6 +6,8 @@ import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 
 const images = ["/carousel1.png", "/carousel2.png", "/carousel3.png"];
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -21,6 +23,7 @@ function Home() {
 
   return (
     <div className={Styles.home_wrapper}>
+      ;
       <Helmet>
         <title>PushEat - No Stress, Just Great Food!</title>
         <meta
@@ -41,11 +44,8 @@ function Home() {
           property="og:description"
           content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
         />
-        <meta
-          property="og:image"
-          content="https://pusheat1.netlify.app/Logo.png"
-        />
-        <meta property="og:url" content="https://pusheat1.netlify.app" />
+        <meta property="og:image" content={`${BASE_URL}/Logo.png`} />
+        <meta property="og:url" content={BASE_URL} />
         <meta property="og:type" content="website" />
 
         {/* Twitter card */}
@@ -58,12 +58,8 @@ function Home() {
           name="twitter:description"
           content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
         />
-        <meta
-          name="twitter:image"
-          content="https://pusheat1.netlify.app/Logo.png"
-        />
+        <meta name="twitter:image" content={`${BASE_URL}/Logo.png`} />
       </Helmet>
-
       <section className={Styles.carousel_wrapper}>
         {images.map((src, index) => (
           <img
@@ -109,7 +105,6 @@ function Home() {
           </div>
         </div>
       </section>
-
       {/* <section>
         <div className={Styles.third_section_content}>
           <h1>Ready for the best food deals?</h1>

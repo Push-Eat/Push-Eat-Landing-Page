@@ -4,6 +4,8 @@ import { FaPhoneAlt, FaEnvelope, FaUser, FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 function HelpContent() {
   return (
     <>
@@ -22,14 +24,8 @@ function HelpContent() {
           property="og:description"
           content="Have questions or need support? Contact PushEat for quick assistance via phone or email."
         />
-        <meta
-          property="og:image"
-          content="https://pusheat1.netlify.app/Logo.png"
-        />
-        <meta
-          property="og:url"
-          content="https://pusheat1.netlify.app/contact"
-        />
+        <meta property="og:image" content={`${BASE_URL}/Logo.png`} />
+        <meta property="og:url" content={`${BASE_URL}/contact`} />
         <meta property="og:type" content="website" />
 
         <meta name="twitter:card" content="summary_large_image" />
@@ -38,10 +34,7 @@ function HelpContent() {
           name="twitter:description"
           content="Have questions or need support? Contact PushEat for quick assistance via phone or email."
         />
-        <meta
-          name="twitter:image"
-          content="https://pusheat1.netlify.app/Logo.png"
-        />
+        <meta name="twitter:image" content={`${BASE_URL}/Logo.png`} />
       </Helmet>
       <div className={Styles.container}>
         {/* Left Side Contact Info */}
