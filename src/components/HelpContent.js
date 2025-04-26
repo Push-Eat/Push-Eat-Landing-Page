@@ -87,7 +87,7 @@ function HelpContent() {
             </div>
 
             <button type="submit" className={Styles.button}>
-              Login
+              Send message
             </button>
           </form>
         </div>
