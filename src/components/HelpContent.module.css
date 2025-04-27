@@ -111,8 +111,6 @@ html, body {
   }
   
   .button {
-    
-
     background: linear-gradient(88.2deg, #01C51F -1.84%, #01AA1B 55.62%, #60FF79 107.65%);
     color: white;
     padding: 0.75rem;
@@ -120,7 +118,7 @@ html, body {
     border-radius: 999px;
     font-family: 'Averta', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
+    font-size: 1.5rem;
     cursor: pointer;
     transition: background 0.3s ease;
 }
@@ -151,6 +149,12 @@ html, body {
     .form {
       width: 100%;
       max-width: 100%;
+    }
+
+    .button {
+      width: 90%;
+      font-size: 1.5rem;
+      margin: auto;
     }
   }
   
@@ -286,8 +290,9 @@ html, body {
     }
   
     .button {
-      width: 100%;
-      font-size: 0.55rem;
+      width: 90%;
+      font-size: 1.5rem;
+      margin: auto;
     }
   }
   

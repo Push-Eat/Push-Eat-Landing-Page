@@ -12,10 +12,7 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Home page – no Layout, but still has Navbar */}
         <Route path="/" element={<Home />} />
-
-        {/* Other pages – wrapped in Layout (which has Footer + layout structure) */}
         <Route element={<Layout />}>
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<TermsService />} />

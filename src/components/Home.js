@@ -71,7 +71,6 @@ function Home() {
           <img
             key={index}
             src={src}
-            rel="preload"
             loading="eager"
             alt="carousel"
             className={`${Styles.fade_image} ${
