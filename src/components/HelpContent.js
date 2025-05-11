@@ -4,16 +4,60 @@ import { FaEnvelope, FaUser, FaMobileAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { Helmet } from "react-helmet-async";
 import { allCountries } from "country-telephone-data";
+import emailjs from "emailjs-com";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function HelpContent() {
   const [selectedDialCode, setSelectedDialCode] = useState("+234");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+  });
 
   const handleSelect = (dialCode) => {
     setSelectedDialCode(`+${dialCode}`);
     setIsDropdownOpen(false);
+  };
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [id]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    // Prepare email data
+    const emailParams = {
+      to_email: "pusheat@dev.co",
+      full_name: formData.fullName,
+      email_address: formData.email,
+      phone_number: `${selectedDialCode} ${formData.phone}`,
+      message: formData.message,
+    };
+
+    // Send the email using EmailJS
+    emailjs
+      .send("your_service_id", "your_template_id", emailParams, "your_user_id")
+      .then(
+        (response) => {
+          console.log("SUCCESS", response);
+          alert("Your message has been sent!");
+        },
+        (error) => {
+          console.log("FAILED", error);
+          alert(
+            "There was an error sending your message. Please try again later."
+          );
+        }
+      );
   };
 
   return (
@@ -58,13 +102,15 @@ function HelpContent() {
 
         {/* Right Side Form */}
         <div className={Styles.formWrapper}>
-          <form className={Styles.form}>
+          <form className={Styles.form} onSubmit={handleSubmit}>
             <div className={Styles.inputGroup}>
               <label htmlFor="fullName">Full Name</label>
               <div className={Styles.inputIcon}>
                 <input
                   type="text"
                   id="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
                   placeholder="Full Name"
                   autoComplete="name"
                 />
@@ -78,6 +124,8 @@ function HelpContent() {
                 <input
                   type="email"
                   id="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   placeholder="Email Address"
                   autoComplete="email"
                 />
@@ -91,7 +139,6 @@ function HelpContent() {
                 className={Styles.inputIcon}
                 style={{ position: "relative" }}
               >
-                {/* Fake dropdown button */}
                 <div
                   className={Styles.countryCode}
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -100,7 +147,6 @@ function HelpContent() {
                   {selectedDialCode}
                 </div>
 
-                {/* Show dropdown when open */}
                 {isDropdownOpen && (
                   <div
                     style={{
@@ -136,6 +182,8 @@ function HelpContent() {
                 <input
                   type="tel"
                   id="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
                   placeholder="00 000 000"
                   autoComplete="tel"
                   style={{ marginLeft: "5px" }}
@@ -149,6 +197,8 @@ function HelpContent() {
               <textarea
                 name="message"
                 id="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="How may we help you?"
               />
             </div>
