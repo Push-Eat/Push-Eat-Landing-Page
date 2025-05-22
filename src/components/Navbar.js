@@ -60,6 +60,14 @@ function Navbar() {
             Privacy Policy
           </NavLink>
           <NavLink
+            to="/delete-account"
+            className={({ isActive }) =>
+              isActive ? `${Styles.link} ${Styles.active}` : Styles.link
+            }
+          >
+            Delete Account
+          </NavLink>
+          <NavLink
             to="/contact"
             className={({ isActive }) =>
               isActive ? `${Styles.link} ${Styles.active}` : Styles.link

@@ -2,7 +2,7 @@ import React from "react";
 import Styles from "./ContentService.module.css";
 import Navbar from "./Navbar";
 
-function ContentService({ title, lastUpdated, children }) {
+function ContentService({ title, lastUpdated, titleClass, children }) {
   return (
     <div>
       <section className={Styles.service_wrapper}>
@@ -14,10 +14,19 @@ function ContentService({ title, lastUpdated, children }) {
         </div>
         <div className={Styles.service_content}>
           <div className={Styles.content}>
-            <h1 className={Styles.last_update}>{title}</h1>
-            <p>
-              Last Updated: <span>{lastUpdated}</span>
-            </p>
+            <h1
+              className={[Styles.last_update, titleClass && Styles[titleClass]]
+                .filter(Boolean)
+                .join(" ")}
+            >
+              {title}
+            </h1>
+
+            {lastUpdated && (
+              <p>
+                Last Updated: <span>{lastUpdated}</span>
+              </p>
+            )}
           </div>
         </div>
       </section>

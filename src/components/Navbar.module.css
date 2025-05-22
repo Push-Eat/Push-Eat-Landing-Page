@@ -29,7 +29,8 @@
 
 .nav_links {
   display: flex;
-  gap: 24px;
+  gap: 27px;
+  margin: 0 20px;
 }
 
 .link {
@@ -38,6 +39,7 @@
   font-size: 20px;
   font-weight: 600;
   transition: color 0.3s ease;
+  text-align: center;
 }
 
 .link:hover {
@@ -104,6 +106,21 @@
   font-size: 28px;
   color: white;
   cursor: pointer;
+}
+
+
+@media (min-width: 1001px) and (max-width: 1130px) {
+  .nav_links {
+    display: grid !important;
+    grid-template-columns: repeat(2, auto);
+    gap: 15px 40px; /* vertical and horizontal gap */
+    justify-content: start;
+    margin-top: 15px;
+  }
+
+  .link {
+    margin-bottom: 0;
+  }
 }
 
 

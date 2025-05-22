@@ -1,0 +1,191 @@
+.container {
+    font-family: 'Segoe UI', sans-serif;
+    color: #000;
+    line-height: 1.5;
+  }
+  
+  /* Building section */
+  .buildingSection {
+    display: flex;
+    justify-content: space-between;
+    padding: 4rem 2.5rem;
+    background: #f5fff6;
+    max-width: 80%;
+    margin: auto;
+    height: 690px;
+  }
+  
+  .textArea {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 20px;
+    padding-right: 20px;
+  }
+
+  .home_content_headings {
+font-weight: 700;
+font-size: 60px;
+line-height: 70px;
+letter-spacing: -2%;
+vertical-align: middle;
+  }
+
+  .home_content_paragraph {
+  font-size: 20px;
+  line-height: 30px;
+letter-spacing: 0%;
+text-align: justify;
+
+  }
+
+.stepsSection h2 {
+font-weight: 700;
+font-size: 60px;
+line-height: 72px;
+letter-spacing: -2%;
+
+}
+
+.stepsSection p:first-of-type  {
+font-weight: 400;
+font-size: 22px;
+line-height: 30px;
+letter-spacing: 0%;
+text-align: center;
+margin-top: 15px;
+
+}
+  
+  .tab {
+    display: flex;
+    gap: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+  
+  .activeTab {
+    color: #fff;
+    background-color: #000;
+    padding: 4px 12px;
+    border-radius: 12px;
+  }
+  
+  .downloadBtn {
+    margin-top: 1rem;
+    padding: 10px 20px;
+    background-color: #00c853;
+    color: #fff;
+    border: none;
+    border-radius: 24px;
+    cursor: pointer;
+  }
+  
+  .imageMockup img {
+    flex: 1;
+    border-radius: 20px;
+  }
+  
+   .imageMockup img {
+    width: 480px;
+    height: 720px;
+    margin-top: 30px;
+   }
+  /* Steps section */
+  .stepsSection {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2rem;
+}
+
+.iconRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.iconWrapper {
+  background-color: #00a000;
+  border-radius: 50%;
+  padding: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  color: white;
+  font-size: 1.8rem;
+}
+
+.dash {
+  height: 4px;
+  width: 100px; /* Adjust as needed */
+  object-fit: contain;
+}
+
+.textRow {
+  display: flex;
+  justify-content: center;
+  gap: 4.5rem;
+}
+
+.textBlock {
+  width: 220px;
+}
+
+  .home_footer_images img {
+width: 100%;
+  }
+  
+  /* CTA Section */
+  .ctaSection {
+    width: 1276px;
+    height: 290px;
+    border-radius: 25px;
+    background-color: #01AA1B1A;
+    max-width: 90%;
+    margin: 90px auto;
+
+  }
+
+  .ctaSection h2 {
+    font-weight: 700;
+    font-size: 60px;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+  }
+  
+  .downloadLinks {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  .storeBtn {
+    padding: 12px 20px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    Width: 285.09px;
+    Height: 52px;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    letter-spacing: 0%;
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  
