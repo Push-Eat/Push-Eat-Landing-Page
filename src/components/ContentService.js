@@ -7,7 +7,7 @@ function ContentService({ title, lastUpdated, titleClass, children }) {
     <div>
       <section className={Styles.service_wrapper}>
         <div className={Styles.services}>
-          <img src="/frame.png" alt="services" />
+          <img src="/frame.png" alt="services" loading="eager" />
         </div>
         <div className={Styles.navbar}>
           <Navbar />
