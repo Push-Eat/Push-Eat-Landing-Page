@@ -11,6 +11,11 @@ const BASE_URL = process.env.REACT_APP_BASE_URL;
 function HelpContent() {
   const [selectedDialCode, setSelectedDialCode] = useState("+234");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [statusMessage, setStatusMessage] = useState({
+    text: "",
+    isError: false,
+  });
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -34,30 +39,59 @@ function HelpContent() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Prepare email data
+    const newErrors = {};
+    if (!formData.fullName.trim())
+      newErrors.fullName = "Full name is required.";
+    if (!formData.email.trim()) newErrors.email = "Email is required.";
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required.";
+    if (!formData.message.trim()) newErrors.message = "Message is required.";
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+
     const emailParams = {
-      to_email: "pusheat@dev.co",
+      to_email: "dev@pusheat.co",
       full_name: formData.fullName,
       email_address: formData.email,
       phone_number: `${selectedDialCode} ${formData.phone}`,
       message: formData.message,
     };
 
-    // Send the email using EmailJS
     emailjs
-      .send("your_service_id", "your_template_id", emailParams, "your_user_id")
-      .then(
-        (response) => {
-          console.log("SUCCESS", response);
-          alert("Your message has been sent!");
-        },
-        (error) => {
-          console.log("FAILED", error);
-          alert(
-            "There was an error sending your message. Please try again later."
-          );
-        }
-      );
+      .send(
+        "service_ohgbuw1",
+        "template_43mfnut",
+        emailParams,
+        "1Ch2cVTqYzKtFu-es"
+      )
+      .then(() => {
+        setStatusMessage({
+          text: "Your message has been sent successfully!",
+          isError: false,
+        });
+
+        setFormData({
+          fullName: "",
+          email: "",
+          phone: "",
+          message: "",
+        });
+
+        setTimeout(() => {
+          setStatusMessage({ text: "", isError: false });
+        }, 5000);
+      })
+
+      .catch(() => {
+        setStatusMessage({
+          text: "There was an error sending your message. Please try again later.",
+          isError: true,
+        });
+      });
   };
 
   return (
@@ -116,6 +150,11 @@ function HelpContent() {
                 />
                 <FaUser />
               </div>
+              {errors.fullName && (
+                <div style={{ color: "red", marginTop: "4px" }}>
+                  {errors.fullName}
+                </div>
+              )}
             </div>
 
             <div className={Styles.inputGroup}>
@@ -131,6 +170,11 @@ function HelpContent() {
                 />
                 <MdEmail />
               </div>
+              {errors.email && (
+                <div style={{ color: "red", marginTop: "4px" }}>
+                  {errors.email}
+                </div>
+              )}
             </div>
 
             <div className={Styles.inputGroup}>
@@ -190,6 +234,11 @@ function HelpContent() {
                 />
                 <FaMobileAlt />
               </div>
+              {errors.phone && (
+                <div style={{ color: "red", marginTop: "4px" }}>
+                  {errors.phone}
+                </div>
+              )}
             </div>
 
             <div className={Styles.inputGroup}>
@@ -202,10 +251,25 @@ function HelpContent() {
                 placeholder="How may we help you?"
               />
             </div>
-
+            {errors.message && (
+              <div style={{ color: "red", marginTop: "4px" }}>
+                {errors.message}
+              </div>
+            )}
             <button type="submit" className={Styles.button}>
               Send message
             </button>
+            {statusMessage.text && (
+              <div
+                style={{
+                  marginTop: "10px",
+                  color: statusMessage.isError ? "#d93025" : "#0f9d58",
+                  fontWeight: "500",
+                }}
+              >
+                {statusMessage.text}
+              </div>
+            )}
           </form>
         </div>
       </div>
