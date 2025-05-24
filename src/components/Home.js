@@ -4,7 +4,7 @@ import Styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 
-const images = ["/carousel1.png", "/carousel2.png", "/carousel3.png"];
+const images = ["/carousel1.webp", "/carousel2.webp", "/carousel3.webp"];
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
