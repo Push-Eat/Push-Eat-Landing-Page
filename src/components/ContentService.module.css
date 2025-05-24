@@ -12,6 +12,13 @@ html, body {
   }
   
   .services img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #f0f0f0;
+}
+
+  .services img {
     width: 100vw;
     height: auto;
     object-fit: cover;

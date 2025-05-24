@@ -8,8 +8,12 @@ function ContentService({ title, lastUpdated, titleClass, children }) {
     <div>
       <section className={Styles.service_wrapper}>
         <div className={Styles.services}>
-          <img src="/frame.png" alt="services" loading="eager" />
+          <picture>
+            <source srcSet="/frame.webp" type="image/webp" />
+            <img src="/frame.png" alt="services" loading="eager" />
+          </picture>
         </div>
+
         <div className={Styles.navbar}>
           <Navbar />
         </div>
