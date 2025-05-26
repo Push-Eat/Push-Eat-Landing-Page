@@ -10,7 +10,13 @@ function ContentService({ title, lastUpdated, titleClass, children }) {
         <div className={Styles.services}>
           <picture>
             <source srcSet="/frame.webp" type="image/webp" />
-            <img src="/frame.webp" alt="services" loading="eager" />
+            <img
+              src="/frame.webp"
+              alt="services"
+              loading="eager"
+              width="5760"
+              height="1712"
+            />
           </picture>
         </div>
 
