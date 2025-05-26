@@ -11,6 +11,25 @@ html, body {
     background-color: black;
   }
   
+.services {
+  position: relative;
+  width: 100vw;
+  height: auto; /* set a fixed height or based on aspect ratio */
+}
+
+.imagePlaceholder {
+  width: 100vw;
+  height: calc(100vw / 3.36); /* aspect ratio */
+  background-image: url('../assets/frame-blur.webp');
+  background-size: cover;
+  background-position: center;
+  background-color: #222; /* fallback color similar to blur */
+  filter: blur(10px);
+  transition: opacity 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
 
   .services img {
     width: 100vw;
