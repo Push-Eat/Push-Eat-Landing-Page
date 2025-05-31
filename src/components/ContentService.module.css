@@ -30,6 +30,21 @@ html, body {
   z-index: 1;
 }
 
+.imageContainer {
+  width: 100vw;
+  background-color: #002C07;
+;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imageContainer img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
 
   .services img {
     width: 100vw;

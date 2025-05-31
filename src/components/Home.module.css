@@ -1,3 +1,54 @@
+.loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(90deg, #01C451 0%, #00b44e 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  display: flex;
+  gap: 10px;
+}
+
+.spinner::before,
+.spinner::after,
+.spinner div {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  animation: pulse 0.6s infinite ease-in-out alternate;
+}
+
+.spinner::before {
+  animation-delay: -0.4s;
+}
+
+.spinner div {
+  animation-delay: -0.2s;
+}
+
+@keyframes pulse {
+  from {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  to {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+
+
+
 .carousel_wrapper {
   position: relative;
   width: 100%;
