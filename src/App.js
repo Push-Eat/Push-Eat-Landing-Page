@@ -21,7 +21,6 @@ function App() {
           <Route path="/delete-account" element={<DeletePage />} />
         </Route>
       </Routes>{" "}
-      */
       {/* <HomeContent /> */}
     </>
   );
