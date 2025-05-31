@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 
 const images = ["/carousel1.webp", "/carousel2.webp", "/carousel3.webp"];
-
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showAllImages, setShowAllImages] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -21,12 +21,13 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // useEffect(() => {
-  //   images.forEach((src) => {
-  //     const img = new Image();
-  //     img.src = src;
-  //   });
-  // }, []);
+  // Wait until first image fully loads before showing others
+  const handleFirstImageLoad = () => {
+    // Delay loading other images slightly (optional)
+    setTimeout(() => {
+      setShowAllImages(true);
+    }, 500); // 0.5s delay for smoother UX
+  };
 
   return (
     <div className={Styles.home_wrapper}>
@@ -36,69 +37,33 @@ function Home() {
           name="description"
           content="Order delicious meals fast and easy with PushEat. No stress, just great food!"
         />
-        <meta
-          name="keywords"
-          content="PushEat, food delivery, fast food, order food online"
-        />
-
-        {/* Open Graph */}
-        <meta
-          property="og:title"
-          content="PushEat - No Stress, Just Great Food!"
-        />
-        <meta
-          property="og:description"
-          content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
-        />
-        <meta property="og:image" content={`${BASE_URL}/Logo.png`} />
-        <meta property="og:url" content={BASE_URL} />
-        <meta property="og:type" content="website" />
-
-        {/* Twitter card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content="PushEat - No Stress, Just Great Food!"
-        />
-        <meta
-          name="twitter:description"
-          content="Order delicious meals fast and easy with PushEat. Fresh meals delivered to your door."
-        />
-        <meta name="twitter:image" content={`${BASE_URL}/Logo.png`} />
       </Helmet>
+
       <section className={Styles.carousel_wrapper}>
-        {images.map((src, index) => {
-          if (index === 0) {
-            // Load the first image immediately
-            return (
+        {/* First image (always rendered immediately) */}
+        <img
+          src={images[0]}
+          alt="carousel"
+          onLoad={handleFirstImageLoad}
+          className={`${Styles.fade_image} ${
+            currentIndex === 0 ? Styles.visible : ""
+          }`}
+        />
+
+        {/* Only show remaining images after first one loads */}
+        {showAllImages &&
+          images
+            .slice(1)
+            .map((src, index) => (
               <img
-                key={index}
+                key={index + 1}
                 src={src}
-                loading="eager"
                 alt="carousel"
                 className={`${Styles.fade_image} ${
-                  index === currentIndex ? Styles.visible : ""
+                  currentIndex === index + 1 ? Styles.visible : ""
                 }`}
               />
-            );
-          } else {
-            // Load other images lazily AFTER the component mounts
-            return (
-              <img
-                key={index}
-                src={src}
-                loading="lazy"
-                alt="carousel"
-                className={`${Styles.fade_image} ${
-                  index === currentIndex ? Styles.visible : ""
-                }`}
-                style={{
-                  visibility: currentIndex === index ? "visible" : "hidden",
-                }}
-              />
-            );
-          }
-        })}
+            ))}
 
         <div className={Styles.dots}>
           {images.map((_, index) => (
@@ -134,15 +99,6 @@ function Home() {
           </div>
         </div>
       </section>
-      {/* <section>
-            <div className={Styles.third_section_content}>
-              <h1>Ready for the best food deals?</h1>
-              <p>
-                Scrolling through the exciting list of deals on Pusheat is so <br />
-                much fun. Here are 3 steps to get the best food deals.
-              </p>
-            </div>
-          </section> */}
     </div>
   );
 }
