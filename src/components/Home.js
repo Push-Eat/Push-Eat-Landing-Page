@@ -21,12 +21,10 @@ function Home() {
     return () => clearInterval(interval);
   }, []);
 
-  // Wait until first image fully loads before showing others
   const handleFirstImageLoad = () => {
-    // Delay loading other images slightly (optional)
     setTimeout(() => {
       setShowAllImages(true);
-    }, 500); // 0.5s delay for smoother UX
+    }, 400);
   };
 
   return (
@@ -40,7 +38,6 @@ function Home() {
       </Helmet>
 
       <section className={Styles.carousel_wrapper}>
-        {/* First image (always rendered immediately) */}
         <img
           src={images[0]}
           alt="carousel"
@@ -49,8 +46,6 @@ function Home() {
             currentIndex === 0 ? Styles.visible : ""
           }`}
         />
-
-        {/* Only show remaining images after first one loads */}
         {showAllImages &&
           images
             .slice(1)
