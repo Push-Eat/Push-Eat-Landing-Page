@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import Styles from "./Home.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
+import HomeContent from "./HomeContent";
 
 const images = ["/carousel1.webp", "/carousel2.webp", "/carousel3.webp"];
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -28,73 +29,76 @@ function Home() {
   };
 
   return (
-    <div className={Styles.home_wrapper}>
-      <Helmet>
-        <title>PushEat - No Stress, Just Great Food!</title>
-        <meta
-          name="description"
-          content="Order delicious meals fast and easy with PushEat. No stress, just great food!"
-        />
-      </Helmet>
+    <>
+      <div className={Styles.home_wrapper}>
+        <Helmet>
+          <title>PushEat - No Stress, Just Great Food!</title>
+          <meta
+            name="description"
+            content="Order delicious meals fast and easy with PushEat. No stress, just great food!"
+          />
+        </Helmet>
 
-      <section className={Styles.carousel_wrapper}>
-        <img
-          src={images[0]}
-          alt="carousel"
-          onLoad={handleFirstImageLoad}
-          className={`${Styles.fade_image} ${
-            currentIndex === 0 ? Styles.visible : ""
-          }`}
-        />
-        {showAllImages &&
-          images
-            .slice(1)
-            .map((src, index) => (
-              <img
-                key={index + 1}
-                src={src}
-                alt="carousel"
-                className={`${Styles.fade_image} ${
-                  currentIndex === index + 1 ? Styles.visible : ""
-                }`}
-              />
-            ))}
-
-        <div className={Styles.dots}>
-          {images.map((_, index) => (
-            <div
-              key={index}
-              className={`${Styles.dot} ${
-                index === currentIndex ? Styles.activeDot : ""
-              }`}
-            ></div>
-          ))}
-        </div>
-
-        <div className={Styles.home_content}>
-          <div className={Styles.content}>
-            <h1>
-              No Stress,
-              <br />
-              Just Great Food!
-            </h1>
-            <div className={Styles.buttons}>
-              <a href="https://google.com" className={Styles.google}>
-                <FontAwesomeIcon
-                  icon={faGooglePlay}
-                  className={Styles.app_icon}
+        <section className={Styles.carousel_wrapper}>
+          <img
+            src={images[0]}
+            alt="carousel"
+            onLoad={handleFirstImageLoad}
+            className={`${Styles.fade_image} ${
+              currentIndex === 0 ? Styles.visible : ""
+            }`}
+          />
+          {showAllImages &&
+            images
+              .slice(1)
+              .map((src, index) => (
+                <img
+                  key={index + 1}
+                  src={src}
+                  alt="carousel"
+                  className={`${Styles.fade_image} ${
+                    currentIndex === index + 1 ? Styles.visible : ""
+                  }`}
                 />
-                Download on Google Play
-              </a>
-              <a href="https://apple.com" className={Styles.apple}>
-                <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
-                Download on App Store
-              </a>
+              ))}
+
+          <div className={Styles.dots}>
+            {images.map((_, index) => (
+              <div
+                key={index}
+                className={`${Styles.dot} ${
+                  index === currentIndex ? Styles.activeDot : ""
+                }`}
+              ></div>
+            ))}
+          </div>
+
+          <div className={Styles.home_content}>
+            <div className={Styles.content}>
+              <h1>
+                No Stress,
+                <br />
+                Just Great Food!
+              </h1>
+              <div className={Styles.buttons}>
+                <a href="https://google.com" className={Styles.google}>
+                  <FontAwesomeIcon
+                    icon={faGooglePlay}
+                    className={Styles.app_icon}
+                  />
+                  Download on Google Play
+                </a>
+                <a href="https://apple.com" className={Styles.apple}>
+                  <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
+                  Download on App Store
+                </a>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+      <HomeContent />
+    </>
   );
 }
 
