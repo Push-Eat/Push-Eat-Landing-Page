@@ -13,8 +13,8 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
         <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/terms" element={<TermsService />} />
           <Route path="/contact" element={<ContactUs />} />
