@@ -1,6 +1,4 @@
 .container {
-    font-family: 'Segoe UI', sans-serif;
-    color: #000;
     line-height: 1.5;
   }
   
@@ -13,6 +11,7 @@
     max-width: 85%;
     margin: auto;
     height: 690px;
+    margin-top: 30px;
   }
   
   .textArea {
@@ -332,6 +331,7 @@ width: 100%;
     max-width: 85%;
     margin: auto;
     height: 690px;
+     margin-top: 30px;
   }
 
    .home_content_headings {
@@ -378,6 +378,7 @@ width: 100%;
     max-width: 85%;
     margin: auto;
     height: auto !important;
+     margin-top: 30px;
   }
 
   .imageMockup {

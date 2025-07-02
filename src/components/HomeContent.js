@@ -6,6 +6,11 @@ import { FiClock } from "react-icons/fi";
 import { PiTruck } from "react-icons/pi";
 import { faGooglePlay, faApple } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import tag from "../assets/tag.png";
+import homef1 from "../assets/homef1.png";
+import homef2 from "../assets/homef2.png";
+import featureline from "../assets/featureline.svg";
+import features from "../assets/features.png";
 
 const HomeContent = () => {
   const downloadRef = useRef(null);
@@ -97,11 +102,7 @@ const HomeContent = () => {
 
         <div className={styles.imageMockup}>
           <img src={iphone} alt="iphone" />
-          <img
-            src="/tag.png"
-            alt="PushEat Logo"
-            className={styles.logoOverlay}
-          />
+          <img src={tag} alt="PushEat Logo" className={styles.logoOverlay} />
         </div>
       </section>
 
@@ -236,18 +237,18 @@ const HomeContent = () => {
       <section className={styles.home_footer_images}>
         <div className={styles.home_footer_image}>
           <div>
-            <img src="/homef1.png" alt="" />
+            <img src={homef1} alt="" />
           </div>
           <div>
-            <img src="/homef2.png" alt="" />
+            <img src={homef2} alt="" />
           </div>
         </div>
         <div className={styles.home_footer_image2}>
           <div>
-            <img src="/featureline.svg" alt="footer" />
+            <img src={featureline} alt="footer" />
           </div>
           <div>
-            <img src="/features.png" alt="footer" />
+            <img src={features} alt="footer" />
           </div>
         </div>
       </section>

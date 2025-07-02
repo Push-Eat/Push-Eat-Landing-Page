@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import frame from "../assets/frame.webp";
 import Styles from "./ContentService.module.css";
 import Navbar from "./Navbar";
 
@@ -12,7 +11,7 @@ function ContentService({ title, lastUpdated, titleClass, children }) {
             <picture>
               <source srcSet="/frame.webp" type="image/webp" />
               <img
-                src="/frame.webp"
+                src={frame}
                 alt="services"
                 loading="eager"
                 width="5760"

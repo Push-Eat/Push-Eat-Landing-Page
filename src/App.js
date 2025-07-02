@@ -5,13 +5,17 @@ import Home from "./components/Home";
 import Privacy from "./components/pages/Privacy";
 import TermsService from "./components/pages/TermsService";
 import ContactUs from "./components/pages/ContactUs";
-import HomeContent from "./components/HomeContent";
 import DeletePage from "./components/pages/DeletePage";
+import ScrollToTop from "./components/UI/ScrollToTop";
 
 function App() {
   return (
     <>
       <Navbar />
+
+      {/* ✅ Place this outside the <Routes> */}
+      <ScrollToTop />
+
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -20,8 +24,7 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/delete-account" element={<DeletePage />} />
         </Route>
-      </Routes>{" "}
-      {/* <HomeContent /> */}
+      </Routes>
     </>
   );
 }
