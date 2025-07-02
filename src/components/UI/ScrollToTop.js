@@ -1,8 +1,9 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
+  const isInitialLoad = useRef(true);
 
   // Restore scroll position on reload (if path matches)
   useEffect(() => {
@@ -12,9 +13,11 @@ const ScrollToTop = () => {
     if (savedPath === pathname && savedScrollY) {
       window.scrollTo(0, parseInt(savedScrollY));
     }
-  }, [pathname]);
 
-  // Save scroll position before unload (reload/close tab)
+    isInitialLoad.current = false; // flag to indicate reload handling is done
+  }, []);
+
+  // Save scroll position before reload/close tab
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.setItem("scrollY", window.scrollY.toString());
@@ -27,9 +30,11 @@ const ScrollToTop = () => {
     };
   }, [pathname]);
 
-  // Always scroll to top on route change
+  // Scroll to top on route change only (not on reload)
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!isInitialLoad.current) {
+      window.scrollTo(0, 0);
+    }
   }, [pathname]);
 
   return null;
