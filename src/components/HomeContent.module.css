@@ -117,17 +117,6 @@ margin-top: 15px;
 }
 
 
-  /* .imageMockup img {
-    flex: 1;
-    border-radius: 20px;
-  }
-  
-   .imageMockup img {
-    width: 480px;
-    height: 720px;
-    margin-top: 30px;
-   } */
-  /* Steps section */
   .stepsSection {
     text-align: center;
     padding: 4rem 2rem;
@@ -248,13 +237,14 @@ margin-top: 15px;
 }
 
 .text_paragraph {
-  font-size: 22px !important;
-  line-height: 30px;
+font-size: 20px !important;
+line-height: 24px;
+letter-spacing: 0%;
+text-align: center;
 }
 
 
-
-  .home_footer_images img {
+.home_footer_images img {
 width: 100%;
   }
   
@@ -337,6 +327,7 @@ width: 100%;
    .home_content_headings {
         margin-bottom: 30px;
   }
+
 .imageMockup img {
   flex: 1;
   border-radius: 20px;
