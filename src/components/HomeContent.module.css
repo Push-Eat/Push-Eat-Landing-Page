@@ -381,6 +381,7 @@ width: 100%;
     max-width: 80%;
     justify-items: center;
     margin: auto;
+    padding-right: 0;
   }
 
   .home_content_headings {
