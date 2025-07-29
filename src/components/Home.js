@@ -84,7 +84,10 @@ function Home() {
                 Just Great Food!
               </h1>
               <div className={Styles.buttons}>
-                <a href="https://google.com" className={Styles.google}>
+                <a
+                  href="https://play.google.com/store/apps/details?id=ng.pushEats&pli=1"
+                  className={Styles.google}
+                >
                   <FontAwesomeIcon
                     icon={faGooglePlay}
                     className={Styles.app_icon}
