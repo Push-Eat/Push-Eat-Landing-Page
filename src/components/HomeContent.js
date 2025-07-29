@@ -34,6 +34,14 @@ const HomeContent = () => {
     localStorage.setItem("activeTab", tab);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev === "customers" ? "chefs" : "customers"));
+    }, 6000); // Switch every 6 seconds
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className={styles.container}>
       <section className={styles.buildingSection}>
@@ -52,49 +60,56 @@ const HomeContent = () => {
               Chefs
             </span>
           </div>
-
-          {activeTab === "customers" && (
-            <div className={styles.block1}>
-              <h2 className={styles.home_content_headings}>
-                What we are building
-              </h2>
-              <p className={styles.home_content_paragraph}>
-                We are building a social food deals app that allows you to buy
-                freshly-made meals, recipes, groceries and other food-related
-                items directly from online chefs and food content creators.
-              </p>
-              <p className={styles.home_content_paragraph}>
-                We’re like the TikTok that lets you buy the burger, falafel or
-                <br />
-                spoons set posted online by chefs and content creators at <br />{" "}
-                a deal price.
-              </p>
-              <p className={styles.home_content_paragraph}>
-                With PushEat, you can enjoy incredible deal prices from top{" "}
-                <br /> online chefs delivered to your doorstep.
-              </p>
+          <div className={styles.blockWrapper}>
+            <div
+              className={`${styles.block} ${
+                activeTab === "customers" ? styles.show : styles.hide
+              }`}
+            >
+              <div className={styles.block1}>
+                <h2 className={styles.home_content_headings}>
+                  What we are building
+                </h2>
+                <p className={styles.home_content_paragraph}>
+                  We are building a social food deals app that allows you to buy
+                  freshly-made meals, recipes, groceries and other food-related
+                  items directly from online chefs and food content creators.
+                </p>
+                <p className={styles.home_content_paragraph}>
+                  We’re like the TikTok that lets you buy the burger, falafel or
+                  <br />
+                  spoons set posted online by chefs and content creators at{" "}
+                  <br /> a deal price.
+                </p>
+                <p className={styles.home_content_paragraph}>
+                  With PushEat, you can enjoy incredible deal prices from top{" "}
+                  <br /> online chefs delivered to your doorstep.
+                </p>
+              </div>
             </div>
-          )}
-
-          {activeTab === "chefs" && (
-            <div className={styles.block2}>
-              <h2 className={styles.home_content_headings}>Pushing Chefs</h2>
-              <p className={styles.home_content_paragraph}>
-                We know you make a lot of amazing food content on your social
-                platforms like Instagram, TikTok, and others. We also know that
-                most times, the best reward you get from the content you worked
-                so hard to make are "likes and comments" with a very small
-                amount of people actually coming to your DMs to buy.
-              </p>
-              <p className={styles.home_content_paragraph}>
-                With PushEat, you can now sell the content(s) of your posts with
-                ease. Our platform transforms your recipes, food items,
-                groceries, and food creations into irresistible deals for your
-                followers.
-              </p>
+            <div
+              className={`${styles.block} ${
+                activeTab === "chefs" ? styles.show : styles.hide
+              }`}
+            >
+              <div className={styles.block2}>
+                <h2 className={styles.home_content_headings}>Pushing Chefs</h2>
+                <p className={styles.home_content_paragraph}>
+                  We know you make a lot of amazing food content on your social
+                  platforms like Instagram, TikTok, and others. We also know
+                  that most times, the best reward you get from the content you
+                  worked so hard to make are "likes and comments" with a very
+                  small amount of people actually coming to your DMs to buy.
+                </p>
+                <p className={styles.home_content_paragraph}>
+                  With PushEat, you can now sell the content(s) of your posts
+                  with ease. Our platform transforms your recipes, food items,
+                  groceries, and food creations into irresistible deals for your
+                  followers.
+                </p>
+              </div>
             </div>
-          )}
-
+          </div>
           <button className={styles.downloadBtn} onClick={scrollToDownload}>
             Download App →
           </button>
