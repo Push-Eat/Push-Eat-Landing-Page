@@ -3,7 +3,7 @@
     "apps": [],
     "details": [
       {
-        "appID": "599Z83MBPM.ng.pushEats",
+        "appID": "599Z83MBPM.co.pusheat.userapp",
         "paths": [
           "/deal/*",
           "/chef/*",
@@ -13,6 +13,6 @@
     ]
   },
   "webcredentials": {
-    "apps": ["599Z83MBPM.ng.pushEats"]
+    "apps": ["599Z83MBPM.co.pusheat.userapp"]
   }
 }
