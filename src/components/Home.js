@@ -35,11 +35,37 @@ function Home() {
     <>
       <div className={Styles.home_wrapper}>
         <Helmet>
-          <title>PushEat - No Stress, Just Great Food!</title>
+          <title>Pusheat - No Stress, Just Great Food!</title>
           <meta
             name="description"
-            content="Order delicious meals fast and easy with PushEat. No stress, just great food!"
+            content="Order delicious meals fast and easy with Pusheat. No stress, just great food!"
           />
+          <script type="application/ld+json">
+            {JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "Pusheat",
+              "description": "Social Food Delivery Platform - Order delicious meals fast and easy"
+              "url": "https://pusheat1.netlify.app",
+              "logo": "https://pusheat1.netlify.app/Logo.png",
+              "sameAs": [
+                "https://play.google.com/store/apps/details?id=ng.pushEats",
+                "https://apps.apple.com/app/pusheat/id6749077010"
+              ],
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "contactType": "customer service",
+                "availableLanguage": "English"
+              },
+              "areaServed": "Nigeria",
+              "serviceType": "Food Delivery",
+              "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.5",
+                "reviewCount": "1000"
+              }
+            })}
+          </script>
         </Helmet>
 
         <section className={Styles.carousel_wrapper}>

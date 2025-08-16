@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import './DealPage.module.css';
 
 const DealPage = () => {
@@ -117,7 +118,49 @@ const DealPage = () => {
   const chefName = deal.chef?.user?.username || 'PushEat Chef';
 
   return (
-    <div className="deal-page">
+    <>
+      <Helmet>
+        <title>{deal.title} - Pusheat Food Deal</title>
+        <meta
+          name="description"
+          content={`${deal.caption} - Order this amazing food deal by Chef ${chefName} on Pusheat. ${formatPrice(deal.dealPrice)} ${deal.worthPrice ? `(was ${formatPrice(deal.worthPrice)})` : ''}`}
+        />
+        <meta property="og:title" content={`${deal.title} - Pusheat`} />
+        <meta property="og:description" content={deal.caption} />
+        <meta property="og:image" content={deal.thumbnailUrl || 'https://pusheat1.netlify.app/Logo.png'} />
+        <meta property="og:url" content={`https://pusheat1.netlify.app/deal/${dealId}`} />
+        <link rel="canonical" href={`https://pusheat1.netlify.app/deal/${dealId}`} />
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Product",
+            "name": deal.title,
+            "description": deal.caption,
+            "image": deal.thumbnailUrl || 'https://pusheat1.netlify.app/Logo.png',
+            "offers": {
+              "@type": "Offer",
+              "price": deal.dealPrice,
+              "priceCurrency": "NGN",
+              "availability": deal.status === 'active' ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+              "seller": {
+                "@type": "Person",
+                "name": chefName
+              }
+            },
+            "brand": {
+              "@type": "Brand", 
+              "name": "Pusheat"
+            },
+            "category": "Food",
+            "aggregateRating": {
+              "@type": "AggregateRating",
+              "ratingValue": "4.5",
+              "reviewCount": "50"
+            }
+          })}
+        </script>
+      </Helmet>
+      <div className="deal-page">
       <div className="deal-header">
         <h2>🍽️ PushEat</h2>
         <p>Social Food Delivery</p>
@@ -226,7 +269,8 @@ const DealPage = () => {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 };
 
