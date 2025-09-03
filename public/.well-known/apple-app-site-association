@@ -7,7 +7,8 @@
         "paths": [
           "/deal/*",
           "/chef/*",
-          "/order/*"
+          "/order/*",
+          "/rate-order/*"
         ]
       }
     ]
