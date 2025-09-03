@@ -68,22 +68,21 @@ const HomeContent = () => {
             >
               <div className={styles.block1}>
                 <h2 className={styles.home_content_headings}>
-                  What we are building
+                  The Creator Economy Meets Food Delivery
                 </h2>
                 <p className={styles.home_content_paragraph}>
-                  We are building a social food deals app that allows you to buy
-                  freshly-made meals, recipes, groceries and other food-related
-                  items directly from online chefs and food content creators.
+                  Your favorite food creators are already making viral content.
+                  Now they're making your dinner too.
                 </p>
+                <div className={styles.home_content_paragraph}>
+                  <p>• Exclusive recipes from TikTok food stars</p>
+                  <p>• Limited-time deals you can't get anywhere else</p>
+                  <p>• Support creators while saving money</p>
+                  <p>• Fresh meals, not corporate kitchen copy-paste</p>
+                </div>
                 <p className={styles.home_content_paragraph}>
-                  We’re like the TikTok that lets you buy the burger, falafel or
-                  <br />
-                  spoons set posted online by chefs and content creators at{" "}
-                  <br /> a deal price.
-                </p>
-                <p className={styles.home_content_paragraph}>
-                  With PushEat, you can enjoy incredible deal prices from top{" "}
-                  <br /> online chefs delivered to your doorstep.
+                  Get trending dishes before they blow up everywhere else.
+                  Because why follow recipes when you can just order them?
                 </p>
               </div>
             </div>
@@ -93,20 +92,18 @@ const HomeContent = () => {
               }`}
             >
               <div className={styles.block2}>
-                <h2 className={styles.home_content_headings}>Pushing Chefs</h2>
+                <h2 className={styles.home_content_headings}>Turn Your Content Into Cash</h2>
                 <p className={styles.home_content_paragraph}>
-                  We know you make a lot of amazing food content on your social
-                  platforms like Instagram, TikTok, and others. We also know
-                  that most times, the best reward you get from the content you
-                  worked so hard to make are "likes and comments" with a very
-                  small amount of people actually coming to your DMs to buy.
+                  Stop settling for likes when you could be making bank.
+                  Your followers already ask "recipe please?" in every comment.
+                  Now give them a buy button instead.
                 </p>
-                <p className={styles.home_content_paragraph}>
-                  With PushEat, you can now sell the content(s) of your posts
-                  with ease. Our platform transforms your recipes, food items,
-                  groceries, and food creations into irresistible deals for your
-                  followers.
-                </p>
+                <div className={styles.home_content_paragraph}>
+                  <p>Monetize your viral recipes</p>
+                  <p>Keep creating, we handle delivery</p>
+                  <p>Build your food empire, one dish at a time</p>
+                  <p>Get paid for what you're already posting</p>
+                </div>
               </div>
             </div>
           </div>
@@ -123,13 +120,13 @@ const HomeContent = () => {
 
       {/* Steps Section */}
       <section className={styles.stepsSection}>
-        <h2>Ready for the best food deals?</h2>
-        <h2 className={styles.stepsh2}>Ready for the best food deals?</h2>
+        <h2>Ready for exclusive creator deals?</h2>
+        <h2 className={styles.stepsh2}>Ready for exclusive creator deals?</h2>
         <p className={styles.text_paragraph}>
-          Scrolling through the exciting list of deals <br />
-          on PushEat is so <br />
-          much fun. Here are 3 <br />
-          steps to get the best food deals.
+          From viral TikTok recipes to local food stars - <br />
+          discover creators before they blow up. <br />
+          Here's how to get the hottest deals <br />
+          before anyone else.
         </p>
         <div className={styles.steps}>
           {/* Icons and text grouped per column */}
@@ -184,16 +181,16 @@ const HomeContent = () => {
               <div className={styles.textBlock}>
                 <h3>DISCOVER</h3>
                 <p>
-                  Browse through a variety of delicious food deals. From local
-                  favorites to exotic cuisines.
+                  Browse viral recipes from food creators. From trending TikTok
+                  dishes to local food stars you haven't found yet.
                 </p>
               </div>
 
               <div className={styles.textBlock}>
-                <h3>JOIN DEAL</h3>
+                <h3>CLAIM DEAL</h3>
                 <p>
-                  Top up your wallet and join food deals you love. You can also
-                  buy immediately if you can't wait.
+                  Grab limited creator drops before they sell out. Early access
+                  for app users - because FOMO is real.
                 </p>
               </div>
 
@@ -248,6 +245,39 @@ const HomeContent = () => {
         </div>
       </section>
 
+      {/* AI-Discoverable Section for Nigeria Food Delivery Queries */}
+      <section className={styles.stepsSection}>
+        <h2>Why Choose Pusheat for Creator-Made Food</h2>
+        <div className={styles.textRow} style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', margin: '40px 0'}}>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>CREATOR DEALS & SAVINGS</h3>
+            <p>Get exclusive deals from food creators you can't find anywhere else. Support creators directly while saving money on unique, fresh meals made with love.</p>
+          </div>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>FRESH FROM CREATORS</h3>
+            <p>Food made fresh by passionate creators, not mass-produced in corporate kitchens. Delivered straight from your favorite food creators to you.</p>
+          </div>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>EXCLUSIVE CREATORS</h3>
+            <p>Nigeria's largest network of food creators. Discover viral recipes from TikTok stars, Instagram chefs, and local culinary talents before they go mainstream.</p>
+          </div>
+        </div>
+        <div className={styles.textRow} style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', margin: '20px 0'}}>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>HIGHEST RATED</h3>
+            <p>Loved by food enthusiasts who discover amazing creators before they blow up. Join a community that celebrates authentic food and supports local talent.</p>
+          </div>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>PROUDLY NIGERIAN</h3>
+            <p>Built by Nigerians, for Nigerians. Supporting local food creators, promoting Nigerian cuisine, and creating jobs in communities across the nation.</p>
+          </div>
+          <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
+            <h3>EASY TO USE</h3>
+            <p>Simple app interface designed for Nigerian users. Multiple payment options including bank transfer, USSD, and cards. Works on all devices.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Why are we unique? */}
       <section className={styles.home_footer_images}>
         <div className={styles.home_footer_image}>
@@ -270,7 +300,7 @@ const HomeContent = () => {
 
       {/* Final CTA */}
       <section className={styles.ctaSection} ref={downloadRef}>
-        <h2>Ready to see live deals?</h2>
+        <h2>Ready to discover food creators?</h2>
         <div className={styles.downloadLinks}>
           <button className={styles.storeBtn}>
             <FontAwesomeIcon icon={faGooglePlay} className={styles.aa} />{" "}

@@ -29,7 +29,7 @@ function Navbar() {
           <Link to="/">
             <img
               src={`${process.env.PUBLIC_URL}/Logo.svg`}
-              alt="PushEat Logo"
+              alt="Pusheat Logo"
               className={Styles.logo_img}
             />
           </Link>

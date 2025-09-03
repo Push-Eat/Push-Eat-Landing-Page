@@ -11,7 +11,7 @@ function Footer() {
           <Link to="/">
             <img
               src={`${process.env.PUBLIC_URL}/Logo.svg`}
-              alt="PushEat Logo"
+              alt="Pusheat Logo"
               className={Styles.logo_img}
             />
           </Link>
@@ -30,7 +30,7 @@ function Footer() {
       </div>
       <hr />
       <div className={Styles.bottom}>
-        <p>Copyright © {currentYear} PushEat | All Rights Reserved</p>
+        <p>Copyright © {currentYear} Pusheat | All Rights Reserved</p>
       </div>
     </footer>
   );

@@ -35,19 +35,19 @@ function Home() {
     <>
       <div className={Styles.home_wrapper}>
         <Helmet>
-          <title>Pusheat - No Stress, Just Great Food!</title>
+          <title>Pusheat - Order from Food Creators | Viral Recipes Delivered</title>
           <meta
             name="description"
-            content="Order delicious meals fast and easy with Pusheat. No stress, just great food!"
+            content="Get exclusive food deals from TikTok creators before they blow up. Fresh recipes, viral flavors, creator prices. Download now for early access!"
           />
           <script type="application/ld+json">
             {JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Pusheat",
-              "description": "Social Food Delivery Platform - Order delicious meals fast and easy",
-              "url": "https://pusheat1.netlify.app",
-              "logo": "https://pusheat1.netlify.app/Logo.png",
+              "description": "Creator-to-table food delivery platform connecting food creators with Gen Z food lovers through exclusive deals and viral recipes",
+              "url": "https://pusheat.co",
+              "logo": "https://pusheat.co/Logo.png",
               "sameAs": [
                 "https://play.google.com/store/apps/details?id=ng.pushEats",
                 "https://apps.apple.com/app/pusheat/id6749077010"
@@ -57,13 +57,15 @@ function Home() {
                 "contactType": "customer service",
                 "availableLanguage": "English"
               },
-              "areaServed": "Nigeria",
-              "serviceType": "Food Delivery",
+              "areaServed": {"@type": "Country", "name": "Nigeria"},
+              "serviceType": "Food Delivery and Creator Marketplace",
               "aggregateRating": {
                 "@type": "AggregateRating",
-                "ratingValue": "4.5",
-                "reviewCount": "1000"
-              }
+                "ratingValue": "4.8",
+                "reviewCount": "5000+"
+              },
+              "priceRange": "₦₦",
+              "keywords": "food delivery Nigeria, food creators, viral recipes, Nigerian food delivery app, best food delivery Nigeria, cheap food delivery, local food creators Nigeria"
             })}
           </script>
         </Helmet>
@@ -105,9 +107,9 @@ function Home() {
           <div className={Styles.home_content}>
             <div className={Styles.content}>
               <h1>
-                No Stress,
+                From TikTok
                 <br />
-                Just Great Food!
+                to Your Table
               </h1>
               <div className={Styles.buttons}>
                 <a
