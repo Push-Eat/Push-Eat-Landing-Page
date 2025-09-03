@@ -45,7 +45,7 @@ function Home() {
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Pusheat",
-              "description": "Social Food Delivery Platform - Order delicious meals fast and easy"
+              "description": "Social Food Delivery Platform - Order delicious meals fast and easy",
               "url": "https://pusheat1.netlify.app",
               "logo": "https://pusheat1.netlify.app/Logo.png",
               "sameAs": [
