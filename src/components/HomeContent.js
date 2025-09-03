@@ -21,13 +21,17 @@ const HomeContent = () => {
     const userAgent = navigator.userAgent;
     const isIOS = /iPad|iPhone|iPod/.test(userAgent);
     const isAndroid = /Android/.test(userAgent);
+    const isMac = /Macintosh|MacIntel|MacPPC|Mac68K/.test(userAgent);
     
     if (isIOS) {
       window.open('https://apps.apple.com/ng/app/pusheat/id6749077010', '_blank');
     } else if (isAndroid) {
       window.open('https://play.google.com/store/apps/details?id=ng.pushEats&pli=1', '_blank');
+    } else if (isMac) {
+      // Mac users should go to App Store (they likely have iPhone too)
+      window.open('https://apps.apple.com/ng/app/pusheat/id6749077010', '_blank');
     } else {
-      // Desktop users - default to Android (more common globally)
+      // Windows/Linux users - default to Google Play
       window.open('https://play.google.com/store/apps/details?id=ng.pushEats&pli=1', '_blank');
     }
   };
