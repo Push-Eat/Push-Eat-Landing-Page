@@ -122,7 +122,7 @@ function Home() {
                   />
                   Download on Google Play
                 </a>
-                <a href="https://apple.com" className={Styles.apple}>
+                <a href="https://apps.apple.com/ng/app/pusheat/id6749077010" className={Styles.apple}>
                   <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
                   Download on App Store
                 </a>
