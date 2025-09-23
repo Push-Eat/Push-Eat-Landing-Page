@@ -1,0 +1,202 @@
+.carousel_wrapper {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background-color: black;
+    }
+    
+    .fade_image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 3.5s ease-in-out;
+      z-index: 0;
+    }
+    
+    .visible {
+      opacity: 1;
+      z-index: 0;
+    }
+    
+    .dots {
+      position: absolute;
+      bottom: 48px;
+      right: 85px;
+      display: flex;
+      gap: 10px;
+    }
+    
+    .dot {
+      width: 8px;
+      height: 5px;
+      border: 2px solid #ccc;
+      border-radius: 50%;
+      transition: all 3s ease;
+    }
+    
+    .activeDot {
+      width: 32px;
+      height: 3px;
+      background-color: #fff;
+      border: 2px solid #fff;
+      border-radius: 999px;
+    }
+    
+    .navbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      z-index: 10;
+    }
+    
+    .home_content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      padding-bottom: 60px;
+      color: white;
+      max-width: 90%;
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100%;
+      box-sizing: border-box;
+    }
+    
+    .content {
+      margin-top: 50px;
+      width: 786px;
+    }
+    
+    .content h1 {
+      text-align: left;
+      font-size: 80px;
+      line-height: 100.56px;
+      letter-spacing: 4%;
+      vertical-align: middle;
+    }
+    
+    
+    .buttons {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+      width: 567px;
+    }
+    
+    .buttons a {
+      display: inline-block;
+      background-color: black;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 28px;
+      text-align: center;
+    }
+    
+    .app_icon {
+      margin-right: 5px;
+    }
+    
+    .buttons a.google {
+      background-color: #000;
+    }
+    
+    .buttons a.apple {
+      background-color: #000;
+    }
+    
+    .third_section_content {
+      width: 816px;
+      height: 179px;
+      left: 231.5px;
+      gap: 24px;
+    }
+    
+    .third_section_content h1 {
+      font-weight: 600;
+      font-size: 60px;
+      line-height: 72px;
+    }
+    
+    .third_section_content p {
+      font-size: 20px;
+      line-height: 30px;
+      text-align: center;
+    }
+    
+    @media (min-width: 769px) and (max-width: 945px) {
+      .content h1 {
+      font-size: 60px;
+     }
+    }
+    
+    
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 10px 20px;
+      }
+    
+      .home_content {
+        padding-top: 120px;
+        padding-bottom: 20px;
+        max-width: 90%;
+        margin: auto;
+        text-align: center;
+      }
+    
+      .content {
+        width: 100%;
+        margin-top: 20px;
+      }
+    
+      .content h1 {
+        font-size: 36px;
+        line-height: 45px;
+        text-align: center;
+      }
+    
+      .buttons {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        gap: 12px;
+      }
+    
+      .buttons a {
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 0;
+      }
+    
+      .dots {
+        bottom: 24px;
+        right: 50%;
+        transform: translateX(50%);
+        gap: 8px;
+      }
+    
+      .third_section_content h1 {
+        font-size: 32px;
+        line-height: 40px;
+      }
+    
+      .third_section_content p {
+        font-size: 16px;
+        line-height: 24px;
+      }
+    }

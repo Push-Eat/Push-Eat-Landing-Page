@@ -1,0 +1,56 @@
+
+.container {
+  max-width: 90%;
+  margin: auto;
+  margin-top: 100px;
+}
+.mainHeading {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+  text-align: left;
+}
+
+.subheading {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+  text-align: left;
+}
+
+p {
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align:justify
+}
+
+a {
+  color: #0070f3;
+  text-decoration: underline;
+  text-align: left;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul {
+  margin-left: 1.5rem;
+  list-style-type: disc;
+  text-align: justify;
+}
+
+.list li {
+  margin-bottom: 0.5rem;
+}

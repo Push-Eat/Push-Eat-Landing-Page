@@ -1,0 +1,20 @@
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://pusheat.co https://dev.pusheat.co https://staging.pusheat.co https://res.cloudinary.com https://s3.amazonaws.com https://firebasestorage.googleapis.com; connect-src 'self' https://dev.pusheat.co https://staging.pusheat.co https://pusheat.co https://api.pusheat.co; frame-ancestors 'none'; base-uri 'self'; object-src 'none'; media-src 'self'
+
+/*.(png|jpg|jpeg|webp|svg|js|css)
+  Cache-Control: public, max-age=31536000, immutable
+
+/.well-known/assetlinks.json
+  Content-Type: application/json
+
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+/deal/*
+  X-Robots-Tag: index, follow
+  Cache-Control: public, s-maxage=3600, stale-while-revalidate=86400

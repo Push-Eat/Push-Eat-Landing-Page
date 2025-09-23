@@ -1,0 +1,3 @@
+# Preserve well-known paths for domain verification
+/.well-known/*  /.well-known/:splat  200
+/*    /index.html   200

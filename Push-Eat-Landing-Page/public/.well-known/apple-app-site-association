@@ -1,0 +1,19 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "599Z83MBPM.co.pusheat.userapp",
+        "paths": [
+          "/deal/*",
+          "/chef/*",
+          "/order/*",
+          "/rate-order/*"
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["599Z83MBPM.co.pusheat.userapp"]
+  }
+}
