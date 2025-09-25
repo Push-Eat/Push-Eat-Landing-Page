@@ -15,7 +15,7 @@ const ScrollToTop = () => {
     }
 
     isInitialLoad.current = false; // flag to indicate reload handling is done
-  }, []);
+  }, [pathname]);
 
   // Save scroll position before reload/close tab
   useEffect(() => {

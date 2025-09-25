@@ -9,7 +9,6 @@ import carousel2 from "../assets/carousel2.webp";
 import carousel3 from "../assets/carousel3.webp";
 
 const images = [carousel1, carousel2, carousel3];
-const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
