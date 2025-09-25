@@ -1,4 +1,4 @@
-const API_BASE_URL = 'https://dev.pusheat.co/api';
+const API_BASE_URL = 'https://api.int.pusheat.co/api';
 const CACHE_DURATION = 300;
 
 exports.handler = async (event, context) => {
@@ -54,6 +54,7 @@ exports.handler = async (event, context) => {
     console.error('❌ Error processing deal meta:', error);
     
     const dealId = event.path?.split('/deal/')[1] || 'unknown';
+    
     const fallbackHtml = generateFallbackHTML(dealId);
     
     return {
@@ -69,15 +70,14 @@ exports.handler = async (event, context) => {
 
 async function fetchDealData(dealId) {
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 8000);
+  const timeoutId = setTimeout(() => controller.abort(), 5000);
 
   try {
-    const response = await fetch(`${API_BASE_URL}/deal/get-deal-details/${dealId}`, {
+    const response = await fetch(`${API_BASE_URL}/social/discover/deal-posts/${dealId}`, {
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json',
-        'User-Agent': 'Pusheat-WebPreview/1.0',
         'Accept': 'application/json',
+        'User-Agent': 'Pusheat-WebPreview/1.0'
       },
       signal: controller.signal,
     });
@@ -85,25 +85,31 @@ async function fetchDealData(dealId) {
     clearTimeout(timeoutId);
 
     if (!response.ok) {
+      if (response.status === 401 || response.status === 403) {
+        console.warn('🔐 API Authentication failed - token may be expired');
+        throw new Error('TOKEN_EXPIRED');
+      }
       throw new Error(`API responded with status: ${response.status}`);
     }
 
-    const data = await response.json();
-    const dealData = data.data || data;
+    const postData = await response.json();
     
+    console.log('📊 Raw API Response:', JSON.stringify(postData, null, 2));
+    
+    const dealData = postData.deal || {};
+    const chefData = postData.chef?.user || {};
     
     return {
-      title: dealData.title || 'Amazing Food Deal',
-      caption: dealData.caption || dealData.title || 'Delicious food deal on Pusheat',
-      thumbnailUrl: dealData.thumbnailUrl !== 'None' ? dealData.thumbnailUrl : null,
-      dealPrice: dealData.dealPrice,
-      worthPrice: dealData.worthPrice,
-      requiredCustomers: dealData.requiredCustomers,
+      title: dealData.title || postData.title || 'Amazing Food Deal',
+      caption: dealData.caption || postData.caption || 'Delicious food deal on Pusheat',
+      thumbnailUrl: postData.thumbnail_url && postData.thumbnail_url !== 'None' ? postData.thumbnail_url : null,
+      dealPrice: dealData.deal_price,
+      worthPrice: dealData.worth_price,
       status: dealData.status,
       chef: {
         user: {
-          username: dealData.chef?.user?.username || 'Pusheat Chef',
-          imageUrl: dealData.chef?.user?.imageUrl !== 'None' ? dealData.chef?.user?.imageUrl : null
+          username: chefData.username || 'Pusheat Chef',
+          imageUrl: chefData.image_url && chefData.image_url !== 'None' ? chefData.image_url : null
         }
       }
     };
@@ -114,18 +120,116 @@ async function fetchDealData(dealId) {
 
 function generateDealHTML(deal, dealId) {
   const chefName = deal.chef?.user?.username || 'Pusheat Chef';
-  const imageUrl = deal.thumbnailUrl || 'https://pusheat.co/images/default-deal.jpg';
-  const description = deal.caption || `Delicious ${deal.title} by ${chefName}. Order now on Pusheat!`;
+  const imageUrl = deal.thumbnailUrl || deal.chef?.user?.imageUrl || 'https://pusheat.co/images/default-deal.jpg';
   
-  let discountText = '';
-  if (deal.worthPrice && deal.dealPrice) {
-    const worth = parseInt(deal.worthPrice);
-    const dealPrice = parseInt(deal.dealPrice);
-    const discount = Math.round(((worth - dealPrice) / worth) * 100);
-    if (discount > 0) {
-      discountText = ` (${discount}% OFF!)`;
-    }
-  }
+  // Format price in Naira with proper symbol
+  const formatPrice = (price) => {
+    if (!price) return '';
+    const numPrice = parseFloat(price);
+    return `₦${numPrice.toLocaleString('en-NG', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+  };
+  
+  const priceText = deal.dealPrice ? ` - ${formatPrice(deal.dealPrice)}` : '';
+  
+  // Enhanced status handling for actual backend statuses
+  const getStatusInfo = (status) => {
+    const statusMap = {
+      // Full status names
+      'ongoing': { 
+        text: 'Order Now', 
+        availability: 'https://schema.org/InStock',
+        color: '#28a745', // Green
+        bgColor: '#d4edda',
+        icon: '🔥'
+      },
+      'upcoming': { 
+        text: 'Coming Soon', 
+        availability: 'https://schema.org/PreOrder',
+        color: '#007bff', // Blue
+        bgColor: '#d1ecf1', 
+        icon: '⏰'
+      },
+      'successful': { 
+        text: 'Successfully Completed', 
+        availability: 'https://schema.org/SoldOut',
+        color: '#28a745', // Green
+        bgColor: '#d4edda',
+        icon: '✅'
+      },
+      'completed': { 
+        text: 'Deal Closed', 
+        availability: 'https://schema.org/SoldOut',
+        color: '#6c757d', // Gray
+        bgColor: '#f8f9fa',
+        icon: '📋'
+      },
+      'failed': { 
+        text: 'Expired', 
+        availability: 'https://schema.org/Discontinued',
+        color: '#dc3545', // Red
+        bgColor: '#f8d7da',
+        icon: '❌'
+      },
+      'pre_failed': { 
+        text: 'Expired', 
+        availability: 'https://schema.org/Discontinued',
+        color: '#dc3545', // Red
+        bgColor: '#f8d7da',
+        icon: '❌'
+      },
+      
+      // Backend abbreviations/codes
+      'C': { 
+        text: 'Deal Closed', 
+        availability: 'https://schema.org/SoldOut',
+        color: '#6c757d', // Gray
+        bgColor: '#f8f9fa',
+        icon: '📋'
+      },
+      'O': { 
+        text: 'Order Now', 
+        availability: 'https://schema.org/InStock',
+        color: '#28a745', // Green
+        bgColor: '#d4edda',
+        icon: '🔥'
+      },
+      'U': { 
+        text: 'Coming Soon', 
+        availability: 'https://schema.org/PreOrder',
+        color: '#007bff', // Blue
+        bgColor: '#d1ecf1', 
+        icon: '⏰'
+      },
+      'S': { 
+        text: 'Successfully Completed', 
+        availability: 'https://schema.org/SoldOut',
+        color: '#28a745', // Green
+        bgColor: '#d4edda',
+        icon: '✅'
+      },
+      'F': { 
+        text: 'Expired', 
+        availability: 'https://schema.org/Discontinued',
+        color: '#dc3545', // Red
+        bgColor: '#f8d7da',
+        icon: '❌'
+      }
+    };
+    
+    return statusMap[status] || {
+      text: 'Check Availability',
+      availability: 'https://schema.org/InStock',
+      color: '#ff6b35',
+      bgColor: '#fff3cd',
+      icon: '📱'
+    };
+  };
+  
+  const statusInfo = getStatusInfo(deal.status);
+  
+  // Optimized description for AI bots and social sharing (under 160 chars)
+  const baseDescription = deal.caption || `Delicious ${deal.title} by Chef ${chefName}`;
+  const description = `${baseDescription} • ${statusInfo.text} • Pusheat Food Delivery`.slice(0, 155);
 
   const escapeHtml = (text) => {
     if (!text) return '';
@@ -137,10 +241,18 @@ function generateDealHTML(deal, dealId) {
       .replace(/'/g, '&#39;');
   };
 
-  const safeTitle = escapeHtml(deal.title);
+  // Optimized titles for 2025 SEO (under 60 chars)
+  const optimizedTitle = `${deal.title}${priceText} | Pusheat`.slice(0, 57);
+  const socialTitle = `${deal.title}${priceText}`.slice(0, 55);
+  
+  const safeTitle = escapeHtml(optimizedTitle);
+  const safeSocialTitle = escapeHtml(socialTitle);
   const safeDescription = escapeHtml(description);
   const safeImageUrl = escapeHtml(imageUrl);
   const safeChefName = escapeHtml(chefName);
+  const safeStatusText = escapeHtml(statusInfo.text);
+  const safePriceText = escapeHtml(priceText);
+  const safeStatusIcon = escapeHtml(statusInfo.icon);
 
   return `<!DOCTYPE html>
 <html lang="en">
@@ -148,31 +260,52 @@ function generateDealHTML(deal, dealId) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>${safeTitle} - Pusheat</title>
+  <!-- 2025 SEO Optimization -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="keywords" content="Nigerian food, ${deal.title}, ${safeChefName}, food delivery Nigeria, Pusheat, Nigerian cuisine" />
+  
+  <!-- SEO Optimized Title (under 60 chars) -->
+  <title>${safeTitle}</title>
   <meta name="description" content="${safeDescription}" />
   
-  <meta property="og:title" content="${safeTitle}${escapeHtml(discountText)}" />
+  <!-- Additional SEO Meta Tags -->
+  <meta name="author" content="${safeChefName}" />
+  <meta name="theme-color" content="#ff6b35" />
+  <meta name="msapplication-TileColor" content="#ff6b35" />
+  
+  <!-- Open Graph for Facebook, WhatsApp (2025 optimized) -->
+  <meta property="og:title" content="${safeSocialTitle}" />
   <meta property="og:description" content="${safeDescription}" />
   <meta property="og:image" content="${safeImageUrl}" />
   <meta property="og:url" content="https://pusheat.co/deal/${dealId}" />
-  <meta property="og:type" content="article" />
+  <meta property="og:type" content="product" />
   <meta property="og:site_name" content="Pusheat" />
   <meta property="og:locale" content="en_NG" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
-  <meta property="og:image:alt" content="${safeTitle} - Delicious food by ${safeChefName}" />
+  <meta property="og:image:alt" content="${deal.title} - Nigerian food by Chef ${safeChefName}" />
   
+  <!-- Enhanced product meta tags for AI optimization -->
+  <meta property="product:price:amount" content="${deal.dealPrice || '0'}" />
+  <meta property="product:price:currency" content="NGN" />
+  <meta property="product:availability" content="${statusInfo.text.toLowerCase()}" />
   <meta property="article:author" content="${safeChefName}" />
-  <meta property="article:section" content="Food & Dining" />
-  <meta property="og:price:amount" content="${deal.dealPrice || '0'}" />
-  <meta property="og:price:currency" content="NGN" />
+  <meta property="article:section" content="Nigerian Food Delivery" />
   
+  <!-- Twitter Cards (X.com) -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${safeTitle}${escapeHtml(discountText)}" />
+  <meta name="twitter:title" content="${safeSocialTitle}" />
   <meta name="twitter:description" content="${safeDescription}" />
   <meta name="twitter:image" content="${safeImageUrl}" />
   <meta name="twitter:site" content="@pusheat" />
   <meta name="twitter:creator" content="@${safeChefName.replace(/\s+/g, '')}" />
+  
+  <!-- Additional Twitter product tags -->
+  <meta name="twitter:label1" content="Price" />
+  <meta name="twitter:data1" content="${formatPrice(deal.dealPrice) || 'Contact for price'}" />
+  <meta name="twitter:label2" content="Status" />
+  <meta name="twitter:data2" content="${safeStatusText}" />
   
   <meta property="al:android:package" content="ng.pushEats" />
   <meta property="al:android:url" content="pusheat://deal/${dealId}" />
@@ -183,32 +316,102 @@ function generateDealHTML(deal, dealId) {
   
   <link rel="canonical" href="https://pusheat.co/deal/${dealId}" />
   
+  <!-- Enhanced Structured Data for AI Optimization (ChatGPT, Gemini, etc.) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Product",
-    "name": "${safeTitle}",
+    "@type": ["Product", "FoodItem"],
+    "name": "${deal.title}",
     "description": "${safeDescription}",
-    "image": "${safeImageUrl}",
+    "image": ["${safeImageUrl}"],
+    "category": ["Nigerian Cuisine", "Food Delivery", "Ready Meals"],
+    "brand": {
+      "@type": "Brand",
+      "name": "Pusheat",
+      "description": "Nigerian Food Delivery Platform",
+      "url": "https://pusheat.co"
+    },
     "offers": {
       "@type": "Offer",
       "price": "${deal.dealPrice || '0'}",
       "priceCurrency": "NGN",
-      "availability": "${deal.status === 'active' ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'}",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "price": "${deal.dealPrice || '0'}",
+        "priceCurrency": "NGN"
+      },
+      "availability": "${statusInfo.availability}",
       "seller": {
-        "@type": "Person",
-        "name": "${safeChefName}"
-      }
+        "@type": ["Person", "Chef"],
+        "name": "${safeChefName}",
+        "image": "${deal.chef?.user?.imageUrl || ''}",
+        "jobTitle": "Professional Chef",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Pusheat"
+        }
+      },
+      "areaServed": {
+        "@type": "Country", 
+        "name": "Nigeria"
+      },
+      "deliveryMethod": "DeliveryModeOwnFleet"
     },
-    "brand": {
-      "@type": "Brand",
-      "name": "Pusheat"
+    "manufacturer": {
+      "@type": "Person",
+      "name": "${safeChefName}"
     },
-    "category": "Food",
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": "4.5",
+      "bestRating": "5",
+      "worstRating": "1",
       "reviewCount": "50"
+    },
+    "nutrition": {
+      "@type": "NutritionInformation",
+      "calories": "varies"
+    },
+    "suitableForDiet": "varies",
+    "applicationCategory": "Food Delivery",
+    "operatingSystem": ["Android", "iOS"],
+    "url": "https://pusheat.co/deal/${dealId}",
+    "sameAs": [
+      "https://play.google.com/store/apps/details?id=ng.pushEats",
+      "https://apps.apple.com/app/pusheat/id6749077010"
+    ]
+  }
+  </script>
+  
+  <!-- Additional Schema for Local Business (AI Context) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Pusheat",
+    "description": "Nigerian food delivery platform connecting customers with local chefs",
+    "url": "https://pusheat.co",
+    "telephone": "+234",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Nigeria"
+    },
+    "serviceType": "Food Delivery Service",
+    "hasMenu": {
+      "@type": "Menu",
+      "hasMenuSection": {
+        "@type": "MenuSection",
+        "name": "Featured Deals",
+        "hasMenuItem": {
+          "@type": "MenuItem",
+          "name": "${deal.title}",
+          "offers": {
+            "@type": "Offer",
+            "price": "${deal.dealPrice || '0'}",
+            "priceCurrency": "NGN"
+          }
+        }
+      }
     }
   }
   </script>
@@ -248,20 +451,91 @@ function generateDealHTML(deal, dealId) {
       font-size: 2em;
       margin: 1em 0;
     }
+    
+    /* Stylish Status Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.95em;
+      margin: 15px 0;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .status-badge:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+    
+    .price-display {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      margin: 15px 0;
+    }
+    
+    .chef-info {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin: 15px 0;
+      opacity: 0.9;
+    }
+    
+    .chef-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      object-fit: cover;
+    }
+    
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
   </style>
 </head>
 <body>
   <div class="container">
     <div class="logo">🍽️ Pusheat</div>
     <div class="spinner">⏳</div>
-    <h1 class="deal-title">${safeTitle}</h1>
-    <p class="deal-description">${safeDescription}</p>
-    <p>by Chef ${safeChefName}</p>
     
-    <div>
-      <a href="pusheat://deal/${dealId}" class="cta-button">🚀 Open in App</a>
-      <a href="https://play.google.com/store/apps/details?id=ng.pushEats" class="cta-button">📲 Get App</a>
+    <h1 class="deal-title">${deal.title}</h1>
+    
+    <!-- Stylish Status Badge -->
+    <div class="status-badge" style="
+      background: linear-gradient(135deg, ${statusInfo.bgColor}dd, ${statusInfo.bgColor}aa);
+      color: ${statusInfo.color};
+      border-color: ${statusInfo.color}50;
+    ">
+      <span style="font-size: 1.1em;">${safeStatusIcon}</span>
+      <span>${safeStatusText}</span>
+    </div>
+    
+    <!-- Price Display -->
+    ${deal.dealPrice ? `<div class="price-display">${formatPrice(deal.dealPrice)}</div>` : ''}
+    
+    <!-- Chef Information -->
+    <div class="chef-info">
+      ${deal.chef?.user?.imageUrl ? 
+        `<img src="${deal.chef.user.imageUrl}" alt="${safeChefName}" class="chef-avatar" />` : 
+        '<div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2em;">👨‍🍳</div>'
+      }
+      <span>by Chef ${safeChefName}</span>
+    </div>
+    
+    <p class="deal-description" style="font-size: 0.95em; line-height: 1.4;">${deal.caption || `Delicious ${deal.title} prepared with love`}</p>
+    
+    <div style="margin-top: 25px;">
+      <a href="pusheat://deal/${dealId}" class="cta-button" style="background: rgba(255, 255, 255, 0.95); color: #ff6b35;">🚀 Open in App</a>
+      <a href="https://play.google.com/store/apps/details?id=ng.pushEats" class="cta-button" style="background: rgba(255, 255, 255, 0.8); color: #ff6b35;">📲 Get App</a>
     </div>
     
     <p style="margin-top: 2em; opacity: 0.8; font-size: 0.9em;">

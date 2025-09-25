@@ -195,7 +195,7 @@ const DealPage = () => {
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
       
-      const response = await fetch(`https://dev.pusheat.co/api/deal/get-deal-details/${validatedDealId}`, {
+      const response = await fetch(`https://api.int.pusheat.co/api/social/discover/deal-posts/${validatedDealId}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -211,11 +211,27 @@ const DealPage = () => {
         throw new Error('Deal not found');
       }
       
-      const data = await response.json();
-      const dealData = data.data || data;
+      const postData = await response.json();
       
-      console.log('📊 Raw API Response:', JSON.stringify(data, null, 2));
-      console.log('🔍 Deal Data:', JSON.stringify(dealData, null, 2));
+      console.log('📊 Raw API Response:', JSON.stringify(postData, null, 2));
+      
+      // Extract deal data from social post structure
+      const dealData = {
+        title: postData.deal?.title || postData.title || 'Amazing Food Deal',
+        caption: postData.deal?.caption || postData.caption || 'Delicious food deal on Pusheat',
+        thumbnailUrl: postData.thumbnail_url,
+        dealPrice: postData.deal?.deal_price,
+        worthPrice: postData.deal?.worth_price,
+        status: postData.deal?.status,
+        chef: {
+          user: {
+            username: postData.chef?.user?.username || 'Pusheat Chef',
+            imageUrl: postData.chef?.user?.image_url
+          }
+        }
+      };
+      
+      console.log('🔍 Extracted Deal Data:', JSON.stringify(dealData, null, 2));
       console.log('🖼️ Original thumbnailUrl:', dealData.thumbnailUrl);
       
       // Sanitize all API response data
