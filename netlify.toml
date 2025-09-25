@@ -5,3 +5,17 @@
 
 [build.environment]
   NODE_VERSION = "18"
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Headers for deal pages to improve SEO and social sharing
+[[headers]]
+  for = "/deal/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Robots-Tag = "index, follow"

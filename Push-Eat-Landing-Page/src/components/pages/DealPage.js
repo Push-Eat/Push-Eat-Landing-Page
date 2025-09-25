@@ -3,21 +3,16 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import './DealPage.module.css';
 
-// Security utility functions
 const sanitizeDealId = (id) => {
   if (!id || typeof id !== 'string') return null;
-  // Allow only alphanumeric characters, hyphens, and underscores
   const sanitized = id.replace(/[^a-zA-Z0-9\-_]/g, '');
-  // Limit length to prevent abuse
   return sanitized.length > 0 && sanitized.length <= 50 ? sanitized : null;
 };
 
 const safeRedirect = (url) => {
   try {
-    // Validate URL format
     if (!url || typeof url !== 'string') return false;
     
-    // Allow only specific schemes and domains
     const allowedPatterns = [
       /^pusheat:\/\/deal\/[a-zA-Z0-9\-_]+$/,
       /^https:\/\/play\.google\.com\/store\/apps\/details\?id=ng\.pushEats$/,
@@ -42,14 +37,12 @@ const safeRedirect = (url) => {
 const sanitizeApiResponse = (data) => {
   if (!data || typeof data !== 'object') return null;
   
-  // Sanitize text content to prevent XSS
   const sanitizeText = (text, maxLength = 200) => {
     if (!text || typeof text !== 'string') return null;
-    // Remove potential script tags and HTML
     const cleaned = text
       .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
-      .replace(/<[^>]*>/g, '') // Remove all HTML tags
-      .replace(/javascript:/gi, '') // Remove javascript: protocols
+      .replace(/<[^>]*>/g, '')
+      .replace(/javascript:/gi, '')
       .trim();
     return cleaned.slice(0, maxLength);
   };
@@ -84,16 +77,13 @@ const isValidImageUrl = (url) => {
     console.log('🔍 Checking image URL:', url);
     console.log('🏠 Hostname:', parsedUrl.hostname);
     
-    // Production security: Only allow trusted domains
     const allowedDomains = [
-      // Pusheat domains
       'pusheat.co',
       'dev.pusheat.co', 
       'staging.pusheat.co',
       'api.pusheat.co',
       'cdn.pusheat.co',
       
-      // Trusted CDNs and image hosts
       'cloudinary.com',
       'res.cloudinary.com',
       'amazonaws.com',
@@ -101,30 +91,24 @@ const isValidImageUrl = (url) => {
       'googleusercontent.com',
       'firebasestorage.googleapis.com',
       
-      // Additional trusted image hosts (if needed)
       'imgur.com',
       'unsplash.com',
       'pexels.com',
       'images.unsplash.com',
       
-      // Microsoft Azure (if using)
       'blob.core.windows.net',
       
-      // DigitalOcean Spaces (if using)
       'digitaloceanspaces.com',
       'cdn.digitaloceanspaces.com',
     ];
     
-    // Must be HTTPS
     const isHttps = parsedUrl.protocol === 'https:';
     
-    // Must be from allowed domain
     const isDomainAllowed = allowedDomains.some(domain => 
       parsedUrl.hostname === domain || 
       parsedUrl.hostname.endsWith('.' + domain)
     );
     
-    // Additional security checks
     const hasValidExtension = /\.(jpg|jpeg|png|webp|gif|svg)(\?|$)/i.test(parsedUrl.pathname);
     
     console.log('🔒 HTTPS:', isHttps);

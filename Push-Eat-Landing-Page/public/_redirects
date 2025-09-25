@@ -1,3 +1,8 @@
 # Preserve well-known paths for domain verification
 /.well-known/*  /.well-known/:splat  200
+
+# Dynamic meta tags for deal pages - handled by Netlify function
+/deal/*  /.netlify/functions/deal-meta?dealId=:splat  200
+
+# All other routes go to React app
 /*    /index.html   200
