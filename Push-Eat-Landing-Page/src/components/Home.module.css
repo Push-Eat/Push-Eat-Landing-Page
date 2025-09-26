@@ -90,26 +90,42 @@
     
     .buttons {
       display: flex;
-      gap: 16px;
-      margin-top: 20px;
-      width: 567px;
+      gap: 20px;
+      margin-top: 24px;
+      width: 100%;
+      max-width: 480px;
+      justify-content: center;
     }
     
     .buttons a {
-      display: inline-block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       background-color: black;
       color: white;
-      padding: 10px 20px;
-      border-radius: 8px;
+      padding: 14px 24px;
+      border-radius: 12px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 18px;
-      line-height: 28px;
+      font-size: 16px;
+      line-height: 24px;
       text-align: center;
+      transition: all 0.3s ease;
+      min-width: 200px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .buttons a:hover {
+      background-color: #333;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
     }
     
     .app_icon {
-      margin-right: 5px;
+      margin-right: 10px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
     }
     
     .buttons a.google {
@@ -173,14 +189,18 @@
       .buttons {
         flex-direction: column;
         width: 100%;
+        max-width: 300px;
         align-items: center;
-        gap: 12px;
+        gap: 16px;
+        margin: 0 auto;
+        margin-top: 24px;
       }
     
       .buttons a {
         width: 100%;
-        font-size: 16px;
-        padding: 12px 0;
+        font-size: 15px;
+        padding: 16px 20px;
+        min-width: unset;
       }
     
       .dots {

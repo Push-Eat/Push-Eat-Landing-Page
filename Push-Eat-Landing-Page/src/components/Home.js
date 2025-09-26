@@ -37,7 +37,7 @@ function Home() {
           <title>Pusheat - Order from Food Creators | Viral Recipes Delivered</title>
           <meta
             name="description"
-            content="Get exclusive food deals from TikTok creators before they blow up. Fresh recipes, viral flavors, creator prices. Download now for early access!"
+            content="Get exclusive food deals from your favorite food creators before they blow up. Fresh recipes, viral flavors, creator prices delivered straight to your door!"
           />
           <script type="application/ld+json">
             {JSON.stringify({
@@ -106,9 +106,11 @@ function Home() {
           <div className={Styles.home_content}>
             <div className={Styles.content}>
               <h1>
-                From TikTok
+                From your favorite
                 <br />
-                to Your Table
+                food creators
+                <br />
+                straight to your door
               </h1>
               <div className={Styles.buttons}>
                 <a

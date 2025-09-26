@@ -101,7 +101,7 @@ const HomeContent = () => {
                   Now they're making your dinner too.
                 </p>
                 <div className={styles.home_content_paragraph}>
-                  <p>• Exclusive recipes from TikTok food stars</p>
+                  <p>• Exclusive recipes from your favorite food creators</p>
                   <p>• Limited-time deals you can't get anywhere else</p>
                   <p>• Support creators while saving money</p>
                   <p>• Fresh meals, not corporate kitchen copy-paste</p>
@@ -145,7 +145,7 @@ const HomeContent = () => {
         <h2>Ready for exclusive creator deals?</h2>
         <h2 className={styles.stepsh2}>Ready for exclusive creator deals?</h2>
         <p className={styles.text_paragraph}>
-          From viral TikTok recipes to local food stars - <br />
+          From viral recipes to local food stars - <br />
           discover creators before they blow up. <br />
           Here's how to get the hottest deals <br />
           before anyone else.
@@ -203,7 +203,7 @@ const HomeContent = () => {
               <div className={styles.textBlock}>
                 <h3>DISCOVER</h3>
                 <p>
-                  Browse viral recipes from food creators. From trending TikTok
+                  Browse viral recipes from food creators. From trending social media
                   dishes to local food stars you haven't found yet.
                 </p>
               </div>
@@ -281,7 +281,7 @@ const HomeContent = () => {
           </div>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
             <h3>EXCLUSIVE CREATORS</h3>
-            <p>Nigeria's largest network of food creators. Discover viral recipes from TikTok stars, Instagram chefs, and local culinary talents before they go mainstream.</p>
+            <p>Nigeria's largest network of food creators. Discover viral recipes from social media stars, Instagram chefs, and local culinary talents before they go mainstream.</p>
           </div>
         </div>
         <div className={styles.textRow} style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', margin: '20px 0'}}>
