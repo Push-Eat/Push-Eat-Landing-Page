@@ -22,21 +22,20 @@
   }
 
   .home_content_headings {
-font-size: 59px;
-line-height: 70px;
-letter-spacing: -2%;
-vertical-align: middle;
-margin-bottom: 5px;
-text-align: left;
-  }
+  font-size: clamp(1.75rem, 5vw, 3.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
 
-  .home_content_paragraph {
-  font-size: 20px;
-  line-height: 30px;
-letter-spacing: 0%;
-text-align: justify;
-
-  }
+.home_content_paragraph {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  line-height: 1.6;
+  letter-spacing: 0;
+  text-align: left;
+  margin-bottom: 1rem;
+}
 
   .stepsSection {
   position: relative;
@@ -284,50 +283,88 @@ width: 100%;
   }
   
   /* CTA Section */
- .ctaSection {
-  width: 1276px;
+.ctaSection {
+  width: 100%;
   max-width: 90%;
-  margin: 90px auto;
-  padding: 40px 20px; /* ✅ Add padding instead of hardcoded height */
-  border-radius: 25px;
+  margin: 3rem auto;
+  padding: 2rem 1rem;
+  border-radius: 20px;
   background-color: #01AA1B1A;
-  display: flex;         /* ✅ Add flex layout */
+  display: flex;
   flex-direction: column;
-  align-items: center;   /* ✅ Center content */
+  align-items: center;
+  text-align: center;
 }
 
 
-  .ctaSection h2 {
-    font-weight: 700;
-    font-size: 60px;
-    text-align: center;
-    padding-top: 40px;
-    padding-bottom: 20px;
-  }
+.ctaSection h2 {
+  font-weight: 700;
+  font-size: clamp(1.75rem, 4vw, 3.75rem);
+  text-align: center;
+  margin: 0 0 2rem 0;
+  line-height: 1.2;
+}
   
-  .downloadLinks {
+.downloadLinks {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap; /* ✅ prevents overflow on medium screens */
+  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  margin-top: 1.5rem;
+  width: 100%;
+  max-width: 400px;
 }
 
 .storeBtn {
-  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.5rem;
   background-color: #000;
   color: #fff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 285.09px;
-  height: 52px;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-  text-align: center;
-  vertical-align: middle;
-  white-space: nowrap; /* ✅ prevents breaking within the text */
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1.4;
+  width: 100%;
+  max-width: 280px;
+  min-height: 56px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.storeBtn:hover {
+  background-color: #333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.storeIcon {
+  font-size: 1.25rem;
+  flex-shrink: 0;
+}
+
+.storeBtn span {
+  white-space: nowrap;
+}
+
+/* Desktop and larger tablets */
+@media (min-width: 768px) {
+  .downloadLinks {
+    flex-direction: row;
+    gap: 1.5rem;
+    max-width: 600px;
+  }
+  
+  .storeBtn {
+    max-width: 240px;
+  }
+  
+  .ctaSection {
+    padding: 3rem 2rem;
+    margin: 5rem auto;
+  }
 }
 
 
