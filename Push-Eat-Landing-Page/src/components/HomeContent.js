@@ -63,6 +63,18 @@ const HomeContent = () => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.lotteryRibbon}>
+        <div className={styles.ribbonText}>
+          Last Bite Lottery is live on ending drops. Be the final Bite and win bonus rewards plus free delivery for a week.
+        </div>
+        <a
+          href="https://play.google.com/store/apps/details?id=ng.pushEats&pli=1"
+          className={styles.ribbonCta}
+        >
+          Join on app
+        </a>
+      </div>
+
       <section className={styles.buildingSection}>
         <div className={styles.textArea} 
              onMouseEnter={() => setIsHovered(true)}
@@ -84,7 +96,7 @@ const HomeContent = () => {
             </span>
           </div>
           <div style={{fontSize: '12px', color: '#666', marginBottom: '10px', textAlign: 'center'}}>
-            {isHovered ? 'Paused - Click tabs to explore' : 'Auto-switching every 8 seconds'}
+            {isHovered ? 'Paused. Tap a tab to explore.' : 'Auto switching every 8 seconds'}
           </div>
           <div className={styles.blockWrapper}>
             <div
@@ -94,17 +106,16 @@ const HomeContent = () => {
             >
               <div className={styles.block1}>
                 <h2 className={styles.home_content_headings}>
-                  The Creator Economy Meets Food Delivery
+                  Eat for free with Bites
                 </h2>
                 <p className={styles.home_content_paragraph}>
-                  Your favorite food creators are already making viral content.
-                  Now they're making your dinner too.
+                  Watch food videos, like them, share, and download to earn Bites. Apply them at checkout to drop your bill to zero on creator made meals in Lagos.
                 </p>
                 <div className={styles.home_content_paragraph}>
-                  <p>• Exclusive recipes from your favorite food creators</p>
-                  <p>• Limited-time deals you can't get anywhere else</p>
-                  <p>• Support creators while saving money</p>
-                  <p>• Fresh meals, not corporate kitchen copy-paste</p>
+                  <p>Earn Bites for every action on food videos</p>
+                  <p>Apply Bites to cut your price, even to zero when you have enough</p>
+                  <p>Creator drops and limited deals before they sell out</p>
+                  <p>Pay normally when you want. Bites make every order cheaper</p>
                 </div>
               </div>
             </div>
@@ -114,17 +125,15 @@ const HomeContent = () => {
               }`}
             >
               <div className={styles.block2}>
-                <h2 className={styles.home_content_headings}>Turn Your Content Into Cash</h2>
+                <h2 className={styles.home_content_headings}>Post and get paid for your food videos</h2>
                 <p className={styles.home_content_paragraph}>
-                  Stop settling for likes when you could be making bank.
-                  Your followers already ask "recipe please?" in every comment.
-                  Now give them a buy button instead.
+                  Post like you do on Instagram or TikTok. Set your price, cook when you want, and let Pusheat handle delivery and payments so you earn instead of only getting likes.
                 </p>
                 <div className={styles.home_content_paragraph}>
-                  <p>Monetize your viral recipes</p>
-                  <p>Keep creating, we handle delivery</p>
-                  <p>Build your food empire, one dish at a time</p>
-                  <p>Get paid for what you're already posting</p>
+                  <p>Turn your audience into orders, not just engagement</p>
+                  <p>Set your menu, pricing, and drop schedule</p>
+                  <p>Cook on your terms, we handle delivery and payouts</p>
+                  <p>Add a buy button to the content you already post</p>
                 </div>
               </div>
             </div>
@@ -140,15 +149,11 @@ const HomeContent = () => {
         </div>
       </section>
 
-      {/* Steps Section */}
-      <section className={styles.stepsSection}>
-        <h2>Ready for exclusive creator deals?</h2>
-        <h2 className={styles.stepsh2}>Ready for exclusive creator deals?</h2>
+      <section className={styles.stepsSection} id="how-bites-works">
+        <h2>How Bites Works</h2>
+        <h2 className={styles.stepsh2}>How Bites Works</h2>
         <p className={styles.text_paragraph}>
-          From viral recipes to local food stars - <br />
-          discover creators before they blow up. <br />
-          Here's how to get the hottest deals <br />
-          before anyone else.
+          Engage with food videos to earn Bites, apply them at checkout, and drop creator made meal prices fast in Lagos.
         </p>
         <div className={styles.steps}>
           {/* Icons and text grouped per column */}
@@ -201,26 +206,18 @@ const HomeContent = () => {
             {/* TEXT row */}
             <div className={styles.textRow}>
               <div className={styles.textBlock}>
-                <h3>DISCOVER</h3>
-                <p>
-                  Browse viral recipes from food creators. From trending social media
-                  dishes to local food stars you haven't found yet.
-                </p>
+                <h3>ENGAGE</h3>
+                <p>Watch creator food videos. Like them, share, and download the ones you love.</p>
               </div>
 
               <div className={styles.textBlock}>
-                <h3>CLAIM DEAL</h3>
-                <p>
-                  Grab limited creator drops before they sell out. Early access
-                  for app users - because FOMO is real.
-                </p>
+                <h3>EARN BITES</h3>
+                <p>Each action earns Bites that sit in your wallet. Show interest and build balance.</p>
               </div>
 
               <div className={styles.textBlock}>
-                <h3>DELIVER</h3>
-                <p>
-                  Your meal will be delivered straight to your preferred address
-                </p>
+                <h3>CHECKOUT</h3>
+                <p>Apply Bites at checkout to cut the price. Enough Bites can take it to zero.</p>
               </div>
             </div>
           </div>
@@ -230,11 +227,9 @@ const HomeContent = () => {
                 <PiHamburgerThin className={styles.icon2} />
               </div>
               <div className={styles.textBlock2}>
-                <h3>DISCOVER</h3>
+                <h3>ENGAGE</h3>
                 <p className={styles.text_paragraph}>
-                  Browse through a variety of delicious <br />
-                  food deals. From local favorites to <br />
-                  exotic cuisines.
+                  Watch and share the creator food videos you like.
                 </p>
               </div>
             </div>
@@ -243,11 +238,9 @@ const HomeContent = () => {
                 <FiClock className={styles.icon2} />
               </div>
               <div className={styles.textBlock2}>
-                <h3>JOIN DEAL</h3>
+                <h3>EARN BITES</h3>
                 <p className={styles.text_paragraph}>
-                  Top up your wallet and join food deals <br />
-                  you love. You can also buy immediately <br />
-                  if you can't wait.
+                  Every action earns Bites in your wallet for creator drops.
                 </p>
               </div>
             </div>
@@ -256,10 +249,9 @@ const HomeContent = () => {
                 <PiTruck className={styles.icon2} />
               </div>
               <div className={styles.textBlock2}>
-                <h3>DELIVER</h3>
+                <h3>CHECKOUT</h3>
                 <p className={styles.text_paragraph}>
-                  Your meal will be delivered straight to <br />
-                  your preferred address
+                  Apply Bites to drop the price. Delivery comes to you.
                 </p>
               </div>
             </div>
@@ -267,35 +259,123 @@ const HomeContent = () => {
         </div>
       </section>
 
+      <section className={styles.priceBarSection}>
+        <div className={styles.priceBarHeader}>Watch your price drop with Bites</div>
+        <div className={styles.priceBar}>
+          <span className={styles.priceLabel}>₦5,000</span>
+          <div className={styles.priceTrack}>
+            <div className={styles.priceFill}></div>
+          </div>
+          <span className={styles.priceLabel}>₦0</span>
+        </div>
+        <p className={styles.priceNote}>Apply saved Bites at checkout to lower the cost. 100 Bites = ₦1,000. Enough Bites can take it to zero.</p>
+      </section>
+
+      <section className={styles.proofStrip}>
+        <div className={styles.proofItem}>
+          <h3>Live in Lagos</h3>
+          <p>Built for Lagos food lovers and creators right now.</p>
+        </div>
+        <div className={styles.proofItem}>
+          <h3>Over 100 orders fulfilled</h3>
+          <p>Creator drops moving fast with real deliveries.</p>
+        </div>
+        <div className={styles.proofItem}>
+          <h3>20+ food creators</h3>
+          <p>Local chefs posting, setting prices, and selling out.</p>
+        </div>
+      </section>
+
       {/* AI-Discoverable Section for Nigeria Food Delivery Queries */}
       <section className={styles.stepsSection}>
-        <h2>Why Choose Pusheat for Creator-Made Food</h2>
+        <h2>Why Pusheat</h2>
         <div className={styles.textRow} style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', margin: '40px 0'}}>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>CREATOR DEALS & SAVINGS</h3>
-            <p>Get exclusive deals from food creators you can't find anywhere else. Support creators directly while saving money on unique, fresh meals made with love.</p>
+            <h3>BITES MAKE MEALS CHEAPER</h3>
+            <p>Earn Bites by engaging with food videos and apply them to drop prices fast. Enough Bites can take a meal to zero.</p>
           </div>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>FRESH FROM CREATORS</h3>
-            <p>Food made fresh by passionate creators, not mass-produced in corporate kitchens. Delivered straight from your favorite food creators to you.</p>
+            <h3>CREATOR-MADE FOOD</h3>
+            <p>Meals come from the food creators you follow, not anonymous ghost kitchens. Support them directly while you save.</p>
           </div>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>EXCLUSIVE CREATORS</h3>
-            <p>Nigeria's largest network of food creators. Discover viral recipes from social media stars, Instagram chefs, and local culinary talents before they go mainstream.</p>
+            <h3>LAGOS FIRST</h3>
+            <p>Built for Lagos routes and delivery realities so your food shows up with speed and care.</p>
           </div>
         </div>
         <div className={styles.textRow} style={{display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px', margin: '20px 0'}}>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>HIGHEST RATED</h3>
-            <p>Loved by food enthusiasts who discover amazing creators before they blow up. Join a community that celebrates authentic food and supports local talent.</p>
+            <h3>PAY YOUR WAY</h3>
+            <p>Apply Bites first, then pay the balance with your preferred option. Easy, safe, and made for Lagos users.</p>
           </div>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>PROUDLY NIGERIAN</h3>
-            <p>Built by Nigerians, for Nigerians. Supporting local food creators, promoting Nigerian cuisine, and creating jobs in communities across the nation.</p>
+            <h3>LIMITED DROPS</h3>
+            <p>Exclusive deals that sell out. Grab a drop early or watch the Bite activity rise before you jump in.</p>
           </div>
           <div className={styles.textBlock} style={{flex: '1', minWidth: '280px'}}>
-            <h3>EASY TO USE</h3>
-            <p>Simple app interface designed for Nigerian users. Multiple payment options including bank transfer, USSD, and cards. Works on all devices.</p>
+            <h3>BUILT FOR BUDGETS</h3>
+            <p>Use saved Bites when cash is tight so you keep eating well without slowing down.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.highlightSection}>
+        <div className={styles.highlightCard}>
+          <h3>Food security made practical</h3>
+          <p>Save Bites from your daily engagement. When cash is tight, apply them to cover meals and keep going.</p>
+        </div>
+        <div className={styles.highlightCard}>
+          <h3>Last Bite Lottery</h3>
+          <p>Be the last to Bite before a drop ends and win bonus rewards plus free delivery for a week. Watch the timer, then make your move.</p>
+        </div>
+      </section>
+
+      <section className={styles.faqSection} id="faq">
+        <h2>Questions, answered</h2>
+        <div className={styles.faqList}>
+          <div>
+            <h4>What are Bites?</h4>
+            <p>Bites are earned from watching, liking, sharing, and downloading food videos. Use them to cut meal prices.</p>
+          </div>
+          <div>
+            <h4>Can I order without Bites?</h4>
+            <p>Yes. You can pay normally. Bites simply reduce what you pay.</p>
+          </div>
+          <div>
+            <h4>Where is Pusheat available?</h4>
+            <p>We are live in Lagos. New cities will follow.</p>
+          </div>
+          <div>
+            <h4>How do creators earn?</h4>
+            <p>Creators post like they do on Instagram or TikTok, set their price, cook when they want, and get paid while we handle delivery.</p>
+          </div>
+          <div>
+            <h4>How do I order?</h4>
+            <p>Pick a deal, choose delivery or pickup, add your details, pay from your wallet, and apply Bites to lower the price.</p>
+          </div>
+          <div>
+            <h4>How do deals work?</h4>
+            <p>Join a deal and pay from your wallet. If it sells out or hits its target, the chef cooks. If it fails, your payment goes back to your wallet.</p>
+          </div>
+          <div>
+            <h4>What if I do not want to wait?</h4>
+            <p>Choose a direct order and pay the worth price. You can still apply Bites using the direct rate.</p>
+          </div>
+          <div>
+            <h4>How do I pay or top up?</h4>
+            <p>Fund your Pusheat wallet by transferring to your dedicated account number shown in the app. Then pay from your wallet.</p>
+          </div>
+          <div>
+            <h4>When will my meal be ready?</h4>
+            <p>Each deal shows the prep and delivery window before you pay. Pickup availability is also shown.</p>
+          </div>
+          <div>
+            <h4>What if a deal fails or I cancel?</h4>
+            <p>If a deal fails, your payment returns to your wallet. If you cancel within the allowed window, it also returns to your wallet.</p>
+          </div>
+          <div>
+            <h4>Are delivery fees included?</h4>
+            <p>Delivery is shown at checkout. Winning the Last Bite Lottery can unlock free delivery for a week.</p>
           </div>
         </div>
       </section>

@@ -44,6 +44,14 @@ function Navbar() {
           className={`${Styles.nav_links} ${menuOpen ? Styles.show_menu : ""}`}
         >
           <NavLink
+            to="/faq"
+            className={({ isActive }) =>
+              isActive ? `${Styles.link} ${Styles.active}` : Styles.link
+            }
+          >
+            FAQ
+          </NavLink>
+          <NavLink
             to="/terms"
             className={({ isActive }) =>
               isActive ? `${Styles.link} ${Styles.active}` : Styles.link

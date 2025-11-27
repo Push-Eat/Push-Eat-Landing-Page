@@ -79,12 +79,19 @@
       width: 786px;
     }
     
-    .content h1 {
+.content h1 {
       text-align: left;
       font-size: 80px;
       line-height: 100.56px;
       letter-spacing: 4%;
       vertical-align: middle;
+    }
+
+.subhead {
+      margin-top: 16px;
+      font-size: 22px;
+      line-height: 32px;
+      max-width: 640px;
     }
     
     
@@ -92,10 +99,13 @@
       display: flex;
       gap: 16px;
       margin-top: 20px;
-      width: 567px;
+      width: 100%;
+      max-width: 720px;
+      flex-wrap: wrap;
     }
     
-    .buttons a {
+    .buttons a,
+    .buttons button {
       display: inline-block;
       background-color: black;
       color: white;
@@ -106,6 +116,8 @@
       font-size: 18px;
       line-height: 28px;
       text-align: center;
+      border: none;
+      cursor: pointer;
     }
     
     .app_icon {
@@ -118,6 +130,12 @@
     
     .buttons a.apple {
       background-color: #000;
+    }
+
+    .secondaryCTA {
+      background-color: transparent;
+      color: #fff;
+      border: 2px solid #fff;
     }
     
     .third_section_content {
@@ -138,6 +156,55 @@
       line-height: 30px;
       text-align: center;
     }
+
+.mobileStickyBar {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 420px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #fff;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 20;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.stickyText {
+  font-size: 14px;
+  line-height: 20px;
+  flex: 1;
+}
+
+.stickyActions {
+  display: flex;
+  gap: 8px;
+}
+
+.stickyActions a {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 700;
+  background: #fff;
+  color: #000;
+  text-decoration: none;
+  min-width: 90px;
+  text-align: center;
+}
+
+@media (min-width: 769px) {
+  .mobileStickyBar {
+    display: none;
+  }
+}
     
     @media (min-width: 769px) and (max-width: 945px) {
       .content h1 {
@@ -146,10 +213,10 @@
     }
     
     
-    @media (max-width: 768px) {
-      .navbar {
-        padding: 10px 20px;
-      }
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 20px;
+  }
     
       .home_content {
         padding-top: 120px;
@@ -169,6 +236,14 @@
         line-height: 45px;
         text-align: center;
       }
+
+      .subhead {
+        font-size: 16px;
+        line-height: 24px;
+        text-align: center;
+        max-width: 100%;
+        margin: 12px auto 0;
+      }
     
       .buttons {
         flex-direction: column;
@@ -179,8 +254,9 @@
         margin: 0 auto;
         margin-top: 24px;
       }
-    
-      .buttons a {
+
+      .buttons a,
+      .buttons button {
         width: 100%;
         font-size: 15px;
         padding: 16px 20px;
@@ -199,8 +275,12 @@
         line-height: 40px;
       }
     
-      .third_section_content p {
-        font-size: 16px;
-        line-height: 24px;
-      }
+    .third_section_content p {
+      font-size: 16px;
+      line-height: 24px;
     }
+
+  .mobileStickyBar {
+    display: flex;
+  }
+}

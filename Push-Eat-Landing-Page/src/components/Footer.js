@@ -18,6 +18,9 @@ function Footer() {
         </div>
         <ul className={Styles.links}>
           <li>
+            <Link to="/faq">FAQ</Link>
+          </li>
+          <li>
             <Link to="/contact">Contact Us</Link>
           </li>
           <li>

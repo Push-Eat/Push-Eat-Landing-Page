@@ -8,6 +8,7 @@ import ContactUs from "./components/pages/ContactUs";
 import DeletePage from "./components/pages/DeletePage";
 import DealPage from "./components/pages/DealPage";
 import ScrollToTop from "./components/UI/ScrollToTop";
+import Faq from "./components/pages/Faq";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/terms" element={<TermsService />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/delete-account" element={<DeletePage />} />
+          <Route path="/faq" element={<Faq />} />
         </Route>
         {/* Deal pages handled separately for full-screen experience */}
         <Route path="/deal/:dealId" element={<DealPage />} />

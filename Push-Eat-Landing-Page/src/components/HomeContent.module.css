@@ -277,6 +277,187 @@ letter-spacing: 0%;
 text-align: center;
 }
 
+.proofStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: space-between;
+  max-width: 85%;
+  margin: 0 auto 3rem;
+  padding: 2rem;
+  background: #f5fff6;
+  border-radius: 16px;
+}
+
+.proofItem {
+  flex: 1;
+  min-width: 240px;
+}
+
+.proofItem h3 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.proofItem p {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.highlightSection {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  max-width: 85%;
+  margin: 2rem auto 3rem;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 16px;
+}
+
+.highlightCard {
+  flex: 1;
+  min-width: 260px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.highlightCard h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.highlightCard p {
+  font-size: 18px;
+  line-height: 26px;
+}
+
+.faqSection {
+  max-width: 85%;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.faqSection h2 {
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 2rem;
+}
+
+.faqList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.faqList h4 {
+  font-size: 20px;
+  margin-bottom: 6px;
+}
+
+.faqList p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.lotteryRibbon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(90deg, #00c853, #0a8f3c);
+  color: #fff;
+  padding: 14px 18px;
+  max-width: 90%;
+  margin: 0 auto 16px;
+  border-radius: 12px;
+  flex-wrap: wrap;
+}
+
+.ribbonText {
+  font-size: 16px;
+  line-height: 22px;
+  flex: 1;
+  min-width: 240px;
+}
+
+.ribbonCta {
+  background: #fff;
+  color: #0a8f3c;
+  text-decoration: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.priceBarSection {
+  max-width: 85%;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.priceBarHeader {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.priceBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.priceLabel {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.priceTrack {
+  position: relative;
+  width: 320px;
+  max-width: 70vw;
+  height: 12px;
+  background: #e6f5e9;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.priceFill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #00c853, #0a8f3c);
+  animation: dropPrice 2.8s ease-in-out infinite;
+  transform-origin: left;
+}
+
+@keyframes dropPrice {
+  0% {
+    transform: scaleX(1);
+  }
+  60% {
+    transform: scaleX(0.1);
+  }
+  100% {
+    transform: scaleX(0.1);
+  }
+}
+
+.priceNote {
+  margin-top: 10px;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+}
+
 
 .home_footer_images img {
 width: 100%;
@@ -658,6 +839,10 @@ width: 100%;
   .downloadLinks {
     flex-direction: column;
     align-items: center;
+  }
+
+  .lotteryRibbon {
+    max-width: 100%;
   }
 
   .storeBtn {
