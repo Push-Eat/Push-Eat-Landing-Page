@@ -208,50 +208,50 @@
   .navbar {
     padding: 10px 20px;
   }
-    
-      .home_content {
-        padding-top: 120px;
-        padding-bottom: 20px;
-        max-width: 90%;
-        margin: auto;
-        text-align: center;
-      }
-    
-      .content {
-        width: 100%;
-        margin-top: 20px;
-      }
-    
-      .content h1 {
-        font-size: 36px;
-        line-height: 45px;
-        text-align: center;
-      }
 
-      .subhead {
-        font-size: 16px;
-        line-height: 24px;
-        text-align: center;
-        max-width: 100%;
-        margin: 12px auto 0;
-      }
-    
-      .buttons {
-        flex-direction: column;
-        width: 100%;
-        max-width: 300px;
-        align-items: center;
-        gap: 16px;
-        margin: 0 auto;
-        margin-top: 24px;
-      }
+  .home_content {
+    padding-top: 120px;
+    padding-bottom: 20px;
+    max-width: 90%;
+    margin: auto;
+    text-align: left;
+    align-items: flex-start;
+  }
 
-      .buttons a {
-        width: 100%;
-        font-size: 15px;
-        padding: 16px 20px;
-        min-width: unset;
-      }
+  .content {
+    width: 100%;
+    margin-top: 20px;
+  }
+
+  .content h1 {
+    font-size: 42px;
+    line-height: 52px;
+    text-align: left;
+  }
+
+  .subhead {
+    font-size: 17px;
+    line-height: 26px;
+    text-align: left;
+    max-width: 100%;
+    margin: 12px 0 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 320px;
+    align-items: flex-start;
+    gap: 16px;
+    margin: 24px 0 0;
+  }
+
+  .buttons a {
+    width: 100%;
+    font-size: 16px;
+    padding: 14px 18px;
+    min-width: unset;
+  }
     
       .dots {
         bottom: 24px;

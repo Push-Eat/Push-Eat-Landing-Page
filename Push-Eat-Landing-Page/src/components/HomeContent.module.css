@@ -663,9 +663,9 @@ width: 100%;
   }
 
   .home_content_headings {
-    font-size: 60px;
-    line-height: 62px;
-    text-align: center;
+    font-size: 42px;
+    line-height: 50px;
+    text-align: left;
   }
 
   .blockWrapper {
@@ -673,10 +673,10 @@ width: 100%;
   }
 
   .home_content_paragraph {
-    font-size: 20px;
-    line-height: 30px;
+    font-size: 18px;
+    line-height: 28px;
     letter-spacing: 0%;
-    text-align: justify;
+    text-align: left;
   }
 }
 
@@ -814,15 +814,13 @@ width: 100%;
     width: 100%;
     max-width: 300px;
   }
- .ctaSection {
+  .ctaSection {
     width: 100%;
-    max-width: 85%;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    max-width: 90%;
+    margin: 40px auto 24px;
   }
    .ctaSection h2 {
-    font-size: 50px;
+    font-size: 40px;
   }
 }
 
@@ -830,17 +828,15 @@ width: 100%;
 
 @media (max-width: 500px) {
     .home_content_headings {
-        font-size: 50px;
-        line-height: 62px;
-        text-align: center;
+        font-size: 34px;
+        line-height: 44px;
+        text-align: left;
   }
    
    .ctaSection {
     width: 100%;
-    max-width: 80%;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 30px;
+    max-width: 90%;
+    margin: 40px auto 24px;
   }
 }
 
