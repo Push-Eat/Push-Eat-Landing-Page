@@ -63,18 +63,6 @@ const HomeContent = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.lotteryRibbon}>
-        <div className={styles.ribbonText}>
-          Last Bite Lottery is live on ending drops. Be the final Bite and win bonus rewards plus free delivery for a week.
-        </div>
-        <a
-          href="https://play.google.com/store/apps/details?id=ng.pushEats&pli=1"
-          className={styles.ribbonCta}
-        >
-          Join on app
-        </a>
-      </div>
-
       <section className={styles.buildingSection}>
         <div className={styles.textArea} 
              onMouseEnter={() => setIsHovered(true)}

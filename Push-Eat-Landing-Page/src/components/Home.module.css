@@ -104,8 +104,7 @@
       flex-wrap: wrap;
     }
     
-    .buttons a,
-    .buttons button {
+    .buttons a {
       display: inline-block;
       background-color: black;
       color: white;
@@ -116,8 +115,6 @@
       font-size: 18px;
       line-height: 28px;
       text-align: center;
-      border: none;
-      cursor: pointer;
     }
     
     .app_icon {
@@ -132,12 +129,6 @@
       background-color: #000;
     }
 
-    .secondaryCTA {
-      background-color: transparent;
-      color: #fff;
-      border: 2px solid #fff;
-    }
-    
     .third_section_content {
       width: 816px;
       height: 179px;
@@ -255,8 +246,7 @@
         margin-top: 24px;
       }
 
-      .buttons a,
-      .buttons button {
+      .buttons a {
         width: 100%;
         font-size: 15px;
         padding: 16px 20px;

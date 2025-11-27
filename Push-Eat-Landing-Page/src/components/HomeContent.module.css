@@ -362,37 +362,6 @@ text-align: center;
   line-height: 24px;
 }
 
-.lotteryRibbon {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  background: linear-gradient(90deg, #00c853, #0a8f3c);
-  color: #fff;
-  padding: 14px 18px;
-  max-width: 90%;
-  margin: 0 auto 16px;
-  border-radius: 12px;
-  flex-wrap: wrap;
-}
-
-.ribbonText {
-  font-size: 16px;
-  line-height: 22px;
-  flex: 1;
-  min-width: 240px;
-}
-
-.ribbonCta {
-  background: #fff;
-  color: #0a8f3c;
-  text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-weight: 700;
-  font-size: 14px;
-}
-
 .priceBarSection {
   max-width: 85%;
   margin: 0 auto 3rem;
@@ -839,10 +808,6 @@ width: 100%;
   .downloadLinks {
     flex-direction: column;
     align-items: center;
-  }
-
-  .lotteryRibbon {
-    max-width: 100%;
   }
 
   .storeBtn {

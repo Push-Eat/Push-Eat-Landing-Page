@@ -14,13 +14,6 @@ function Home() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showAllImages, setShowAllImages] = useState(false);
 
-  const scrollToHowBitesWorks = () => {
-    const target = document.getElementById("how-bites-works");
-    if (target) {
-      target.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) =>
@@ -244,13 +237,6 @@ function Home() {
                   <FontAwesomeIcon icon={faApple} className={Styles.app_icon} />
                   Download on App Store
                 </a>
-                <button
-                  type="button"
-                  className={`${Styles.apple} ${Styles.secondaryCTA}`}
-                  onClick={scrollToHowBitesWorks}
-                >
-                  How Bites works
-                </button>
               </div>
             </div>
           </div>
