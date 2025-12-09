@@ -1,0 +1,168 @@
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--section-padding);
+    background-color: var(--bg-accent);
+    margin-top: 0;
+    min-height: 700px;
+    overflow: hidden;
+    position: relative;
+}
+
+.contentArea {
+    flex: 1;
+    max-width: 600px;
+    margin-right: 40px;
+    z-index: 2;
+}
+
+.tabs {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tab {
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: var(--radius-full);
+    transition: all var(--transition-normal);
+    color: var(--text-secondary);
+}
+
+.activeTab {
+    background-color: var(--color-secondary);
+    color: var(--text-inverse);
+}
+
+.indicator {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    height: 20px;
+    /* reserve space */
+}
+
+.textContent {
+    min-height: 300px;
+    /* Prevent jump */
+}
+
+.headline {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-primary);
+}
+
+.description {
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.featureList p {
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.featureList p::before {
+    content: "";
+    display: block;
+    width: 6px;
+    height: 6px;
+    background-color: var(--color-primary);
+    border-radius: 50%;
+}
+
+.downloadBtn {
+    margin-top: var(--spacing-xl);
+    padding: 14px 28px;
+    background-color: var(--color-primary);
+    color: var(--text-inverse);
+    border: none;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+    box-shadow: var(--shadow-md);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.downloadBtn:hover {
+    transform: translateY(-2px);
+    background-color: var(--color-primary-dark);
+}
+
+.imageArea {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+}
+
+.mockupImage {
+    max-width: 100%;
+    height: auto;
+    max-height: 650px;
+    object-fit: contain;
+    /* border-radius: 20px; maybe redundant if image has it */
+}
+
+.logoBadge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 960px) {
+    .section {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-xl) var(--spacing-md);
+        height: auto;
+    }
+
+    .contentArea {
+        margin-right: 0;
+        margin-bottom: var(--spacing-xl);
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .tabs {
+        justify-content: center;
+    }
+
+    .featureList {
+        text-align: left;
+        /* Keep bullets aligned */
+        display: inline-block;
+    }
+
+    .imageArea {
+        width: 100%;
+    }
+
+    /* Hide image on small mobile if requested in original/user needs, but usually keep it if responsive */
+    .mockupImage {
+        max-height: 500px;
+    }
+}

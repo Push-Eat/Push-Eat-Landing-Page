@@ -21,7 +21,7 @@ exports.handler = async (event, context) => {
     if (event.path && event.path.includes('/deal/')) {
       dealId = event.path.split('/deal/')[1];
     }
-    
+
     if (!dealId && event.queryStringParameters && event.queryStringParameters.dealId) {
       dealId = event.queryStringParameters.dealId;
     }
@@ -36,9 +36,9 @@ exports.handler = async (event, context) => {
     }
 
     const dealData = await fetchDealData(dealId);
-    
+
     const html = generateDealHTML(dealData, dealId);
-    
+
     return {
       statusCode: 200,
       headers: {
@@ -49,14 +49,14 @@ exports.handler = async (event, context) => {
       },
       body: html
     };
-    
+
   } catch (error) {
     console.error('❌ Error processing deal meta:', error);
-    
+
     const dealId = event.path?.split('/deal/')[1] || 'unknown';
-    
+
     const fallbackHtml = generateFallbackHTML(dealId);
-    
+
     return {
       statusCode: 200,
       headers: {
@@ -93,12 +93,12 @@ async function fetchDealData(dealId) {
     }
 
     const postData = await response.json();
-    
+
     console.log('📊 Raw API Response:', JSON.stringify(postData, null, 2));
-    
+
     const dealData = postData.deal || {};
     const chefData = postData.chef?.user || {};
-    
+
     return {
       title: dealData.title || postData.title || 'Amazing Food Deal',
       caption: dealData.caption || postData.caption || 'Delicious food deal on Pusheat',
@@ -121,101 +121,101 @@ async function fetchDealData(dealId) {
 function generateDealHTML(deal, dealId) {
   const chefName = deal.chef?.user?.username || 'Pusheat Chef';
   const imageUrl = deal.thumbnailUrl || deal.chef?.user?.imageUrl || 'https://pusheat.co/images/default-deal.jpg';
-  
+
   // Format price in Naira with proper symbol
   const formatPrice = (price) => {
     if (!price) return '';
     const numPrice = parseFloat(price);
     return `₦${numPrice.toLocaleString('en-NG', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
   };
-  
+
   const priceText = deal.dealPrice ? ` - ${formatPrice(deal.dealPrice)}` : '';
-  
+
   // Enhanced status handling for actual backend statuses
   const getStatusInfo = (status) => {
     const statusMap = {
       // Full status names
-      'ongoing': { 
-        text: 'Order Now', 
+      'ongoing': {
+        text: 'Order Now',
         availability: 'https://schema.org/InStock',
         color: '#28a745', // Green
         bgColor: '#d4edda',
         icon: '🔥'
       },
-      'upcoming': { 
-        text: 'Coming Soon', 
+      'upcoming': {
+        text: 'Coming Soon',
         availability: 'https://schema.org/PreOrder',
         color: '#007bff', // Blue
-        bgColor: '#d1ecf1', 
+        bgColor: '#d1ecf1',
         icon: '⏰'
       },
-      'successful': { 
-        text: 'Successfully Completed', 
+      'successful': {
+        text: 'Successfully Completed',
         availability: 'https://schema.org/SoldOut',
         color: '#28a745', // Green
         bgColor: '#d4edda',
         icon: '✅'
       },
-      'completed': { 
-        text: 'Deal Closed', 
+      'completed': {
+        text: 'Deal Closed',
         availability: 'https://schema.org/SoldOut',
         color: '#6c757d', // Gray
         bgColor: '#f8f9fa',
         icon: '📋'
       },
-      'failed': { 
-        text: 'Expired', 
+      'failed': {
+        text: 'Expired',
         availability: 'https://schema.org/Discontinued',
         color: '#dc3545', // Red
         bgColor: '#f8d7da',
         icon: '❌'
       },
-      'pre_failed': { 
-        text: 'Expired', 
+      'pre_failed': {
+        text: 'Expired',
         availability: 'https://schema.org/Discontinued',
         color: '#dc3545', // Red
         bgColor: '#f8d7da',
         icon: '❌'
       },
-      
+
       // Backend abbreviations/codes
-      'C': { 
-        text: 'Deal Closed', 
+      'C': {
+        text: 'Deal Closed',
         availability: 'https://schema.org/SoldOut',
         color: '#6c757d', // Gray
         bgColor: '#f8f9fa',
         icon: '📋'
       },
-      'O': { 
-        text: 'Order Now', 
+      'O': {
+        text: 'Order Now',
         availability: 'https://schema.org/InStock',
         color: '#28a745', // Green
         bgColor: '#d4edda',
         icon: '🔥'
       },
-      'U': { 
-        text: 'Coming Soon', 
+      'U': {
+        text: 'Coming Soon',
         availability: 'https://schema.org/PreOrder',
         color: '#007bff', // Blue
-        bgColor: '#d1ecf1', 
+        bgColor: '#d1ecf1',
         icon: '⏰'
       },
-      'S': { 
-        text: 'Successfully Completed', 
+      'S': {
+        text: 'Successfully Completed',
         availability: 'https://schema.org/SoldOut',
         color: '#28a745', // Green
         bgColor: '#d4edda',
         icon: '✅'
       },
-      'F': { 
-        text: 'Expired', 
+      'F': {
+        text: 'Expired',
         availability: 'https://schema.org/Discontinued',
         color: '#dc3545', // Red
         bgColor: '#f8d7da',
         icon: '❌'
       }
     };
-    
+
     return statusMap[status] || {
       text: 'Check Availability',
       availability: 'https://schema.org/InStock',
@@ -224,9 +224,9 @@ function generateDealHTML(deal, dealId) {
       icon: '📱'
     };
   };
-  
+
   const statusInfo = getStatusInfo(deal.status);
-  
+
   // Optimized description for AI bots and social sharing (under 160 chars)
   const baseDescription = deal.caption || `Delicious ${deal.title} by Chef ${chefName}`;
   const description = `${baseDescription} • ${statusInfo.text} • Pusheat Food Delivery`.slice(0, 155);
@@ -244,7 +244,7 @@ function generateDealHTML(deal, dealId) {
   // Optimized titles for 2025 SEO (under 60 chars)
   const optimizedTitle = `${deal.title}${priceText} | Pusheat`.slice(0, 57);
   const socialTitle = `${deal.title}${priceText}`.slice(0, 55);
-  
+
   const safeTitle = escapeHtml(optimizedTitle);
   const safeSocialTitle = escapeHtml(socialTitle);
   const safeDescription = escapeHtml(description);
@@ -419,7 +419,7 @@ function generateDealHTML(deal, dealId) {
   <style>
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #ff6b35, #ff8c42);
+      background: linear-gradient(135deg, #21B537, #1a942b);
       color: white;
       margin: 0;
       padding: 20px;
@@ -435,7 +435,7 @@ function generateDealHTML(deal, dealId) {
     .deal-description { opacity: 0.9; margin-bottom: 1em; }
     .cta-button { 
       background: white; 
-      color: #ff6b35; 
+      color: #21B537; 
       padding: 15px 30px; 
       text-decoration: none; 
       border-radius: 25px; 
@@ -524,18 +524,18 @@ function generateDealHTML(deal, dealId) {
     
     <!-- Chef Information -->
     <div class="chef-info">
-      ${deal.chef?.user?.imageUrl ? 
-        `<img src="${deal.chef.user.imageUrl}" alt="${safeChefName}" class="chef-avatar" />` : 
-        '<div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2em;">👨‍🍳</div>'
-      }
+      ${deal.chef?.user?.imageUrl ?
+      `<img src="${deal.chef.user.imageUrl}" alt="${safeChefName}" class="chef-avatar" />` :
+      '<div style="width: 40px; height: 40px; border-radius: 50%; background: rgba(255,255,255,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.2em;">👨‍🍳</div>'
+    }
       <span>by Chef ${safeChefName}</span>
     </div>
     
     <p class="deal-description" style="font-size: 0.95em; line-height: 1.4;">${deal.caption || `Delicious ${deal.title} prepared with love`}</p>
     
     <div style="margin-top: 25px;">
-      <a href="pusheat://deal/${dealId}" class="cta-button" style="background: rgba(255, 255, 255, 0.95); color: #ff6b35;">🚀 Open in App</a>
-      <a href="https://play.google.com/store/apps/details?id=ng.pushEats" class="cta-button" style="background: rgba(255, 255, 255, 0.8); color: #ff6b35;">📲 Get App</a>
+      <a href="pusheat://deal/${dealId}" class="cta-button" style="background: rgba(255, 255, 255, 0.95); color: #21B537;">🚀 Open in App</a>
+      <a href="https://play.google.com/store/apps/details?id=ng.pushEats" class="cta-button" style="background: rgba(255, 255, 255, 0.8); color: #21B537;">📲 Get App</a>
     </div>
     
     <p style="margin-top: 2em; opacity: 0.8; font-size: 0.9em;">
@@ -612,7 +612,7 @@ function generateFallbackHTML(dealId) {
   <style>
     body { 
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      background: linear-gradient(135deg, #ff6b35, #ff8c42);
+      background: linear-gradient(135deg, #21B537, #1a942b);
       color: white;
       margin: 0;
       padding: 20px;
@@ -626,7 +626,7 @@ function generateFallbackHTML(dealId) {
     .logo { font-size: 2em; margin-bottom: 1em; }
     .cta-button { 
       background: white; 
-      color: #ff6b35; 
+      color: #21B537; 
       padding: 15px 30px; 
       text-decoration: none; 
       border-radius: 25px; 
