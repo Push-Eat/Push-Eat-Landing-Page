@@ -122,7 +122,6 @@ function generateDealHTML(deal, dealId) {
   const chefName = deal.chef?.user?.username || 'Pusheat Chef';
   const imageUrl = deal.thumbnailUrl || deal.chef?.user?.imageUrl || 'https://pusheat.co/images/default-deal.jpg';
 
-  // Format price in Naira with proper symbol
   const formatPrice = (price) => {
     if (!price) return '';
     const numPrice = parseFloat(price);
@@ -131,10 +130,8 @@ function generateDealHTML(deal, dealId) {
 
   const priceText = deal.dealPrice ? ` - ${formatPrice(deal.dealPrice)}` : '';
 
-  // Enhanced status handling for actual backend statuses
   const getStatusInfo = (status) => {
     const statusMap = {
-      // Full status names
       'ongoing': {
         text: 'Order Now',
         availability: 'https://schema.org/InStock',
@@ -178,7 +175,6 @@ function generateDealHTML(deal, dealId) {
         icon: '❌'
       },
 
-      // Backend abbreviations/codes
       'C': {
         text: 'Deal Closed',
         availability: 'https://schema.org/SoldOut',
@@ -227,7 +223,6 @@ function generateDealHTML(deal, dealId) {
 
   const statusInfo = getStatusInfo(deal.status);
 
-  // Optimized description for AI bots and social sharing (under 160 chars)
   const baseDescription = deal.caption || `Delicious ${deal.title} by Chef ${chefName}`;
   const description = `${baseDescription} • ${statusInfo.text} • Pusheat Food Delivery`.slice(0, 155);
 
@@ -241,7 +236,6 @@ function generateDealHTML(deal, dealId) {
       .replace(/'/g, '&#39;');
   };
 
-  // Optimized titles for 2025 SEO (under 60 chars)
   const optimizedTitle = `${deal.title}${priceText} | Pusheat`.slice(0, 57);
   const socialTitle = `${deal.title}${priceText}`.slice(0, 55);
 
@@ -260,21 +254,17 @@ function generateDealHTML(deal, dealId) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- 2025 SEO Optimization -->
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="keywords" content="Nigerian food, ${deal.title}, ${safeChefName}, food delivery Nigeria, Pusheat, Nigerian cuisine" />
   
-  <!-- SEO Optimized Title (under 60 chars) -->
   <title>${safeTitle}</title>
   <meta name="description" content="${safeDescription}" />
   
-  <!-- Additional SEO Meta Tags -->
   <meta name="author" content="${safeChefName}" />
   <meta name="theme-color" content="#ff6b35" />
   <meta name="msapplication-TileColor" content="#ff6b35" />
   
-  <!-- Open Graph for Facebook, WhatsApp (2025 optimized) -->
   <meta property="og:title" content="${safeSocialTitle}" />
   <meta property="og:description" content="${safeDescription}" />
   <meta property="og:image" content="${safeImageUrl}" />
@@ -286,14 +276,12 @@ function generateDealHTML(deal, dealId) {
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="${deal.title} - Nigerian food by Chef ${safeChefName}" />
   
-  <!-- Enhanced product meta tags for AI optimization -->
   <meta property="product:price:amount" content="${deal.dealPrice || '0'}" />
   <meta property="product:price:currency" content="NGN" />
   <meta property="product:availability" content="${statusInfo.text.toLowerCase()}" />
   <meta property="article:author" content="${safeChefName}" />
   <meta property="article:section" content="Nigerian Food Delivery" />
   
-  <!-- Twitter Cards (X.com) -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="${safeSocialTitle}" />
   <meta name="twitter:description" content="${safeDescription}" />
@@ -301,7 +289,6 @@ function generateDealHTML(deal, dealId) {
   <meta name="twitter:site" content="@pusheat" />
   <meta name="twitter:creator" content="@${safeChefName.replace(/\s+/g, '')}" />
   
-  <!-- Additional Twitter product tags -->
   <meta name="twitter:label1" content="Price" />
   <meta name="twitter:data1" content="${formatPrice(deal.dealPrice) || 'Contact for price'}" />
   <meta name="twitter:label2" content="Status" />
@@ -316,7 +303,6 @@ function generateDealHTML(deal, dealId) {
   
   <link rel="canonical" href="https://pusheat.co/deal/${dealId}" />
   
-  <!-- Enhanced Structured Data for AI Optimization (ChatGPT, Gemini, etc.) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -383,7 +369,6 @@ function generateDealHTML(deal, dealId) {
   }
   </script>
   
-  <!-- Additional Schema for Local Business (AI Context) -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -452,7 +437,6 @@ function generateDealHTML(deal, dealId) {
       margin: 1em 0;
     }
     
-    /* Stylish Status Badge */
     .status-badge {
       display: inline-flex;
       align-items: center;
@@ -509,7 +493,6 @@ function generateDealHTML(deal, dealId) {
     
     <h1 class="deal-title">${deal.title}</h1>
     
-    <!-- Stylish Status Badge -->
     <div class="status-badge" style="
       background: linear-gradient(135deg, ${statusInfo.bgColor}dd, ${statusInfo.bgColor}aa);
       color: ${statusInfo.color};
@@ -519,10 +502,8 @@ function generateDealHTML(deal, dealId) {
       <span>${safeStatusText}</span>
     </div>
     
-    <!-- Price Display -->
     ${deal.dealPrice ? `<div class="price-display">${formatPrice(deal.dealPrice)}</div>` : ''}
     
-    <!-- Chef Information -->
     <div class="chef-info">
       ${deal.chef?.user?.imageUrl ?
       `<img src="${deal.chef.user.imageUrl}" alt="${safeChefName}" class="chef-avatar" />` :
@@ -548,7 +529,6 @@ function generateDealHTML(deal, dealId) {
       console.log('🔗 Deal page loaded for: ${dealId}');
       console.log('📱 User agent:', navigator.userAgent);
       
-      // Detect social media crawlers - don't redirect them
       const userAgent = navigator.userAgent || '';
       const isCrawler = /facebook|twitter|linkedin|whatsapp|telegram|bot|crawler|spider/i.test(userAgent);
       
@@ -557,16 +537,13 @@ function generateDealHTML(deal, dealId) {
         return;
       }
       
-      // Mobile app redirect logic
       const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
       
       if (isMobile) {
         console.log('📱 Mobile user detected, attempting app redirect...');
         
-        // Try app deep link first
         window.location.href = 'pusheat://deal/${dealId}';
         
-        // Fallback to app store after delay
         setTimeout(function() {
           const isAndroid = /Android/i.test(navigator.userAgent);
           const appStoreUrl = isAndroid 
@@ -577,7 +554,6 @@ function generateDealHTML(deal, dealId) {
           window.location.href = appStoreUrl;
         }, 2500);
       } else {
-        // Desktop - redirect to main website
         setTimeout(function() {
           window.location.href = 'https://pusheat.co';
         }, 3000);
@@ -595,7 +571,6 @@ function generateFallbackHTML(dealId) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <!-- Fallback meta tags -->
   <title>Amazing Food Deal - Pusheat</title>
   <meta name="description" content="Discover amazing food deals on Pusheat! Order from verified chefs and save money." />
   <meta property="og:title" content="Amazing Food Deal - Pusheat" />

@@ -47,7 +47,6 @@ const ParticleCursor = () => {
         };
 
         const init = () => {
-            // Re-initialize logic
             W = canvas.width = window.innerWidth;
             H = canvas.height = window.innerHeight;
             boids = [];

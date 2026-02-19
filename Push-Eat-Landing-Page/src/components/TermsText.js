@@ -17,7 +17,6 @@ export default function TermsText() {
           content="Pusheat terms, Pusheat policy, terms of service, Pusheat legal"
         />
 
-        {/* Open Graph */}
         <meta property="og:title" content="Terms of Service - Pusheat" />
         <meta
           property="og:description"
@@ -27,7 +26,6 @@ export default function TermsText() {
         <meta property="og:url" content={`${BASE_URL}/terms`} />
         <meta property="og:type" content="website" />
 
-        {/* Twitter card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Terms of Service - Pusheat" />
         <meta

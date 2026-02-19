@@ -1,8 +1,3 @@
-/**
- * Vercel Edge Function for Dynamic Deal Meta Tags
- * Intercepts /deal/* requests and injects dynamic Open Graph meta tags
- */
-
 export const config = {
   runtime: 'edge',
 };
@@ -14,7 +9,6 @@ export default async function handler(request) {
   const { pathname, searchParams } = new URL(request.url);
   const dealId = pathname.split('/deal/')[1];
 
-  // Only handle deal URLs
   if (!dealId || !pathname.startsWith('/deal/')) {
     return fetch(request);
   }
@@ -22,14 +16,11 @@ export default async function handler(request) {
   console.log(`🔗 Processing deal meta for ID: ${dealId}`);
 
   try {
-    // Fetch deal data from Pusheat API
     const dealData = await fetchDealData(dealId);
     
-    // Get the original HTML
     const response = await fetch(request);
     const html = await response.text();
     
-    // Inject dynamic meta tags
     const modifiedHtml = injectDealMetaTags(html, dealData, dealId);
     
     return new Response(modifiedHtml, {
@@ -44,7 +35,6 @@ export default async function handler(request) {
   } catch (error) {
     console.error('❌ Error processing deal meta:', error);
     
-    // Return original HTML with fallback meta tags
     const response = await fetch(request);
     const html = await response.text();
     const fallbackHtml = injectFallbackMetaTags(html, dealId);
@@ -108,7 +98,6 @@ function injectDealMetaTags(html, deal, dealId) {
   const imageUrl = deal.thumbnailUrl || 'https://pusheat.co/images/default-deal.jpg';
   const description = deal.caption || `Delicious ${deal.title} by ${chefName}. Order now on Pusheat!`;
   
-  // Calculate discount
   let discountText = '';
   if (deal.worthPrice && deal.dealPrice) {
     const worth = parseInt(deal.worthPrice);
@@ -120,11 +109,9 @@ function injectDealMetaTags(html, deal, dealId) {
   }
 
   const metaTags = `
-    <!-- Dynamic Open Graph tags for ${dealId} -->
     <title>${deal.title} - Pusheat</title>
     <meta name="description" content="${description}" />
     
-    <!-- Open Graph tags for Facebook, WhatsApp, etc. -->
     <meta property="og:title" content="${deal.title}${discountText}" />
     <meta property="og:description" content="${description}" />
     <meta property="og:image" content="${imageUrl}" />
@@ -136,13 +123,11 @@ function injectDealMetaTags(html, deal, dealId) {
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="${deal.title} - Delicious food by ${chefName}" />
     
-    <!-- Additional OG tags for better preview -->
     <meta property="article:author" content="${chefName}" />
     <meta property="article:section" content="Food & Dining" />
     <meta property="og:price:amount" content="${deal.dealPrice || '0'}" />
     <meta property="og:price:currency" content="NGN" />
     
-    <!-- Twitter Card tags -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="${deal.title}${discountText}" />
     <meta name="twitter:description" content="${description}" />
@@ -150,7 +135,6 @@ function injectDealMetaTags(html, deal, dealId) {
     <meta name="twitter:site" content="@pusheat" />
     <meta name="twitter:creator" content="@${chefName.replace(/\s+/g, '')}" />
     
-    <!-- App deep link meta tags -->
     <meta property="al:android:package" content="ng.pushEats" />
     <meta property="al:android:url" content="pusheat://deal/${dealId}" />
     <meta property="al:android:app_name" content="Pusheat" />
@@ -158,10 +142,8 @@ function injectDealMetaTags(html, deal, dealId) {
     <meta property="al:ios:url" content="pusheat://deal/${dealId}" />
     <meta property="al:ios:app_name" content="Pusheat" />
     
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://pusheat.co/deal/${dealId}" />
     
-    <!-- Mobile app detection script -->
     <script>
       (function() {
         if (typeof window !== 'undefined' && window.location.pathname.includes('/deal/')) {
@@ -183,7 +165,6 @@ function injectDealMetaTags(html, deal, dealId) {
     </script>
   `;
 
-  // Replace existing meta tags or insert after <head>
   const headTagEnd = html.indexOf('</head>');
   if (headTagEnd !== -1) {
     return html.substring(0, headTagEnd) + metaTags + html.substring(headTagEnd);
@@ -194,7 +175,6 @@ function injectDealMetaTags(html, deal, dealId) {
 
 function injectFallbackMetaTags(html, dealId) {
   const fallbackTags = `
-    <!-- Fallback meta tags -->
     <title>Food Deal - Pusheat</title>
     <meta name="description" content="Discover amazing food deals on Pusheat! Order from verified chefs and save money." />
     <meta property="og:title" content="Amazing Food Deal - Pusheat" />

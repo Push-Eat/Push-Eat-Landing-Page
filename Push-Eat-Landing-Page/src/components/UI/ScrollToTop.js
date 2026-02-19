@@ -5,7 +5,6 @@ const ScrollToTop = () => {
   const { pathname } = useLocation();
   const isInitialLoad = useRef(true);
 
-  // Restore scroll position on reload (if path matches)
   useEffect(() => {
     const savedScrollY = sessionStorage.getItem("scrollY");
     const savedPath = sessionStorage.getItem("scrollPath");
@@ -17,7 +16,6 @@ const ScrollToTop = () => {
     isInitialLoad.current = false; // flag to indicate reload handling is done
   }, [pathname]);
 
-  // Save scroll position before reload/close tab
   useEffect(() => {
     const handleBeforeUnload = () => {
       sessionStorage.setItem("scrollY", window.scrollY.toString());
@@ -30,7 +28,6 @@ const ScrollToTop = () => {
     };
   }, [pathname]);
 
-  // Scroll to top on route change only (not on reload)
   useEffect(() => {
     if (!isInitialLoad.current) {
       window.scrollTo(0, 0);

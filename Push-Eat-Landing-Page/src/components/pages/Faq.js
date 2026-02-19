@@ -1,10 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import FAQ from "../sections/FAQ"; // Import shared component
+import FAQ from "../sections/FAQ";
 
 const Faq = () => {
   return (
-    <div style={{ paddingTop: '80px' }}> {/* Add padding for fixed navbar */}
+    <div style={{ paddingTop: '80px' }}>
       <Helmet>
         <title>Pusheat FAQ | How Bites, deals, and payments work</title>
         <meta

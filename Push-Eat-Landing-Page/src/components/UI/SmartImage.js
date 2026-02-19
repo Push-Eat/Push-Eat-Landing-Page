@@ -1,4 +1,3 @@
-// SmartImage.js
 import React, { useState } from "react";
 
 function SmartImage({ src, webpSrc, alt, ...rest }) {

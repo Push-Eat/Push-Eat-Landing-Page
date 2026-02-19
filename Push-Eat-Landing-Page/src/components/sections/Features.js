@@ -5,7 +5,6 @@ import pennePasta from '../../assets/penne-pasta.jpg';
 import plantainBites from '../../assets/plantain-bites-real.jpg';
 import suyaThumb from '../../assets/suya.jpg';
 
-// const SUYA_THUMB = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80';
 
 const Features = () => {
     const [isPlaying, setIsPlaying] = useState(false);

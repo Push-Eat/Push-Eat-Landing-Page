@@ -153,14 +153,12 @@ const DealPage = () => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    // Validate dealId to prevent injection attacks
     const sanitizedDealId = sanitizeDealId(dealId);
     if (!sanitizedDealId) {
       setError(true);
       return;
     }
 
-    // Mobile app redirect logic
     const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     );
@@ -168,10 +166,8 @@ const DealPage = () => {
     if (isMobile) {
       console.log('📱 Mobile user detected, attempting app redirect...');
       
-      // Try app deep link first with validated ID
       safeRedirect(`pusheat://deal/${sanitizedDealId}`);
       
-      // Fallback to app store after 2.5 seconds if app doesn't open
       setTimeout(() => {
         const isAndroid = /Android/i.test(navigator.userAgent);
         const appStoreUrl = isAndroid 
@@ -183,7 +179,6 @@ const DealPage = () => {
       }, 2500);
     }
 
-    // Fetch deal data for display
     fetchDealData(sanitizedDealId);
   }, [dealId]);
 
@@ -191,7 +186,6 @@ const DealPage = () => {
     try {
       setLoading(true);
       
-      // Additional API security - use AbortController for timeout
       const controller = new AbortController();
       const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
       
@@ -215,7 +209,6 @@ const DealPage = () => {
       
       console.log('📊 Raw API Response:', JSON.stringify(postData, null, 2));
       
-      // Extract deal data from social post structure
       const dealData = {
         title: postData.deal?.title || postData.title || 'Amazing Food Deal',
         caption: postData.deal?.caption || postData.caption || 'Delicious food deal on Pusheat',
@@ -234,7 +227,6 @@ const DealPage = () => {
       console.log('🔍 Extracted Deal Data:', JSON.stringify(dealData, null, 2));
       console.log('🖼️ Original thumbnailUrl:', dealData.thumbnailUrl);
       
-      // Sanitize all API response data
       const sanitizedDeal = sanitizeApiResponse(dealData);
       
       console.log('🧹 Sanitized Deal:', JSON.stringify(sanitizedDeal, null, 2));
@@ -354,13 +346,11 @@ const DealPage = () => {
             className="deal-image"
             onError={(e) => {
               console.log('❌ Image failed to load:', e.target.src);
-              // Try fallback images in order
               if (e.target.src.includes('/Logo.png')) {
                 e.target.src = '/carousel1.webp';
               } else if (e.target.src.includes('/carousel1.webp')) {
                 e.target.src = 'https://pusheat1.netlify.app/Logo.png';
               } else {
-                // Final fallback - create a placeholder
                 e.target.style.display = 'none';
                 const placeholder = document.createElement('div');
                 placeholder.style.cssText = `
