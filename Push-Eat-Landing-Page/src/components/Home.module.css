@@ -201,10 +201,10 @@
   position: relative;
   --bridge-progress: 0;
   --bridge-shift: 0px;
-  height: clamp(110px, 16vw, 220px);
-  margin-top: clamp(-130px, -10vw, -80px);
+  height: clamp(160px, 22vw, 300px);
+  margin-top: clamp(-180px, -14vw, -120px);
   pointer-events: none;
-  z-index: 3;
+  z-index: 8;
   overflow: hidden;
 }
 
@@ -215,8 +215,8 @@
   background:
     linear-gradient(
       180deg,
-      rgba(10, 10, 10, calc(0.08 + var(--bridge-progress) * 0.1)) 0%,
-      rgba(10, 10, 10, calc(0.75 + var(--bridge-progress) * 0.2)) 50%,
+      rgba(10, 10, 10, calc(0.06 + var(--bridge-progress) * 0.2)) 0%,
+      rgba(10, 10, 10, calc(0.76 + var(--bridge-progress) * 0.24)) 50%,
       var(--bg) 100%
     );
 }
@@ -224,38 +224,59 @@
 .bridgeGlow {
   position: absolute;
   left: 50%;
-  top: -80px;
-  width: min(900px, 96vw);
-  height: clamp(180px, 25vw, 300px);
-  transform: translateX(-50%) translateY(calc(var(--bridge-shift) * -0.35)) scale(calc(1 + var(--bridge-progress) * 0.05));
-  background: radial-gradient(circle at 50% 40%, rgba(33, 181, 55, 0.3) 0%, rgba(33, 181, 55, 0.1) 38%, rgba(33, 181, 55, 0) 75%);
-  filter: blur(calc(22px - var(--bridge-progress) * 6px));
-  opacity: calc(0.66 + var(--bridge-progress) * 0.34);
+  top: -100px;
+  width: min(1050px, 96vw);
+  height: clamp(220px, 30vw, 360px);
+  transform: translateX(-50%) translateY(calc(var(--bridge-shift) * -0.5)) scale(calc(1 + var(--bridge-progress) * 0.08));
+  background: radial-gradient(circle at 50% 42%, rgba(33, 181, 55, 0.44) 0%, rgba(33, 181, 55, 0.16) 34%, rgba(33, 181, 55, 0) 72%);
+  filter: blur(calc(30px - var(--bridge-progress) * 10px));
+  opacity: calc(0.7 + var(--bridge-progress) * 0.3);
 }
 
 .bridgeWave {
   position: absolute;
   left: -8%;
   right: -8%;
-  bottom: 20%;
-  height: 70px;
-  opacity: calc(0.35 + var(--bridge-progress) * 0.45);
+  bottom: 26%;
+  height: 96px;
+  opacity: calc(0.4 + var(--bridge-progress) * 0.48);
   background:
-    radial-gradient(80px 25px at 20% 50%, rgba(33, 181, 55, 0.34), rgba(33, 181, 55, 0) 80%),
-    radial-gradient(90px 25px at 52% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 80%),
-    radial-gradient(90px 25px at 84% 50%, rgba(33, 181, 55, 0.32), rgba(33, 181, 55, 0) 80%);
-  filter: blur(calc(10px - var(--bridge-progress) * 2px));
+    radial-gradient(110px 34px at 14% 50%, rgba(33, 181, 55, 0.4), rgba(33, 181, 55, 0) 80%),
+    radial-gradient(120px 34px at 52% 50%, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0) 80%),
+    radial-gradient(110px 34px at 88% 50%, rgba(33, 181, 55, 0.38), rgba(33, 181, 55, 0) 80%);
+  filter: blur(calc(14px - var(--bridge-progress) * 4px));
   animation: bridgeSweep 9s ease-in-out infinite alternate;
   transform: translateY(var(--bridge-shift));
 }
 
+.bridgeSpine {
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  top: 18%;
+  bottom: 2%;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(33, 181, 55, 0.34), rgba(255, 255, 255, 0.04));
+  opacity: calc(0.18 + var(--bridge-progress) * 0.42);
+}
+
 @keyframes bridgeSweep {
   0% {
-    transform: translateX(-1.5%) scaleX(1);
+    transform: translateX(-2%) scaleX(1);
   }
   100% {
-    transform: translateX(1.5%) scaleX(1.04);
+    transform: translateX(2%) scaleX(1.08);
   }
+}
+
+.featuresStage {
+  --features-progress: 0;
+  --features-shift: 56px;
+  position: relative;
+  z-index: 10;
+  transform: translateY(var(--features-shift)) scale(calc(0.985 + var(--features-progress) * 0.015));
+  opacity: calc(0.7 + var(--features-progress) * 0.3);
+  transition: transform 220ms linear, opacity 220ms linear;
 }
     
 @media (min-width: 769px) and (max-width: 945px) {
@@ -336,12 +357,12 @@
   }
 
   .heroBridge {
-    margin-top: -64px;
-    height: 120px;
+    margin-top: -86px;
+    height: 150px;
   }
 
   .bridgeWave {
-    height: 54px;
-    opacity: 0.4;
+    height: 64px;
+    opacity: 0.5;
   }
 }

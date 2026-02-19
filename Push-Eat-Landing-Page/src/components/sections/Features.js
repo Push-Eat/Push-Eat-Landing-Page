@@ -1,6 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import styles from './Features.module.css';
-import chefOyebeez from '../../assets/chef-oyebeez-enhanced.png';
+import chefOyebeez from '../../assets/chef-oyebeez.png';
 import pennePasta from '../../assets/penne-pasta.jpg';
 import plantainBites from '../../assets/plantain-bites-real.jpg';
 import suyaThumb from '../../assets/suya.jpg';
