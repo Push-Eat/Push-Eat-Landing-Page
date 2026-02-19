@@ -5,38 +5,24 @@ const ParticleCursor = () => {
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext("2d", { alpha: true });
+    const ctx = canvas.getContext("2d");
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
-    const cfg = {
+    const CONFIG = {
       friction: 0.94,
-      decay: 0.016,
-      density: 3.6,
-      size: 6.8,
-      edgeBounce: 0.78,
-      speedGain: 0.54,
-      spread: 2.4,
-      maxParticles: window.innerWidth < 768 ? 460 : 760,
+      decayRate: 0.015,
+      sizeMultiplier: 6,
+      particleDensity: 3,
+      maxParticles: window.innerWidth < 768 ? 280 : 520,
+      bounce: 0.82,
+      colors: ["#4285F4", "#EA4335", "#FBBC05", "#34A853"],
     };
 
+    let particles = [];
+    let rafId = null;
     let W = 0;
     let H = 0;
-    let rafId = null;
-    const particles = [];
-    const mouse = {
-      x: null,
-      y: null,
-      lastX: null,
-      lastY: null,
-      active: false,
-    };
-
-    const palette = [
-      "rgba(33,181,55,",
-      "rgba(245,247,249,",
-      "rgba(186,255,203,",
-      "rgba(220,225,230,",
-    ];
+    const mouse = { x: null, y: null, lastX: null, lastY: null };
 
     const resize = () => {
       W = window.innerWidth;
@@ -48,148 +34,101 @@ const ParticleCursor = () => {
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
 
-    const spawnKnife = (x, y, vx, vy, burst = 1) => {
-      const count = Math.max(1, Math.floor(cfg.density * burst));
-      for (let i = 0; i < count; i++) {
-        if (particles.length >= cfg.maxParticles) {
+    class Particle {
+      constructor(x, y, velocityX, velocityY) {
+        this.x = x;
+        this.y = y;
+        this.vx = velocityX * 0.5 + (Math.random() * 4 - 2);
+        this.vy = velocityY * 0.5 + (Math.random() * 4 - 2);
+        this.radius = Math.random() * CONFIG.sizeMultiplier + 1;
+        this.color = CONFIG.colors[Math.floor(Math.random() * CONFIG.colors.length)];
+        this.alpha = 1;
+      }
+
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vx *= CONFIG.friction;
+        this.vy *= CONFIG.friction;
+        this.alpha -= CONFIG.decayRate;
+
+        if (this.x <= this.radius || this.x >= W - this.radius) {
+          this.vx *= -CONFIG.bounce;
+          this.x = Math.max(this.radius, Math.min(W - this.radius, this.x));
+        }
+        if (this.y <= this.radius || this.y >= H - this.radius) {
+          this.vy *= -CONFIG.bounce;
+          this.y = Math.max(this.radius, Math.min(H - this.radius, this.y));
+        }
+      }
+
+      draw() {
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    const spawnParticles = (x, y, velocityX, velocityY) => {
+      for (let i = 0; i < CONFIG.particleDensity; i++) {
+        if (particles.length >= CONFIG.maxParticles) {
           particles.shift();
         }
-        const jx = (Math.random() - 0.5) * cfg.spread * 2;
-        const jy = (Math.random() - 0.5) * cfg.spread * 2;
-        const pvx = vx * cfg.speedGain + (Math.random() * cfg.spread * 2 - cfg.spread);
-        const pvy = vy * cfg.speedGain + (Math.random() * cfg.spread * 2 - cfg.spread);
-        const speed = Math.hypot(pvx, pvy);
-        particles.push({
-          x: x + jx,
-          y: y + jy,
-          vx: pvx,
-          vy: pvy,
-          size: Math.random() * cfg.size + 2.2,
-          life: 1,
-          spin: (Math.random() - 0.5) * 0.12,
-          rot: Math.atan2(pvy, pvx),
-          tone: palette[Math.floor(Math.random() * palette.length)],
-          shimmer: Math.random() * 0.5 + 0.5,
-          boost: Math.min(1, speed / 11),
-        });
+        particles.push(new Particle(x, y, velocityX, velocityY));
       }
     };
 
-    const drawKnife = (p) => {
-      const heading = Math.atan2(p.vy, p.vx);
-      const a = heading + p.rot * 0.12;
-      const len = p.size * 1.55;
-      const bladeW = p.size * 0.32;
-      const handleL = p.size * 0.68;
-      const handleW = bladeW * 0.9;
-      const glowAlpha = Math.min(0.42, p.life * 0.32 + p.boost * 0.18);
-
-      ctx.save();
-      ctx.translate(p.x, p.y);
-      ctx.rotate(a);
-
-      ctx.shadowBlur = 16;
-      ctx.shadowColor = "rgba(33,181,55,0.24)";
-      ctx.beginPath();
-      ctx.moveTo(len * 0.65, 0);
-      ctx.lineTo(len * 0.02, bladeW);
-      ctx.lineTo(-handleL * 0.2, bladeW * 0.5);
-      ctx.lineTo(-handleL * 0.2, -bladeW * 0.5);
-      ctx.lineTo(len * 0.02, -bladeW);
-      ctx.closePath();
-      ctx.fillStyle = `${p.tone}${Math.max(0, p.life * p.shimmer)})`;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.rect(-handleL, -handleW * 0.5, handleL * 0.85, handleW);
-      ctx.fillStyle = `rgba(78,84,92,${Math.max(0, p.life * 0.75)})`;
-      ctx.fill();
-
-      ctx.beginPath();
-      ctx.moveTo(len * 0.43, 0);
-      ctx.lineTo(len * 0.1, bladeW * 0.2);
-      ctx.lineTo(len * 0.1, -bladeW * 0.2);
-      ctx.closePath();
-      ctx.fillStyle = `rgba(255,255,255,${glowAlpha})`;
-      ctx.fill();
-
-      ctx.restore();
-    };
-
-    const tick = () => {
+    const animate = () => {
       ctx.clearRect(0, 0, W, H);
 
       for (let i = particles.length - 1; i >= 0; i--) {
         const p = particles[i];
-        p.vx *= cfg.friction;
-        p.vy *= cfg.friction;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.rot += p.spin;
-        p.life -= cfg.decay;
-
-        if (p.x < 0 || p.x > W) {
-          p.vx *= -cfg.edgeBounce;
-          p.x = Math.max(0, Math.min(W, p.x));
-        }
-        if (p.y < 0 || p.y > H) {
-          p.vy *= -cfg.edgeBounce;
-          p.y = Math.max(0, Math.min(H, p.y));
-        }
-
-        if (p.life <= 0.02) {
+        p.update();
+        if (p.alpha <= 0) {
           particles.splice(i, 1);
           continue;
         }
-        drawKnife(p);
+        p.draw();
       }
 
-      rafId = window.requestAnimationFrame(tick);
+      ctx.globalAlpha = 1;
+      rafId = requestAnimationFrame(animate);
     };
 
-    const handlePointerMove = (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
+    const onPointerMove = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
       if (mouse.lastX === null || mouse.lastY === null) {
-        mouse.lastX = x;
-        mouse.lastY = y;
+        mouse.lastX = mouse.x;
+        mouse.lastY = mouse.y;
       }
-      const dx = x - mouse.lastX;
-      const dy = y - mouse.lastY;
-      const speed = Math.hypot(dx, dy);
-      const burst = Math.min(2.4, 0.8 + speed * 0.08);
-      spawnKnife(x, y, dx, dy, burst);
-      mouse.x = x;
-      mouse.y = y;
-      mouse.lastX = x;
-      mouse.lastY = y;
-      mouse.active = true;
+      const velocityX = mouse.x - mouse.lastX;
+      const velocityY = mouse.y - mouse.lastY;
+      spawnParticles(mouse.x, mouse.y, velocityX, velocityY);
+      mouse.lastX = mouse.x;
+      mouse.lastY = mouse.y;
     };
 
-    const handlePointerDown = (e) => {
-      spawnKnife(e.clientX, e.clientY, 0, 0, 3.4);
-    };
-
-    const handlePointerLeave = () => {
-      mouse.active = false;
+    const onPointerLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
       mouse.lastX = null;
       mouse.lastY = null;
     };
 
     resize();
-    tick();
-
+    animate();
     window.addEventListener("resize", resize);
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    window.addEventListener("pointerdown", handlePointerDown, { passive: true });
-    window.addEventListener("pointerleave", handlePointerLeave);
+    window.addEventListener("pointermove", onPointerMove, { passive: true });
+    window.addEventListener("pointerleave", onPointerLeave);
 
     return () => {
       window.removeEventListener("resize", resize);
-      window.removeEventListener("pointermove", handlePointerMove);
-      window.removeEventListener("pointerdown", handlePointerDown);
-      window.removeEventListener("pointerleave", handlePointerLeave);
-      if (rafId) window.cancelAnimationFrame(rafId);
+      window.removeEventListener("pointermove", onPointerMove);
+      window.removeEventListener("pointerleave", onPointerLeave);
+      if (rafId) cancelAnimationFrame(rafId);
     };
   }, []);
 
