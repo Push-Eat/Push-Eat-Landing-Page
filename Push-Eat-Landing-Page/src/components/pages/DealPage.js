@@ -288,6 +288,9 @@ const DealPage = () => {
 
   const discount = calculateDiscount();
   const chefName = deal.chef?.user?.username || 'Pusheat Chef';
+  const siteUrl = process.env.REACT_APP_BASE_URL || 'https://pusheat.co';
+  const dealUrl = `${siteUrl}/deal/${dealId}`;
+  const fallbackImage = `${siteUrl}/Logo.png`;
 
   return (
     <>
@@ -299,16 +302,16 @@ const DealPage = () => {
         />
         <meta property="og:title" content={`${deal.title} - Pusheat`} />
         <meta property="og:description" content={deal.caption} />
-        <meta property="og:image" content={deal.thumbnailUrl || 'https://pusheat1.netlify.app/Logo.png'} />
-        <meta property="og:url" content={`https://pusheat1.netlify.app/deal/${dealId}`} />
-        <link rel="canonical" href={`https://pusheat1.netlify.app/deal/${dealId}`} />
+        <meta property="og:image" content={deal.thumbnailUrl || fallbackImage} />
+        <meta property="og:url" content={dealUrl} />
+        <link rel="canonical" href={dealUrl} />
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Product",
             "name": deal.title,
             "description": deal.caption,
-            "image": deal.thumbnailUrl || 'https://pusheat1.netlify.app/Logo.png',
+            "image": deal.thumbnailUrl || fallbackImage,
             "offers": {
               "@type": "Offer",
               "price": deal.dealPrice,
@@ -349,7 +352,7 @@ const DealPage = () => {
               if (e.target.src.includes('/Logo.png')) {
                 e.target.src = '/carousel1.webp';
               } else if (e.target.src.includes('/carousel1.webp')) {
-                e.target.src = 'https://pusheat1.netlify.app/Logo.png';
+                e.target.src = fallbackImage;
               } else {
                 e.target.style.display = 'none';
                 const placeholder = document.createElement('div');

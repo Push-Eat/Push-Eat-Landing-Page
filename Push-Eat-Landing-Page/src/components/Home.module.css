@@ -196,8 +196,69 @@
     display: none;
   }
 }
+
+.heroBridge {
+  position: relative;
+  --bridge-progress: 0;
+  --bridge-shift: 0px;
+  height: clamp(110px, 16vw, 220px);
+  margin-top: clamp(-130px, -10vw, -80px);
+  pointer-events: none;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.heroBridge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(10, 10, 10, calc(0.08 + var(--bridge-progress) * 0.1)) 0%,
+      rgba(10, 10, 10, calc(0.75 + var(--bridge-progress) * 0.2)) 50%,
+      var(--bg) 100%
+    );
+}
+
+.bridgeGlow {
+  position: absolute;
+  left: 50%;
+  top: -80px;
+  width: min(900px, 96vw);
+  height: clamp(180px, 25vw, 300px);
+  transform: translateX(-50%) translateY(calc(var(--bridge-shift) * -0.35)) scale(calc(1 + var(--bridge-progress) * 0.05));
+  background: radial-gradient(circle at 50% 40%, rgba(33, 181, 55, 0.3) 0%, rgba(33, 181, 55, 0.1) 38%, rgba(33, 181, 55, 0) 75%);
+  filter: blur(calc(22px - var(--bridge-progress) * 6px));
+  opacity: calc(0.66 + var(--bridge-progress) * 0.34);
+}
+
+.bridgeWave {
+  position: absolute;
+  left: -8%;
+  right: -8%;
+  bottom: 20%;
+  height: 70px;
+  opacity: calc(0.35 + var(--bridge-progress) * 0.45);
+  background:
+    radial-gradient(80px 25px at 20% 50%, rgba(33, 181, 55, 0.34), rgba(33, 181, 55, 0) 80%),
+    radial-gradient(90px 25px at 52% 50%, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0) 80%),
+    radial-gradient(90px 25px at 84% 50%, rgba(33, 181, 55, 0.32), rgba(33, 181, 55, 0) 80%);
+  filter: blur(calc(10px - var(--bridge-progress) * 2px));
+  animation: bridgeSweep 9s ease-in-out infinite alternate;
+  transform: translateY(var(--bridge-shift));
+}
+
+@keyframes bridgeSweep {
+  0% {
+    transform: translateX(-1.5%) scaleX(1);
+  }
+  100% {
+    transform: translateX(1.5%) scaleX(1.04);
+  }
+}
     
-    @media (min-width: 769px) and (max-width: 945px) {
+@media (min-width: 769px) and (max-width: 945px) {
       .content h1 {
       font-size: 60px;
      }
@@ -272,5 +333,15 @@
 
   .mobileStickyBar {
     display: flex;
+  }
+
+  .heroBridge {
+    margin-top: -64px;
+    height: 120px;
+  }
+
+  .bridgeWave {
+    height: 54px;
+    opacity: 0.4;
   }
 }
