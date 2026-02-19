@@ -6,6 +6,7 @@ import { faBarsStaggered, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -16,8 +17,17 @@ function Navbar() {
     setMenuOpen(false);
   }, [location]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.navIn}>
         <Link to="/" className={styles.navLogo}>
           <img
