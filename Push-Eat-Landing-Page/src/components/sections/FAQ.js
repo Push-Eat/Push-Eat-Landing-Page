@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import styles from './FAQ.module.css';
 
 const FAQ = () => {
@@ -16,16 +16,39 @@ const FAQ = () => {
         { q: "Are delivery fees included?", a: "Delivery is shown at checkout. Winning the Last Bite Lottery can unlock free delivery for a week." }
     ];
 
+    const [openIndex, setOpenIndex] = useState(null);
+
+    const toggle = useCallback((i) => {
+        setOpenIndex((prev) => (prev === i ? null : i));
+    }, []);
+
     return (
         <section className={styles.section} id="faq">
-            <h2 className={styles.headline}>Questions, answered</h2>
-            <div className={styles.grid}>
-                {faqs.map((item, index) => (
-                    <div key={index} className={styles.item}>
-                        <h4 className={styles.question}>{item.q}</h4>
-                        <p className={styles.answer}>{item.a}</p>
-                    </div>
-                ))}
+            <div className={styles.container}>
+                <div className={styles.faqHead}>
+                    <div className={styles.label}>FAQ</div>
+                    <h2 className={styles.headline}>Questions, answered</h2>
+                    <p className={styles.subline}>Everything you need to know about Pusheat.</p>
+                </div>
+                <div className={styles.faqList}>
+                    {faqs.map((item, i) => (
+                        <div
+                            key={i}
+                            className={`${styles.faqItem} ${openIndex === i ? styles.open : ''}`}
+                            onClick={() => toggle(i)}
+                        >
+                            <div className={styles.faqQ}>
+                                <span>{item.q}</span>
+                                <span className={`material-symbols-outlined ${styles.chevron}`}>
+                                    expand_more
+                                </span>
+                            </div>
+                            <div className={styles.faqA}>
+                                <p>{item.a}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
         </section>
     );

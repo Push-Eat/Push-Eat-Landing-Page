@@ -1,66 +1,17 @@
 :root {
-  /* Brand Colors */
-  --color-primary: #21B537;
-  /* EXACT Match from Logo.svg */
-  --color-primary-dark: #1a942b;
-  /* Darkened version of #21B537 */
-  --color-primary-light: #e8f9eb;
-  /* Light tinted background */
-  --color-primary-alt: #21B537;
-  /* Unified */
-
-  --color-deal-orange: #ff6b35;
-  /* Deal Page Orange */
-  --color-deal-orange-dark: #e55a2b;
-
-  --color-secondary: #000000;
-  --color-secondary-light: #333333;
-
-  /* Background Colors */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f9f9f9;
-  --bg-accent: #f5fff6;
-  /* Light green tint used in current design */
-
-  /* Text Colors */
-  --text-primary: #000000;
-  --text-secondary: #666666;
-  --text-inverse: #ffffff;
-
-  /* Spacing */
-  --spacing-xs: 4px;
-  --spacing-sm: 8px;
-  --spacing-md: 16px;
-  --spacing-lg: 24px;
-  --spacing-xl: 32px;
-  --spacing-2xl: 48px;
-  --spacing-3xl: 64px;
-  --section-padding: clamp(3rem, 5vw, 5rem);
-
-  /* Border Radius */
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-full: 9999px;
-
-  /* Typography */
-  --font-family-main: 'Averta', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-
-  /* Shadows */
-  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.15);
-
-  /* Transitions */
-  --transition-fast: 0.2s ease;
-  --transition-normal: 0.3s ease;
-  --transition-slow: 0.5s ease;
-}
-
-/* Dark Mode (optional future proofing) */
-@media (prefers-color-scheme: dark) {
-  /* :root {
-    --bg-primary: #121212;
-    --text-primary: #ffffff;
-  } */
+  --green: #21B537;
+  --green-dark: #1A942B;
+  --green-glow: rgba(33, 181, 55, 0.15);
+  --green-glow-s: rgba(33, 181, 55, 0.4);
+  --bg: #0A0A0A;
+  --bg2: #141414;
+  --bg3: #1A1A1A;
+  --white: #fff;
+  --t1: #fff;
+  --t2: #9CA3AF;
+  --t3: #6B7280;
+  --serif: 'Cormorant Garant', Georgia, serif;
+  --sans: 'Inter', -apple-system, sans-serif;
+  --display: 'Space Grotesk', sans-serif;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1)
 }

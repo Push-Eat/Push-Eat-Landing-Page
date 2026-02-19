@@ -1,48 +1,19 @@
-import frame from "../assets/frame.webp";
 import Styles from "./ContentService.module.css";
-import Navbar from "./Navbar";
 
-function ContentService({ title, lastUpdated, titleClass, children }) {
+function ContentService({ title, subtitle, lastUpdated, children }) {
   return (
-    <div>
-      <section className={Styles.service_wrapper}>
-        <div className={Styles.services}>
-          <div className={Styles.imageContainer}>
-            <picture>
-              <source srcSet="/frame.webp" type="image/webp" />
-              <img
-                src={frame}
-                alt="services"
-                loading="eager"
-                width="5760"
-                height="1712"
-              />
-            </picture>
-          </div>
-        </div>
-
-        <div className={Styles.navbar}>
-          <Navbar />
-        </div>
-        <div className={Styles.service_content}>
-          <div className={Styles.content}>
-            <h1
-              className={[Styles.last_update, titleClass && Styles[titleClass]]
-                .filter(Boolean)
-                .join(" ")}
-            >
-              {title}
-            </h1>
-
-            {lastUpdated && (
-              <p>
-                Last Updated: <span>{lastUpdated}</span>
-              </p>
-            )}
-          </div>
-        </div>
+    <div className={Styles.wrapper}>
+      <section className={Styles.pageHero}>
+        <h1>{title}</h1>
+        {subtitle && <p className={Styles.sub}>{subtitle}</p>}
+        {lastUpdated && <p className={Styles.meta}>{lastUpdated}</p>}
       </section>
-      {children}
+      <main className={Styles.content}>
+        {children}
+      </main>
+      <footer className={Styles.ft}>
+        <p>&copy; {new Date().getFullYear()} Pusheat. All rights reserved.</p>
+      </footer>
     </div>
   );
 }

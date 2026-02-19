@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Delete Account | Pusheat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --green: #21B537;
+            --bg: #0A0A0A;
+            --bg2: #141414;
+            --t1: #fff;
+            --t2: #9CA3AF;
+            --t3: #6B7280;
+            --red: #E53E3E;
+            --red-glow: rgba(229, 62, 62, .15);
+            --serif: 'Cormorant Garant', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --display: 'Space Grotesk', sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1)
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t1);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: var(--green);
+            text-decoration: none;
+            transition: opacity .3s
+        }
+
+        a:hover {
+            opacity: .8
+        }
+
+        #pc {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none
+        }
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, .7);
+            border-bottom: 1px solid rgba(255, 255, 255, .04)
+        }
+
+        .nav-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .nav-logo img {
+            height: 28px;
+            width: auto
+        }
+
+        .nav-back {
+            font-family: var(--display);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--t2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color .3s
+        }
+
+        .nav-back:hover {
+            color: #fff;
+            opacity: 1
+        }
+
+        .page-hero {
+            padding: 180px 0 40px;
+            position: relative;
+            z-index: 2;
+            text-align: center
+        }
+
+        .page-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(38px, 5vw, 64px);
+            font-weight: 400;
+            margin-bottom: 12px
+        }
+
+        .page-hero .sub {
+            font-size: 16px;
+            color: var(--t2);
+            max-width: 480px;
+            margin: 0 auto
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px clamp(24px, 5vw, 80px) 120px
+        }
+
+
+        .warning-box {
+            background: var(--red-glow);
+            border: 1px solid rgba(229, 62, 62, .2);
+            border-radius: 16px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start
+        }
+
+        .warning-box .material-symbols-outlined {
+            color: var(--red);
+            font-size: 28px;
+            flex-shrink: 0;
+            margin-top: 2px
+        }
+
+        .warning-box p {
+            font-size: 14px;
+            color: var(--t2);
+            line-height: 1.7
+        }
+
+        .warning-box strong {
+            color: var(--red)
+        }
+
+
+        .consequence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 40px
+        }
+
+        .cq-card {
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 14px;
+            padding: 24px
+        }
+
+        .cq-card .material-symbols-outlined {
+            font-size: 24px;
+            color: var(--red);
+            margin-bottom: 12px;
+            opacity: .7
+        }
+
+        .cq-card h4 {
+            font-family: var(--display);
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 6px
+        }
+
+        .cq-card p {
+            font-size: 13px;
+            color: var(--t3);
+            line-height: 1.6
+        }
+
+
+        .steps {
+            margin-bottom: 40px
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            align-items: flex-start
+        }
+
+        .step-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            background: rgba(33, 181, 55, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 14px;
+            color: var(--green);
+            flex-shrink: 0
+        }
+
+        .step-text h4 {
+            font-family: var(--display);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 4px
+        }
+
+        .step-text p {
+            font-size: 14px;
+            color: var(--t2)
+        }
+
+
+        .delete-cta {
+            text-align: center;
+            padding: 40px;
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 20px
+        }
+
+        .delete-cta h3 {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 400;
+            margin-bottom: 8px
+        }
+
+        .delete-cta p {
+            font-size: 14px;
+            color: var(--t3);
+            margin-bottom: 28px
+        }
+
+        .delete-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 16px 36px;
+            border: 2px solid var(--red);
+            background: transparent;
+            color: var(--red);
+            font-family: var(--display);
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all .3s var(--ease)
+        }
+
+        .delete-btn:hover {
+            background: var(--red);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(229, 62, 62, .2)
+        }
+
+        .alt-link {
+            display: block;
+            margin-top: 20px;
+            font-size: 13px;
+            color: var(--t3)
+        }
+
+        .alt-link a {
+            color: var(--green)
+        }
+
+        .ft {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, .04);
+            text-align: center;
+            position: relative;
+            z-index: 2
+        }
+
+        .ft p {
+            color: var(--t3);
+            font-size: 13px
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .8s var(--ease), transform .8s var(--ease)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(max-width:768px) {
+            .page-hero {
+                padding: 140px 0 30px
+            }
+
+            .consequence-grid {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="pc"></canvas>
+    <header class="nav">
+        <div class="nav-in"><a href="preview.html" class="nav-logo"><img src="public/Logo.svg" alt="Pusheat" /></a><a
+                href="preview.html" class="nav-back"><span class="material-symbols-outlined"
+                    style="font-size:18px">arrow_back</span> Back
+                to Home</a></div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Delete Your Account</h1>
+        <p class="sub">We're sorry to see you go. Please review what happens when you delete your account.</p>
+    </section>
+
+    <main class="content">
+        <div class="warning-box reveal">
+            <span class="material-symbols-outlined">warning</span>
+            <div>
+                <p><strong>This action is permanent and cannot be undone.</strong> Once your account is deleted, all
+                    associated data will be permanently removed within 30 days. Some data may be retained as required by
+                    law.</p>
+            </div>
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:18px;margin-bottom:20px" class="reveal">What You'll Lose</h3>
+        <div class="consequence-grid reveal">
+            <div class="cq-card">
+                <span class="material-symbols-outlined">person_off</span>
+                <h4>Profile & Account</h4>
+                <p>Your profile, username, and account settings will be permanently deleted.</p>
+            </div>
+            <div class="cq-card">
+                <span class="material-symbols-outlined">receipt_long</span>
+                <h4>Order History</h4>
+                <p>All past orders, receipts, and transaction records will be erased.</p>
+            </div>
+            <div class="cq-card">
+                <span class="material-symbols-outlined">star_off</span>
+                <h4>Reviews & Ratings</h4>
+                <p>Your reviews, ratings, and all content you've contributed will be removed.</p>
+            </div>
+            <div class="cq-card">
+                <span class="material-symbols-outlined">loyalty</span>
+                <h4>Rewards & Credits</h4>
+                <p>Any unused credits, rewards points, or promotional balances will be forfeited.</p>
+            </div>
+        </div>
+
+        <h3 style="font-family:var(--display);font-size:18px;margin-bottom:20px" class="reveal">How to Delete Your
+            Account</h3>
+        <div class="steps reveal">
+            <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                    <h4>Open the Pusheat App</h4>
+                    <p>Navigate to Settings from your profile tab.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                    <h4>Go to Account Settings</h4>
+                    <p>Scroll down and tap "Delete Account" at the bottom.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                    <h4>Confirm Your Identity</h4>
+                    <p>Enter your password or verify via email to confirm.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">
+                    <h4>Confirm Deletion</h4>
+                    <p>Review the summary and confirm. Your account will be scheduled for deletion.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="delete-cta reveal">
+            <h3>Ready to proceed?</h3>
+            <p>You can also request account deletion by emailing us.</p>
+            <button class="delete-btn"
+                onclick="this.textContent='Request Sent ✓';this.style.borderColor='var(--green)';this.style.color='var(--green)'"><span
+                    class="material-symbols-outlined" style="font-size:18px">delete_forever</span> Request Account
+                Deletion</button>
+            <p class="alt-link">Changed your mind? <a href="preview.html">Go back home</a></p>
+        </div>
+    </main>
+
+    <footer class="ft">
+        <p>&copy; 2026 Pusheat. All rights reserved.</p>
+    </footer>
+
+    <script>
+        (function () { var c = document.getElementById('pc'), x = c.getContext('2d'), B = [], W, H, mX = -9999, mY = -9999, pX = -9999, pY = -9999, mvX = 0, mvY = 0, t = 0, N = 50, MS = 1.2, MF = 0.025; function K() { this.x = Math.random() * W; this.y = Math.random() * H; var a = Math.random() * Math.PI * 2, s = Math.random() * 0.4 + 0.2; this.vx = Math.cos(a) * s; this.vy = Math.sin(a) * s; this.seed = Math.random() * 1e3; this.len = Math.random() * 2 + 2; this.isG = Math.random() > 0.75; this.bA = Math.random() * 0.18 + 0.08 } function lim(a, b, m) { var g = Math.sqrt(a * a + b * b); if (g > m) { a = a / g * m; b = b / g * m } return [a, b] } function init() { W = c.width = innerWidth; H = c.height = innerHeight; B = []; for (var i = 0; i < N; i++)B.push(new K) } function draw() { t++; x.clearRect(0, 0, W, H); if (mX > -9e3 && pX > -9e3) { mvX = (mX - pX) * 0.3; mvY = (mY - pY) * 0.3 } pX = mX; pY = mY; var ms = Math.sqrt(mvX * mvX + mvY * mvY), df = 0.025 + Math.min(ms * 0.003, 0.05), dd = 280 + Math.min(ms * 6, 150), n = B.length; for (var i = 0; i < n; i++) { var b = B[i], sX = 0, sY = 0, sN = 0, aX = 0, aY = 0, aN = 0, cX = 0, cY = 0, cN = 0; for (var j = 0; j < n; j++) { if (i === j) continue; var o = B[j], dx = o.x - b.x, dy = o.y - b.y, d = Math.sqrt(dx * dx + dy * dy); if (d < 22 && d > 0) { sX -= dx / d; sY -= dy / d; sN++ } if (d < 70) { aX += o.vx; aY += o.vy; aN++ } if (d < 100) { cX += o.x; cY += o.y; cN++ } } var sx = 0, sy = 0; if (sN > 0) { var v = lim(sX / sN, sY / sN, MF); sx += v[0] * 1.8; sy += v[1] * 1.8 } if (aN > 0) { var v = lim(aX / aN - b.vx, aY / aN - b.vy, MF); sx += v[0]; sy += v[1] } if (cN > 0) { var v = lim(cX / cN - b.x, cY / cN - b.y, MF); sx += v[0] * 0.7; sy += v[1] * 0.7 } if (mX > -9e3) { var dx = mX - b.x, dy = mY - b.y, d = Math.sqrt(dx * dx + dy * dy); if (d < dd && d > 20) { var f = df * (1 - d / dd); sx += dx / d * f; sy += dy / d * f; if (ms > 2) { sx += mvX * 0.006 * (1 - d / dd); sy += mvY * 0.006 * (1 - d / dd) } } } sx += Math.sin(t * 0.003 + b.seed) * 0.003; sy += Math.cos(t * 0.002 + b.seed * 1.3) * 0.002; b.vx += sx; b.vy += sy; var lv = lim(b.vx, b.vy, MS); b.vx = lv[0]; b.vy = lv[1]; b.x += b.vx; b.y += b.vy; if (b.x < -10) b.x += W + 20; if (b.x > W + 10) b.x -= W + 20; if (b.y < -10) b.y += H + 20; if (b.y > H + 10) b.y -= H + 20; var ang = Math.atan2(b.vy, b.vx), spd = Math.sqrt(b.vx * b.vx + b.vy * b.vy), dl = b.len + spd * 1.2, ex = b.x + Math.cos(ang) * dl, ey = b.y + Math.sin(ang) * dl; var pg = 0.5 + 0.5 * Math.sin(b.x / W * Math.PI + t * 0.001), al = b.bA * (0.6 + pg * 0.6); if (mX > -9e3) { var md = Math.sqrt((mX - b.x) * (mX - b.x) + (mY - b.y) * (mY - b.y)); if (md < dd * 0.6) al = Math.min(0.6, al + (1 - md / (dd * 0.6)) * 0.35) } x.beginPath(); x.moveTo(b.x, b.y); x.lineTo(ex, ey); x.strokeStyle = b.isG ? 'rgba(33,181,55,' + al + ')' : 'rgba(250,250,248,' + al + ')'; x.lineWidth = 1.2; x.lineCap = 'round'; x.stroke() } requestAnimationFrame(draw) } init(); draw(); addEventListener('resize', init); document.addEventListener('mousemove', function (e) { mX = e.clientX; mY = e.clientY }); document.addEventListener('mouseleave', function () { mX = -9999; mY = -9999; pX = -9999; pY = -9999 }) })();
+        var obs = new IntersectionObserver(function (e) { e.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target) } }) }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el) });
+    </script>
+</body>
+
+</html>

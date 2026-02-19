@@ -1,43 +1,70 @@
 .section {
-    background-color: var(--bg-accent);
-    padding: var(--spacing-xl) var(--section-padding);
-    margin: var(--spacing-xl) auto;
-    border-radius: var(--radius-lg);
-    max-width: 1200px;
-    /* Constrain width */
-    width: 90%;
-    border: 1px solid rgba(0, 200, 83, 0.1);
+    padding: clamp(60px, 8vw, 100px) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-lg);
-    justify-content: space-between;
+.grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 80px);
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
 .item {
-    flex: 1;
-    min-width: 250px;
-    text-align: left;
+    text-align: center;
+    padding: 32px 20px;
+}
+
+.number {
+    font-family: var(--display);
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 700;
+    color: var(--white);
+    background: linear-gradient(180deg, #fff 40%, rgba(33, 181, 55, 0.6) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 8px;
 }
 
 .title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: var(--spacing-sm);
-    color: var(--text-primary);
+    font-family: var(--display);
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: 0.02em;
 }
 
 .desc {
-    font-size: 1.125rem;
+    font-size: 14px;
+    color: var(--t3);
     line-height: 1.5;
-    color: var(--text-secondary);
+    max-width: 260px;
+    margin: 0 auto;
 }
 
 @media (max-width: 768px) {
-    .section {
-        padding: var(--spacing-lg);
-        width: 95%;
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .item {
+        padding: 24px 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .item:last-child {
+        border-bottom: none;
+    }
+
+    .number {
+        font-size: 48px;
     }
 }

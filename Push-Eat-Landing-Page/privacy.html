@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Privacy Policy | Pusheat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --green: #21B537;
+            --green-dark: #1A942B;
+            --green-glow: rgba(33, 181, 55, 0.15);
+            --bg: #0A0A0A;
+            --bg2: #141414;
+            --bg3: #1A1A1A;
+            --white: #fff;
+            --t1: #fff;
+            --t2: #9CA3AF;
+            --t3: #6B7280;
+            --serif: 'Cormorant Garant', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --display: 'Space Grotesk', sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1)
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t1);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased
+        }
+
+        a {
+            color: var(--green);
+            text-decoration: none;
+            transition: opacity .3s
+        }
+
+        a:hover {
+            opacity: .8
+        }
+
+        #pc {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none
+        }
+
+
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(10, 10, 10, .7);
+            border-bottom: 1px solid rgba(255, 255, 255, .04)
+        }
+
+        .nav-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none
+        }
+
+        .nav-logo img {
+            height: 28px;
+            width: auto
+        }
+
+        .nav-back {
+            font-family: var(--display);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--t2);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: color .3s
+        }
+
+        .nav-back:hover {
+            color: var(--white);
+            opacity: 1
+        }
+
+
+        .page-hero {
+            padding: 180px 0 80px;
+            position: relative;
+            z-index: 2;
+            text-align: center
+        }
+
+        .page-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg));
+            pointer-events: none
+        }
+
+        .page-hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(42px, 6vw, 72px);
+            font-weight: 400;
+            margin-bottom: 16px
+        }
+
+        .page-hero .meta {
+            font-size: 14px;
+            color: var(--t3);
+            font-family: var(--display)
+        }
+
+
+        .content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px) 120px
+        }
+
+        .content h2 {
+            font-family: var(--serif);
+            font-size: clamp(28px, 3.5vw, 38px);
+            font-weight: 400;
+            margin: 64px 0 20px;
+            color: var(--t1)
+        }
+
+        .content h2:first-child {
+            margin-top: 0
+        }
+
+        .content p {
+            color: var(--t2);
+            margin-bottom: 20px;
+            font-size: 15px;
+            line-height: 1.8
+        }
+
+        .content ul {
+            list-style: none;
+            margin-bottom: 20px;
+            padding-left: 0
+        }
+
+        .content ul li {
+            color: var(--t2);
+            font-size: 15px;
+            line-height: 1.8;
+            padding-left: 24px;
+            position: relative;
+            margin-bottom: 8px
+        }
+
+        .content ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 12px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--green);
+            opacity: .6
+        }
+
+        .content strong {
+            color: var(--t1);
+            font-weight: 600
+        }
+
+
+        .toc {
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 48px
+        }
+
+        .toc-title {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--t3);
+            margin-bottom: 16px
+        }
+
+        .toc a {
+            display: block;
+            font-size: 14px;
+            color: var(--t2);
+            padding: 6px 0;
+            transition: color .3s, padding-left .3s
+        }
+
+        .toc a:hover {
+            color: var(--green);
+            padding-left: 8px;
+            opacity: 1
+        }
+
+
+        .ft {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, .04);
+            text-align: center;
+            position: relative;
+            z-index: 2
+        }
+
+        .ft p {
+            color: var(--t3);
+            font-size: 13px
+        }
+
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity .8s var(--ease), transform .8s var(--ease)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(max-width:768px) {
+            .page-hero {
+                padding: 140px 0 60px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="pc"></canvas>
+
+    <header class="nav">
+        <div class="nav-in">
+            <a href="preview.html" class="nav-logo"><img src="public/Logo.svg" alt="Pusheat" /></a>
+            <a href="preview.html" class="nav-back"><span class="material-symbols-outlined"
+                    style="font-size:18px">arrow_back</span> Back to Home</a>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <h1>Privacy Policy</h1>
+        <p class="meta">Last updated: February 2026</p>
+    </section>
+
+    <main class="content">
+        <div class="toc reveal">
+            <div class="toc-title">Contents</div>
+            <a href="#info-collect">1. Information We Collect</a>
+            <a href="#info-use">2. How We Use Your Information</a>
+            <a href="#info-share">3. Information Sharing</a>
+            <a href="#data-security">4. Data Security</a>
+            <a href="#your-rights">5. Your Rights</a>
+            <a href="#cookies">6. Cookies & Tracking</a>
+            <a href="#children">7. Children's Privacy</a>
+            <a href="#changes">8. Changes to This Policy</a>
+            <a href="#contact-us">9. Contact Us</a>
+        </div>
+
+        <div class="reveal">
+            <p>At Pusheat, we are committed to protecting your privacy and ensuring the security of your personal
+                information. This Privacy Policy explains how we collect, use, disclose, and safeguard your information
+                when you use our mobile application and related services.</p>
+
+            <h2 id="info-collect">1. Information We Collect</h2>
+            <p>We collect information you provide directly to us, including:</p>
+            <ul>
+                <li><strong>Account Information:</strong> Name, email address, phone number, and profile picture when
+                    you create an account.</li>
+                <li><strong>Order Information:</strong> Delivery address, payment details, and order history.</li>
+                <li><strong>Content:</strong> Reviews, ratings, photos, and other content you submit through the app.
+                </li>
+                <li><strong>Communications:</strong> Messages you send through in-app chat features.</li>
+            </ul>
+            <p>We also automatically collect certain information, including device information, IP address, usage data,
+                and location information (with your consent).</p>
+
+            <h2 id="info-use">2. How We Use Your Information</h2>
+            <p>We use the information we collect to:</p>
+            <ul>
+                <li>Process and deliver your food orders</li>
+                <li>Personalize your experience and provide tailored recommendations</li>
+                <li>Communicate with you about orders, promotions, and updates</li>
+                <li>Improve our services and develop new features</li>
+                <li>Ensure the safety and security of our platform</li>
+                <li>Comply with legal obligations</li>
+            </ul>
+
+            <h2 id="info-share">3. Information Sharing</h2>
+            <p>We do not sell your personal information. We may share your information with:</p>
+            <ul>
+                <li><strong>Food Creators:</strong> To facilitate order preparation and delivery.</li>
+                <li><strong>Service Providers:</strong> Third-party companies that help us operate our platform (payment
+                    processors, cloud hosting, analytics).</li>
+                <li><strong>Legal Requirements:</strong> When required by law or to protect our rights and safety.</li>
+            </ul>
+
+            <h2 id="data-security">4. Data Security</h2>
+            <p>We implement industry-standard security measures to protect your data, including encryption in transit
+                and at rest, secure authentication protocols, and regular security audits. However, no system is
+                completely secure, and we cannot guarantee absolute security.</p>
+
+            <h2 id="your-rights">5. Your Rights</h2>
+            <p>Depending on your location, you may have the right to:</p>
+            <ul>
+                <li>Access the personal information we hold about you</li>
+                <li>Request correction of inaccurate data</li>
+                <li>Request deletion of your account and data</li>
+                <li>Opt out of marketing communications</li>
+                <li>Export your data in a portable format</li>
+            </ul>
+
+            <h2 id="cookies">6. Cookies & Tracking</h2>
+            <p>We use cookies and similar technologies to enhance your experience, analyze usage patterns, and deliver
+                relevant content. You can manage cookie preferences through your device settings.</p>
+
+            <h2 id="children">7. Children's Privacy</h2>
+            <p>Pusheat is not intended for children under 13 years of age. We do not knowingly collect personal
+                information from children. If we learn we have collected information from a child under 13, we will take
+                steps to delete it promptly.</p>
+
+            <h2 id="changes">8. Changes to This Policy</h2>
+            <p>We may update this Privacy Policy from time to time. We will notify you of any material changes by
+                posting the new policy on this page and updating the "Last Updated" date. We encourage you to review
+                this policy periodically.</p>
+
+            <h2 id="contact-us">9. Contact Us</h2>
+            <p>If you have questions about this Privacy Policy or our data practices, please contact us at:</p>
+            <p><strong>Email:</strong> <a href="mailto:privacy@pusheat.com">privacy@pusheat.com</a><br />
+                <strong>Address:</strong> Lagos, Nigeria
+            </p>
+        </div>
+    </main>
+
+    <footer class="ft">
+        <p>&copy; 2026 Pusheat. All rights reserved.</p>
+    </footer>
+
+    <script>
+        (function () { var c = document.getElementById('pc'), x = c.getContext('2d'), B = [], W, H, mX = -9999, mY = -9999, pX = -9999, pY = -9999, mvX = 0, mvY = 0, t = 0, N = 50, MS = 1.2, MF = 0.025, SD = 22, AD = 70, CD = 100, CR = 280, CF = 0.025; function K() { this.x = Math.random() * W; this.y = Math.random() * H; var a = Math.random() * Math.PI * 2, s = Math.random() * 0.4 + 0.2; this.vx = Math.cos(a) * s; this.vy = Math.sin(a) * s; this.seed = Math.random() * 1e3; this.len = Math.random() * 2 + 2; this.isG = Math.random() > 0.75; this.bA = Math.random() * 0.18 + 0.08 } function lim(a, b, m) { var g = Math.sqrt(a * a + b * b); if (g > m) { a = a / g * m; b = b / g * m } return [a, b] } function init() { W = c.width = innerWidth; H = c.height = innerHeight; B = []; for (var i = 0; i < N; i++)B.push(new K) } function draw() { t++; x.clearRect(0, 0, W, H); if (mX > -9e3 && pX > -9e3) { mvX = (mX - pX) * 0.3; mvY = (mY - pY) * 0.3 } pX = mX; pY = mY; var ms = Math.sqrt(mvX * mvX + mvY * mvY), df = CF + Math.min(ms * 0.003, 0.05), dd = CR + Math.min(ms * 6, 150), n = B.length; for (var i = 0; i < n; i++) { var b = B[i], sX = 0, sY = 0, sN = 0, aX = 0, aY = 0, aN = 0, cX = 0, cY = 0, cN = 0; for (var j = 0; j < n; j++) { if (i === j) continue; var o = B[j], dx = o.x - b.x, dy = o.y - b.y, d = Math.sqrt(dx * dx + dy * dy); if (d < SD && d > 0) { sX -= dx / d; sY -= dy / d; sN++ } if (d < AD) { aX += o.vx; aY += o.vy; aN++ } if (d < CD) { cX += o.x; cY += o.y; cN++ } } var sx = 0, sy = 0; if (sN > 0) { var v = lim(sX / sN, sY / sN, MF); sx += v[0] * 1.8; sy += v[1] * 1.8 } if (aN > 0) { var v = lim(aX / aN - b.vx, aY / aN - b.vy, MF); sx += v[0]; sy += v[1] } if (cN > 0) { var v = lim(cX / cN - b.x, cY / cN - b.y, MF); sx += v[0] * 0.7; sy += v[1] * 0.7 } if (mX > -9e3) { var dx = mX - b.x, dy = mY - b.y, d = Math.sqrt(dx * dx + dy * dy); if (d < dd && d > 20) { var f = df * (1 - d / dd); sx += dx / d * f; sy += dy / d * f; if (ms > 2) { sx += mvX * 0.006 * (1 - d / dd); sy += mvY * 0.006 * (1 - d / dd) } } } sx += Math.sin(t * 0.003 + b.seed) * 0.003; sy += Math.cos(t * 0.002 + b.seed * 1.3) * 0.002; b.vx += sx; b.vy += sy; var lv = lim(b.vx, b.vy, MS); b.vx = lv[0]; b.vy = lv[1]; b.x += b.vx; b.y += b.vy; if (b.x < -10) b.x += W + 20; if (b.x > W + 10) b.x -= W + 20; if (b.y < -10) b.y += H + 20; if (b.y > H + 10) b.y -= H + 20; var ang = Math.atan2(b.vy, b.vx), spd = Math.sqrt(b.vx * b.vx + b.vy * b.vy), dl = b.len + spd * 1.2, ex = b.x + Math.cos(ang) * dl, ey = b.y + Math.sin(ang) * dl; var pg = 0.5 + 0.5 * Math.sin(b.x / W * Math.PI + t * 0.001), al = b.bA * (0.6 + pg * 0.6); if (mX > -9e3) { var md = Math.sqrt((mX - b.x) * (mX - b.x) + (mY - b.y) * (mY - b.y)); if (md < dd * 0.6) al = Math.min(0.6, al + (1 - md / (dd * 0.6)) * 0.35) } x.beginPath(); x.moveTo(b.x, b.y); x.lineTo(ex, ey); x.strokeStyle = b.isG ? 'rgba(33,181,55,' + al + ')' : 'rgba(250,250,248,' + al + ')'; x.lineWidth = 1.2; x.lineCap = 'round'; x.stroke() } requestAnimationFrame(draw) } init(); draw(); addEventListener('resize', init); document.addEventListener('mousemove', function (e) { mX = e.clientX; mY = e.clientY }); document.addEventListener('mouseleave', function () { mX = -9999; mY = -9999; pX = -9999; pY = -9999 }) })();
+
+        var obs = new IntersectionObserver(function (e) { e.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('visible'); obs.unobserve(en.target) } }) }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el) });
+    </script>
+</body>
+
+</html>

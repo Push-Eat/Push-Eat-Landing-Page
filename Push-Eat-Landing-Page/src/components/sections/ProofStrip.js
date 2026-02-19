@@ -3,18 +3,19 @@ import styles from './ProofStrip.module.css';
 
 const ProofStrip = () => {
     const items = [
-        { title: "Live in Lagos", desc: "Built for Lagos food lovers and creators right now." },
-        { title: "Over 100 orders fulfilled", desc: "Creator drops moving fast with real deliveries." },
-        { title: "20+ food creators", desc: "Local chefs posting, setting prices, and selling out." }
+        { n: '100+', t: 'Orders Fulfilled', d: 'Real deliveries from creator kitchens.' },
+        { n: '20+', t: 'Food Creators', d: 'Local chefs posting, pricing, and selling out.' },
+        { n: 'Lagos', t: 'Live Now', d: 'Built for Lagos food lovers right now.' }
     ];
 
     return (
         <section className={styles.section}>
-            <div className={styles.container}>
-                {items.map((item, index) => (
-                    <div key={index} className={styles.item}>
-                        <h3 className={styles.title}>{item.title}</h3>
-                        <p className={styles.desc}>{item.desc}</p>
+            <div className={styles.grid}>
+                {items.map((item, i) => (
+                    <div key={i} className={styles.item}>
+                        <div className={styles.number}>{item.n}</div>
+                        <div className={styles.title}>{item.t}</div>
+                        <div className={styles.desc}>{item.d}</div>
                     </div>
                 ))}
             </div>

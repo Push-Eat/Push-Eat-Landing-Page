@@ -1,58 +1,163 @@
-.section {
-    padding: var(--section-padding);
-    display: flex;
-    justify-content: center;
+.ctaFt {
+    background: var(--green);
+    color: var(--bg);
+    position: relative;
+    overflow: hidden;
 }
 
-.card {
-    background-color: var(--color-primary-light);
-    border-radius: var(--radius-lg);
-    padding: clamp(2rem, 5vw, 4rem);
-    text-align: center;
-    max-width: 900px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.glow {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    filter: blur(100px);
+    transform: translate(30%, -40%);
+    pointer-events: none;
 }
 
-.headline {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    margin-bottom: var(--spacing-xl);
-    color: var(--text-primary);
-    line-height: 1.2;
+.ctaIn {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 80px);
+    position: relative;
+    z-index: 2;
 }
 
-.buttons {
+.ctaGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 64px);
+    align-items: end;
+}
+
+.ctaTxt h2 {
+    font-family: var(--display);
+    font-size: clamp(40px, 6vw, 80px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    margin-bottom: 20px;
+}
+
+.ctaTxt p {
+    font-size: clamp(15px, 1.8vw, 18px);
+    font-weight: 500;
+    opacity: 0.8;
+    max-width: 400px;
+}
+
+.ctaBtns {
     display: flex;
-    gap: var(--spacing-md);
+    gap: 14px;
     flex-wrap: wrap;
-    justify-content: center;
 }
 
-.storeBtn {
-    display: flex;
+.btnD {
+    display: inline-flex;
     align-items: center;
     gap: 10px;
-    background-color: #000;
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: var(--radius-md);
+    padding: 16px 32px;
+    background: var(--bg);
+    color: var(--white);
+    border-radius: 12px;
+    font-family: var(--display);
     font-weight: 600;
-    font-size: 1.125rem;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    font-size: 15px;
+    transition: transform 0.2s;
+    border: none;
+    cursor: pointer;
     text-decoration: none;
 }
 
-.storeBtn:hover {
+.btnD:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
-@media (max-width: 600px) {
-    .storeBtn {
+.btnOd {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: transparent;
+    color: var(--bg);
+    border-radius: 12px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 15px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btnOd:hover {
+    background: rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+}
+
+.ftBar {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px clamp(24px, 5vw, 80px) 28px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.ftLinks {
+    display: flex;
+    gap: 20px;
+}
+
+.ftLinks a {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--bg);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    text-decoration: none;
+}
+
+.ftLinks a:hover {
+    opacity: 1;
+}
+
+.ftCopy {
+    font-size: 12px;
+    opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+    .ctaGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .ctaBtns {
+        flex-direction: column;
+    }
+
+    .btnD,
+    .btnOd {
         width: 100%;
+        justify-content: center;
+    }
+
+    .ftBar {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+    }
+
+    .ftLinks {
+        flex-wrap: wrap;
         justify-content: center;
     }
 }

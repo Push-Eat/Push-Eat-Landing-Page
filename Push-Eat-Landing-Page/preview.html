@@ -1,0 +1,1636 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Pusheat | Taste What's Trending</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --green: #21B537;
+            --green-dark: #1A942B;
+            --green-glow: rgba(33, 181, 55, 0.15);
+            --green-glow-s: rgba(33, 181, 55, 0.4);
+            --bg: #0A0A0A;
+            --bg2: #141414;
+            --bg3: #1A1A1A;
+            --white: #fff;
+            --t1: #fff;
+            --t2: #9CA3AF;
+            --t3: #6B7280;
+            --serif: 'Cormorant Garant', Georgia, serif;
+            --sans: 'Inter', -apple-system, sans-serif;
+            --display: 'Space Grotesk', sans-serif;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1)
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased
+        }
+
+        body {
+            font-family: var(--sans);
+            background: var(--bg);
+            color: var(--t1);
+            overflow-x: hidden;
+            line-height: 1.6
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--green)
+        }
+
+        #pc {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px)
+        }
+
+        .label {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--green)
+        }
+
+        /* NAV */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 clamp(24px, 5vw, 80px)
+        }
+
+        .nav-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 8px
+        }
+
+        .nav-logo svg {
+            height: 28px;
+            width: auto
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px
+        }
+
+        .nav-links a {
+            font-family: var(--display);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--white);
+            transition: opacity .3s
+        }
+
+        .nav-links a:hover {
+            opacity: .7
+        }
+
+        .nav-cta {
+            background: var(--green) !important;
+            opacity: 1 !important;
+            color: var(--bg) !important;
+            padding: 10px 22px !important;
+            border-radius: 8px !important;
+            font-weight: 600 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 6px !important;
+            transition: transform .2s, box-shadow .3s !important
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 8px 30px var(--green-glow-s) !important
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .65
+        }
+
+        .hero-ov {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(160deg, rgba(0, 0, 0, .7) 0%, rgba(0, 0, 0, .3) 40%, rgba(0, 0, 0, .5) 100%)
+        }
+
+        .hero-ct {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px);
+            padding-top: 120px
+        }
+
+        .hero-eye {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: rgba(33, 181, 55, .12);
+            border: 1px solid rgba(33, 181, 55, .25);
+            border-radius: 100px;
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            color: #7ddb8b;
+            letter-spacing: .08em;
+            margin-bottom: 36px
+        }
+
+        .hero-eye::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
+            }
+
+            50% {
+                opacity: .4;
+                transform: scale(.7)
+            }
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(48px, 9vw, 100px);
+            font-weight: 400;
+            line-height: 1.02;
+            color: var(--white);
+            max-width: 750px;
+            margin-bottom: 28px;
+            letter-spacing: -.02em
+        }
+
+        .hero h1 em {
+            font-style: italic;
+            color: var(--green)
+        }
+
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 20px);
+            line-height: 1.65;
+            color: rgba(255, 255, 255, .65);
+            max-width: 480px;
+            margin-bottom: 44px;
+            font-weight: 300
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .btn-p {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--green);
+            color: var(--bg);
+            border-radius: 12px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform .2s, box-shadow .3s;
+            border: none;
+            cursor: pointer
+        }
+
+        .btn-p:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px var(--green-glow-s)
+        }
+
+        .btn-g {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: rgba(255, 255, 255, .08);
+            backdrop-filter: blur(10px);
+            color: var(--white);
+            border-radius: 12px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 15px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            transition: background .3s, transform .2s;
+            cursor: pointer
+        }
+
+        .btn-g:hover {
+            background: rgba(255, 255, 255, .15);
+            transform: translateY(-2px)
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bd 2s ease-in-out infinite
+        }
+
+        @keyframes bd {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0)
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(10px)
+            }
+        }
+
+        /* Enhanced scroll reveal - stagger */
+        .reveal {
+            opacity: 0;
+            transform: translateY(60px);
+            transition: opacity 1s var(--ease), transform 1s var(--ease)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        .reveal-delay-1 {
+            transition-delay: .1s
+        }
+
+        .reveal-delay-2 {
+            transition-delay: .25s
+        }
+
+        .reveal-delay-3 {
+            transition-delay: .4s
+        }
+
+
+
+        /* SECONDARY PAGE PREVIEWS */
+        .secondary-pages {
+            padding: clamp(60px, 8vw, 120px) 0;
+            border-top: 1px solid rgba(255, 255, 255, .04)
+        }
+
+        .sp-hdr {
+            text-align: center;
+            margin-bottom: 56px
+        }
+
+        .sp-hdr h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 400
+        }
+
+        .sp-grid {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px
+        }
+
+        .sp-card {
+            background: var(--bg2);
+            border: 1px solid rgba(255, 255, 255, .06);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform .4s var(--ease), border-color .4s;
+            cursor: default
+        }
+
+        .sp-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(33, 181, 55, .2)
+        }
+
+        .sp-card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(33, 181, 55, .1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px
+        }
+
+        .sp-card-icon .material-symbols-outlined {
+            color: var(--green);
+            font-size: 24px
+        }
+
+        .sp-card h3 {
+            font-family: var(--display);
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 10px
+        }
+
+        .sp-card p {
+            font-size: 14px;
+            color: var(--t2);
+            line-height: 1.65;
+            margin-bottom: 16px
+        }
+
+        .sp-card-link {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--green);
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: gap .3s
+        }
+
+        .sp-card:hover .sp-card-link {
+            gap: 8px
+        }
+
+        /* FEATURES */
+        .features {
+            position: relative;
+            padding: clamp(60px, 8vw, 120px) 0;
+            overflow: hidden
+        }
+
+        .features::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, .04);
+            transform: translateX(-50%)
+        }
+
+        .f-block {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 5vw, 80px)
+        }
+
+        .f-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(40px, 6vw, 100px);
+            align-items: center;
+            margin-bottom: clamp(100px, 12vw, 200px)
+        }
+
+        .f-item:last-child {
+            margin-bottom: 0
+        }
+
+        .f-item.rev .f-text {
+            order: 2
+        }
+
+        .f-item.rev .f-vis {
+            order: 1
+        }
+
+        .f-label {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: .2em;
+            color: var(--green);
+            margin-bottom: 16px
+        }
+
+        .f-head {
+            font-family: var(--display);
+            font-size: clamp(44px, 6vw, 88px);
+            font-weight: 700;
+            letter-spacing: -.04em;
+            line-height: .95;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, .4) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            transition: all .5s
+        }
+
+        .f-item:hover .f-head {
+            background: linear-gradient(180deg, #fff 0%, rgba(33, 181, 55, .7) 100%);
+            -webkit-background-clip: text;
+            background-clip: text
+        }
+
+        .f-desc {
+            font-size: 17px;
+            color: var(--t2);
+            line-height: 1.7;
+            max-width: 440px;
+            font-weight: 300
+        }
+
+        .f-item.rev .f-desc {
+            margin-left: auto
+        }
+
+        .f-vis {
+            position: relative;
+            height: clamp(320px, 36vw, 480px)
+        }
+
+        .f-card {
+            position: absolute;
+            inset: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+            transition: transform .6s var(--ease)
+        }
+
+        .f-card-bg {
+            position: absolute;
+            inset: 0;
+            background: var(--bg2);
+            transform: rotate(3deg);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .04);
+            transition: transform .5s var(--ease)
+        }
+
+        .f-item:hover .f-card-bg {
+            transform: rotate(6deg)
+        }
+
+        .f-card img,
+        .f-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: .6;
+            transition: opacity .6s, transform .6s var(--ease)
+        }
+
+        .f-item:hover .f-card img,
+        .f-item:hover .f-card video {
+            opacity: 1;
+            transform: scale(1.05)
+        }
+
+        .f-card video.is-playing {
+            opacity: 1;
+            transform: scale(1.02)
+        }
+
+        .f-card-ov {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, .6));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity .4s
+        }
+
+        .f-card-ov.vid-playing {
+            opacity: 0
+        }
+
+        .f-card-ov.vid-playing:hover {
+            opacity: 1
+        }
+
+        .play-b {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, .2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform .3s, background .3s
+        }
+
+        .f-item:hover .play-b {
+            transform: scale(1.1);
+            background: rgba(33, 181, 55, .3)
+        }
+
+
+        .o-card {
+            position: absolute;
+            inset: 0;
+            background: var(--bg3);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, .06);
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            transform: rotate(-2deg);
+            transition: transform .5s var(--ease)
+        }
+
+        .f-item:hover .o-card {
+            transform: rotate(-4deg)
+        }
+
+        .o-card-bg {
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, .03);
+            border-radius: 16px;
+            transform: rotate(3deg);
+            transition: transform .5s var(--ease)
+        }
+
+        .f-item:hover .o-card-bg {
+            transform: rotate(5deg)
+        }
+
+        .o-hdr {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, .08);
+            margin-bottom: 16px
+        }
+
+        .o-hdr span {
+            font-family: var(--display);
+            font-size: 13px;
+            color: var(--t2);
+            letter-spacing: .05em
+        }
+
+        .o-hdr .cnt {
+            color: var(--green);
+            font-weight: 600
+        }
+
+        .o-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 10px;
+            border-radius: 10px;
+            transition: background .3s;
+            margin-bottom: 6px
+        }
+
+        .o-item:hover {
+            background: rgba(255, 255, 255, .04)
+        }
+
+        .o-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: var(--bg2);
+            overflow: hidden
+        }
+
+        .o-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover
+        }
+
+        .o-name {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 600
+        }
+
+        .o-chef {
+            font-size: 11px;
+            color: var(--t3)
+        }
+
+        .o-price {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500
+        }
+
+        .o-foot {
+            margin-top: auto;
+            padding-top: 14px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end
+        }
+
+        .o-total-l {
+            font-size: 11px;
+            color: var(--t3);
+            margin-bottom: 4px
+        }
+
+        .o-total {
+            font-family: var(--display);
+            font-size: 24px;
+            font-weight: 700
+        }
+
+        .o-btn {
+            background: var(--green);
+            color: var(--bg);
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+            transition: transform .2s
+        }
+
+        .o-btn:hover {
+            transform: translateY(-1px)
+        }
+
+        /* PROOF */
+        .proof {
+            padding: clamp(60px, 8vw, 120px) 0;
+            border-top: 1px solid rgba(255, 255, 255, .04);
+            border-bottom: 1px solid rgba(255, 255, 255, .04)
+        }
+
+        .proof-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            text-align: center
+        }
+
+        .proof-item h3 {
+            font-family: var(--display);
+            font-size: clamp(48px, 7vw, 80px);
+            font-weight: 700;
+            color: var(--green);
+            line-height: 1;
+            letter-spacing: -.04em;
+            margin-bottom: 8px
+        }
+
+        .proof-item p {
+            font-size: 15px;
+            color: var(--t2)
+        }
+
+        /* FAQ */
+        .faq {
+            padding: clamp(80px, 10vw, 140px) 0
+        }
+
+        .faq-hdr {
+            text-align: center;
+            margin-bottom: 64px
+        }
+
+        .faq-hdr h2 {
+            font-family: var(--serif);
+            font-size: clamp(36px, 5vw, 64px);
+            font-weight: 400
+        }
+
+        .faq-list {
+            max-width: 720px;
+            margin: 0 auto
+        }
+
+        .faq-i {
+            border-bottom: 1px solid rgba(255, 255, 255, .06)
+        }
+
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 0;
+            cursor: pointer;
+            font-family: var(--display);
+            font-size: 17px;
+            font-weight: 500;
+            transition: color .3s
+        }
+
+        .faq-q:hover {
+            color: var(--green)
+        }
+
+        .faq-ic {
+            font-size: 22px;
+            color: var(--t3);
+            transition: transform .4s var(--ease), color .3s
+        }
+
+        .faq-i.open .faq-ic {
+            transform: rotate(45deg);
+            color: var(--green)
+        }
+
+        .faq-a {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .5s var(--ease)
+        }
+
+        .faq-i.open .faq-a {
+            max-height: 200px
+        }
+
+        .faq-a p {
+            font-size: 15px;
+            color: var(--t2);
+            line-height: 1.7;
+            padding-bottom: 20px
+        }
+
+        /* CTA FOOTER */
+        .cta-ft {
+            background: var(--green);
+            color: var(--bg);
+            position: relative;
+            overflow: hidden
+        }
+
+        .cta-ft::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: rgba(255, 255, 255, .08);
+            border-radius: 50%;
+            filter: blur(100px);
+            transform: translate(30%, -40%);
+            pointer-events: none
+        }
+
+        .cta-ft-in {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: clamp(60px, 8vw, 120px) clamp(24px, 5vw, 80px);
+            position: relative;
+            z-index: 2
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(32px, 5vw, 64px);
+            align-items: end
+        }
+
+        .cta-txt h2 {
+            font-family: var(--display);
+            font-size: clamp(40px, 6vw, 80px);
+            font-weight: 800;
+            letter-spacing: -.04em;
+            line-height: .92;
+            margin-bottom: 20px
+        }
+
+        .cta-txt p {
+            font-size: clamp(15px, 1.8vw, 18px);
+            font-weight: 500;
+            opacity: .8;
+            max-width: 400px
+        }
+
+        .cta-btns {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap
+        }
+
+        .btn-d {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--bg);
+            color: var(--white);
+            border-radius: 12px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 15px;
+            transition: transform .2s;
+            border: none;
+            cursor: pointer
+        }
+
+        .btn-d:hover {
+            transform: translateY(-2px)
+        }
+
+        .btn-od {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: transparent;
+            color: var(--bg);
+            border-radius: 12px;
+            font-family: var(--display);
+            font-weight: 600;
+            font-size: 15px;
+            border: 2px solid rgba(0, 0, 0, .2);
+            transition: background .3s, transform .2s;
+            cursor: pointer
+        }
+
+        .btn-od:hover {
+            background: rgba(0, 0, 0, .08);
+            transform: translateY(-2px)
+        }
+
+        .ft-bar {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px clamp(24px, 5vw, 80px) 28px;
+            border-top: 1px solid rgba(0, 0, 0, .08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2
+        }
+
+        .ft-links {
+            display: flex;
+            gap: 20px
+        }
+
+        .ft-links a {
+            font-family: var(--display);
+            font-size: 13px;
+            font-weight: 500;
+            opacity: .6;
+            transition: opacity .3s
+        }
+
+        .ft-links a:hover {
+            opacity: 1
+        }
+
+        .ft-copy {
+            font-size: 12px;
+            opacity: .5
+        }
+
+        /* MOBILE */
+        @media(max-width:768px) {
+            .nav-links a:not(.nav-cta) {
+                display: none
+            }
+
+            .f-item,
+            .f-item.rev {
+                grid-template-columns: 1fr
+            }
+
+            .f-item.rev .f-text,
+            .f-item.rev .f-vis {
+                order: unset
+            }
+
+            .f-item.rev .f-text {
+                text-align: left
+            }
+
+            .f-item.rev .f-desc {
+                margin-left: 0
+            }
+
+            .f-vis {
+                height: 300px
+            }
+
+            .proof-grid {
+                grid-template-columns: 1fr;
+                gap: 32px
+            }
+
+            .cta-grid {
+                grid-template-columns: 1fr
+            }
+
+            .cta-btns {
+                flex-direction: column
+            }
+
+            .btn-d,
+            .btn-od {
+                width: 100%;
+                justify-content: center
+            }
+
+            .ft-bar {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center
+            }
+
+            .features::before {
+                display: none
+            }
+
+            .hero-ct {
+                padding-top: 100px
+            }
+
+            .hero h1 {
+                font-size: clamp(40px, 10vw, 60px)
+            }
+
+            .hero-sub {
+                font-size: 16px
+            }
+
+            .hero-btns {
+                flex-direction: column
+            }
+
+            .btn-p,
+            .btn-g {
+                width: 100%;
+                justify-content: center
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="pc"></canvas>
+
+
+    <nav class="nav">
+        <div class="nav-in">
+            <a href="/" class="nav-logo">
+                <svg viewBox="0 0 4785 1085" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M2512.84 312.865C2593.67 238.624 2681.09 216.65 2779.08 237.591C2855.6 253.943 2892.89 303.112 2890.31 381.025C2889.22 413.671 2881.7 445.283 2872.76 476.552C2842.52 582.062 2812.41 687.572 2782.06 793.024C2764.56 853.955 2733.35 877.65 2669.96 878.281C2643.23 878.568 2616.44 878.568 2589.65 878.281C2528.04 877.65 2509.28 852.291 2526.32 792.164C2550.7 705.874 2575.54 619.699 2599.69 533.294C2605.66 511.894 2620 487.396 2596.82 469.667C2575.37 453.258 2548.92 459.168 2525.52 468.52C2481.11 486.248 2457.42 523.656 2443.6 566.341C2420.99 636.222 2401.37 707.021 2380.95 777.591C2356.92 860.61 2333.51 878.339 2246.14 878.339C2222.22 878.339 2198.3 879.142 2174.49 878.052C2124.24 875.642 2105.65 851.086 2117.98 802.204C2127.56 764.28 2139.44 726.987 2150.17 689.35C2207.53 488.428 2264.73 287.506 2322.15 86.584C2339.48 25.9402 2368.56 2.87605 2430.98 0.695855C2459.6-0.279495 2488.34-0.164804 2516.97 0.638425C2576.46 2.35963 2594.76 26.055 2579.15 83.199C2560.8 150.383 2540.83 217.166 2521.56 284.121C2519.49 291.293 2517.25 298.35 2512.84 312.865Z"
+                        fill="#F9FCFC" />
+                    <path
+                        d="M1244 780.343C1179.64 858.657 1100.24 884.476 1007.94 876.616C890.683 866.633 837.791 799.218 864.237 683.496C886.323 586.936 916.326 492.155 942.944 396.628C951.147 367.253 959.523 337.878 968.357 308.675C984.42 255.662 1015.57 231.565 1070.81 230.188C1102.31 229.385 1133.92 229.499 1165.41 230.13C1218.88 231.221 1238.32 256.522 1224.21 308.216C1204.13 381.826 1182.62 455.092 1161.68 528.473C1155.43 550.504 1148.37 572.306 1142.92 594.51C1134.26 629.68 1147.05 645.458 1182.62 646.031C1220.6 646.662 1247.85 627.729 1269.47 598.756C1290.99 569.954 1302.52 536.505 1312.27 502.483C1329.94 441.036 1347.21 379.474 1364.7 317.969C1383 253.711 1413.81 230.303 1480.52 229.958C1509.21 229.844 1537.89 229.27 1566.52 230.13C1619.29 231.794 1637.82 255.317 1623.71 306.495C1587.11 438.913 1549.02 570.872 1511.45 703.061C1503.07 732.436 1495.21 761.983 1485.69 790.957C1470.14 838.29 1437.27 862.444 1387.36 863.764C1360.63 864.51 1333.84 864.165 1307.11 863.878C1249.74 863.362 1233.22 843.74 1244 780.343Z"
+                        fill="#F9FCFC" />
+                    <path
+                        d="M3899.21 782.294C3881.02 797.498 3863.64 813.448 3844.88 827.504C3789.18 869.329 3725.45 882.525 3657.81 872.829C3566.48 859.748 3522.14 782.236 3548.64 686.078C3569.35 611.091 3622.24 565.077 3689.54 533.407C3768.59 496.172 3853.09 482.632 3939.6 481.427C3960.25 481.14 3973.1 476.034 3974.76 454.634C3976.48 432.545 3961.11 424.398 3943.09 421.07C3901.39 413.439 3861.63 423.652 3822.28 436.217C3803.29 442.298 3784.88 449.872 3764.23 450.675C3738.24 451.65 3721.95 440.347 3715.12 416.193C3707.83 390.433 3703.3 363.983 3705.94 337.018C3708.93 306.552 3726.31 284.578 3752.7 272.874C3856.7 226.746 3965.12 202.591 4078.54 226.344C4199.58 251.703 4253.45 337.362 4222.93 458.076C4194.93 568.864 4161.32 678.218 4129.71 788.089C4116.97 832.323 4086.97 857.797 4041.08 861.297C4011.65 863.535 3981.76 863.649 3952.33 861.527C3916.25 858.887 3902.25 841.388 3901.62 805.301C3901.56 798.071 3905.58 790.326 3899.21 782.294ZM3907.36 605.009C3871.79 608.739 3835.59 611.321 3804.67 633.065C3786.71 645.687 3775.93 662.957 3785.34 684.414C3793.71 703.577 3813.22 706.561 3831.86 703.52C3875.12 696.52 3906.67 672.997 3925.37 632.893C3934.03 614.189 3935.06 600.706 3907.36 605.009Z"
+                        fill="#21B537" />
+                    <path
+                        d="M4608.43 72.9295C4626.62 72.9295 4644.8 72.2411 4662.87 73.0443C4702.23 74.7655 4720.47 97.3707 4711.86 135.926C4705.21 165.645 4696.32 194.906 4686.97 223.937C4680.37 244.419 4681.4 254.402 4707.73 254.746C4783.34 255.722 4796.94 275.401 4776.34 348.093C4774.51 354.519 4772.56 360.887 4770.66 367.256C4753.97 422.736 4723.97 448.324 4666.49 445.743C4631.44 444.136 4617.73 457.275 4610.9 489.174C4602.75 527.328 4589.85 564.449 4580.09 602.315C4572.12 633.182 4584.63 651.828 4615.89 658.426C4684.96 673.057 4687.83 677.876 4668.5 746.265C4663.33 764.625 4658.34 782.984 4653.01 801.286C4639.98 846.21 4608.15 869.159 4563.34 873.577C4516.47 878.224 4469.89 874.839 4424.52 860.783C4327.51 830.719 4286.95 760.379 4312.14 661.582C4328.14 598.815 4346.78 536.737 4365.08 474.602C4370.42 456.529 4368.87 447.751 4347.13 444.652C4311.62 439.661 4299.11 419.236 4306.63 383.55C4310.53 364.903 4315.06 346.314 4320.97 328.242C4334.91 285.498 4361.81 257.041 4409.43 255.664C4429.85 255.09 4440.18 247.173 4444.31 226.691C4449.36 201.504 4457.27 176.89 4464.56 152.22C4481.37 95.3052 4511.43 72.9869 4571.09 72.6427C4583.54 72.5853 4595.93 72.6427 4608.37 72.6427C4608.43 72.7574 4608.43 72.8147 4608.43 72.9295Z"
+                        fill="#21B537" />
+                    <path
+                        d="M3299.5 598.872C3255.56 598.872 3211.56 599.962 3167.62 598.47C3141.4 597.609 3141.06 608.855 3149.32 627.731C3163.43 660.032 3207.77 680.113 3255.1 674.375C3283.5 670.933 3311.55 665.54 3338.51 655.212C3351.82 650.106 3365.76 646.434 3379.7 643.566C3399.21 639.55 3419 644.369 3426.68 662.499C3455.31 729.454 3463.34 794.86 3379.7 829.456C3275.75 872.429 3168.94 890.96 3058.28 862.675C2951.35 835.308 2889.16 746.781 2895.36 636.566C2908.95 394.909 3131.71 206.838 3371.44 234.665C3507 250.385 3574.06 356.182 3541.82 500.189C3527.36 564.735 3470.97 604.552 3416.99 599.56C3378.1 595.946 3338.69 598.814 3299.5 598.872ZM3246.9 477.986C3246.9 477.871 3246.9 477.814 3246.9 477.699C3263.08 477.699 3279.2 477.871 3295.37 477.641C3303.06 477.527 3311.38 477.125 3314.42 468.29C3325.61 435.759 3313.85 396.86 3274.78 397.433C3242.48 397.95 3218.27 412.178 3200.37 437.71C3193.03 448.152 3180.35 460.831 3186.66 472.593C3192.4 483.379 3209.32 477.01 3221.31 477.814C3229.75 478.445 3238.35 477.986 3246.9 477.986Z"
+                        fill="#21B537" />
+                    <path
+                        d="M1772.46 878.451C1706.38 877.074 1646.43 867.32 1590.96 838.634C1540.42 812.529 1532.27 777.014 1566.63 731.288C1580.34 713.043 1596.35 696.405 1612.13 679.824C1649.13 640.867 1681.42 634.441 1730.87 656.243C1758.93 668.636 1786.81 681.316 1818.24 681.258C1827.65 681.201 1837.4 680.398 1846.47 678.045C1857.19 675.234 1865.97 667.66 1866.6 656.243C1867.23 644.883 1856.85 640.236 1847.84 637.597C1822.2 630.195 1796.21 623.999 1770.4 617.114C1647.75 584.411 1612.3 511.834 1662.44 394.964C1691.41 327.378 1742.63 281.365 1808.61 252.334C1915.65 205.23 2025.45 203.509 2135.65 240.4C2192.33 259.391 2203.34 296.454 2170.59 347.057C2169.04 349.467 2167.43 351.877 2165.65 354.114C2108.06 426.692 2098.54 467.025 1978.7 419.692C1958.27 411.66 1936.07 408.39 1913.87 411.603C1900.91 413.496 1888.98 419.176 1886.97 433.405C1884.73 449.182 1899.47 451.477 1909.63 454.403C1941.7 463.583 1974.74 469.665 2006.52 479.705C2102.55 510.113 2133.87 569.781 2101.52 664.964C2062.11 781.031 1974.11 841.732 1859.26 869.214C1829.37 876.271 1798.74 877.648 1772.46 878.451Z"
+                        fill="#F9FCFC" />
+                    <path
+                        d="M651.825 195.063C553.745 192.291 446.837 192.638 365.195 194.197L337.554 194.832C334.448 194.912 331.417 195.758 328.76 197.286C326.103 198.814 323.911 200.972 322.4 203.548C320.888 206.124 320.11 209.028 320.141 211.976C320.172 214.923 321.012 217.813 322.578 220.359C328.059 228.178 331.713 237.02 333.293 246.29C334.548 258.073 330.923 269.857 323.186 279.151C306.2 298.845 281.239 291.049 261.757 307.046C244.284 321.427 240.205 349.09 248.972 363.182C257.739 377.273 275.151 381.027 292.015 383.222C308.879 385.417 326.718 386.86 338.529 397.545C350.34 408.229 353.627 432.196 340.111 451.139C335.289 458.357 328.452 464.165 320.358 467.917C312.265 471.668 303.233 473.218 294.268 472.392C279.717 470.371 268.515 461.593 256.217 455.066C249.855 451.077 242.555 448.637 234.962 447.962C227.369 447.287 219.718 448.398 212.686 451.197C196.309 458.185 179.749 480.362 183.098 495.956C185.046 505.427 193.204 509.643 199.414 515.303C203.188 518.647 205.707 523.069 206.586 527.896C207.465 532.723 206.657 537.691 204.285 542.042C195.152 559.022 174.818 556.018 159.719 566.298C143.646 577.214 137.497 602.567 144.499 615.735C151.5 628.902 167.268 632.252 183.037 631.848C198.805 631.444 215.487 628.036 230.159 630.462C237.88 631.272 244.994 634.814 250.084 640.38C255.173 645.947 257.863 653.129 257.617 660.493C257.617 682.151 236.613 706.984 216.217 716.051C207.369 719.778 197.775 721.641 188.095 721.512C178.414 721.382 168.879 719.263 160.145 715.301C146.751 709.872 133.601 702.306 117.041 706.06C100.481 709.814 80.2077 731.472 83.4344 747.585C85.5044 757.922 95.6108 760.983 105.839 761.272C116.067 761.561 126.843 760.059 134.514 764.968C142.185 769.877 144.255 784.546 135.245 794.364C124.347 806.319 108.457 800.486 97.0111 811.69C93.1991 815.467 90.718 820.275 89.9109 825.448C89.1039 830.621 90.0106 835.904 92.5058 840.567C97.4981 847.497 106.448 849.287 114.971 850.904L229.672 872.157C247.328 875.391 267.845 884.343 262.061 906.809C260.373 913.009 257.329 918.803 253.127 923.815C248.926 928.827 243.661 932.945 237.673 935.902C231.685 938.859 225.109 940.589 218.371 940.98C211.633 941.37 204.884 940.413 198.562 938.169C176.888 932.394 157.893 920.843 136.523 914.317C124.849 910.307 112.436 908.598 100.042 909.293C87.6482 909.988 75.5339 913.073 64.4394 918.36C46.6457 927.47 31.8861 941.111 21.8223 957.747C13.6679 971.818 8.20566 987.147 5.68866 1003.03C4.16662 1010.94 3.07071 1018.91 2.21836 1026.93C0.450193 1034.91-0.265537 1043.05 0.087561 1051.19C4.89721 1077.64 43.557 1084.63 66.0832 1084.63H166.477C220.479 1084.63 256.46 1056.5 268.21 1005.28L302.487 855.12C311.375 816.022 314.663 789.167 314.663 789.167H317.22C317.22 789.167 326.109 817.061 364.89 836.582C385.773 847.035 415.239 855.12 456.578 855.12C635.448 855.12 800.316 724.541 846.221 524.37C852.77 496.291 856.561 467.697 857.545 438.954C859.432 368.553 840.132 300.693 792.097 254.145C755.106 218.048 704.859 196.885 651.825 195.063ZM576.515 530.03C559.224 605.686 500.839 647.21 446.776 647.21C388.817 647.21 365.316 609.267 365.316 563.988C365.443 552.559 366.851 541.176 369.517 530.03C389.304 443.4 448.116 405.515 500.839 405.515C562.329 405.226 593.379 455.298 576.515 530.03Z"
+                        fill="#F9FCFC" />
+                </svg>
+            </a>
+            <div class="nav-links">
+                <a href="#features">How It Works</a>
+                <a href="#faq">FAQ</a>
+                <a href="https://apps.apple.com/app/pusheat/id6749077010" target="_blank" rel="noopener"
+                    class="nav-cta">Get the App <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_outward</span></a>
+            </div>
+        </div>
+    </nav>
+
+
+    <section class="hero">
+        <div class="hero-bg"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80"
+                alt="Artisanal food" /></div>
+        <div class="hero-ov"></div>
+        <div class="hero-ct">
+            <div class="hero-eye">Now live in Lagos</div>
+            <h1>Taste What's <em>Trending.</em></h1>
+            <p class="hero-sub">Discover Lagos's finest food creators. Order their signature dishes, crafted with
+                passion, delivered to your door.</p>
+            <div class="hero-btns">
+                <a href="https://apps.apple.com/app/pusheat/id6749077010" target="_blank" rel="noopener" class="btn-p">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                    </svg>
+                    App Store</a>
+                <a href="https://play.google.com/store/apps/details?id=ng.pushEats" target="_blank" rel="noopener"
+                    class="btn-g">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M3.18 23.73L14.26 12.65 3.18.57C2.85.85 2.63 1.3 2.63 1.89v19.82c0 .59.22 1.04.55 1.02zM18.88 10.53l-3.6-2.1L11.87 12l3.41 3.57 3.6-2.1c.68-.4.68-2.54 0-2.94zM5.04.08l10.97 6.26-2.56 2.67L5.04.08zM5.04 23.52l8.41-8.93 2.56 2.67L5.04 23.52z" />
+                    </svg>
+                    Google Play</a>
+            </div>
+        </div>
+        <div class="hero-scroll"><span class="material-symbols-outlined"
+                style="color:rgba(255,255,255,.4);font-size:32px">keyboard_arrow_down</span></div>
+    </section>
+
+
+
+
+    <section class="features" id="features">
+        <div class="f-block">
+            <div class="f-item reveal">
+                <div class="f-text">
+                    <div class="f-label">01 / Discover</div>
+                    <h2 class="f-head">Video<br />Discovery</h2>
+                    <p class="f-desc">Watch, crave, and order. Discover new flavors through immersive bite-sized videos
+                        that bring every dish to life.</p>
+                </div>
+                <div class="f-vis">
+                    <div class="f-card-bg"></div>
+                    <div class="f-card">
+                        <video id="discovery-vid"
+                            poster="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=800&q=80" playsinline
+                            preload="metadata" loop muted>
+                            <source src="https://videos.pexels.com/video-files/3195394/3195394-uhd_2560_1440_25fps.mp4"
+                                type="video/mp4" />
+                        </video>
+                        <div class="f-card-ov" id="discovery-ov" onclick="toggleDiscoveryVideo()">
+                            <div class="play-b" id="discovery-play-btn"><span class="material-symbols-outlined"
+                                    style="color:white;font-size:28px">play_arrow</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-item rev reveal">
+                <div class="f-text" style="text-align:right">
+                    <div class="f-label">02 / Order</div>
+                    <h2 class="f-head">Creator<br />Deals</h2>
+                    <p class="f-desc" style="margin-left:auto">Join a deal, pick your portions, and order directly from
+                        the creators you love. Every dish is made fresh.</p>
+                </div>
+                <div class="f-vis">
+                    <div class="o-card-bg"></div>
+                    <div class="o-card">
+                        <div class="o-hdr"><span>YOUR ORDER</span><span class="cnt">3 ITEMS</span></div>
+                        <div>
+                            <div class="o-item">
+                                <div class="o-thumb"><img
+                                        src="https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=100&q=80"
+                                        alt="Jollof Rice" /></div>
+                                <div style="flex:1">
+                                    <div class="o-name">Jollof Rice Bowl</div>
+                                    <div class="o-chef">@chef_amara</div>
+                                </div>
+                                <div class="o-price">&#8358;4,500</div>
+                            </div>
+                            <div class="o-item">
+                                <div class="o-thumb"><img
+                                        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80"
+                                        alt="Grilled Suya" /></div>
+                                <div style="flex:1">
+                                    <div class="o-name">Grilled Suya</div>
+                                    <div class="o-chef">@grill_master</div>
+                                </div>
+                                <div class="o-price">&#8358;3,200</div>
+                            </div>
+                            <div class="o-item">
+                                <div class="o-thumb"><img
+                                        src="https://images.unsplash.com/photo-1602192509154-0b900ee1f851?w=100&q=80"
+                                        alt="Plantain Bites" /></div>
+                                <div style="flex:1">
+                                    <div class="o-name">Plantain Bites</div>
+                                    <div class="o-chef">@sweet_spot</div>
+                                </div>
+                                <div class="o-price">&#8358;1,800</div>
+                            </div>
+                        </div>
+                        <div class="o-foot">
+                            <div>
+                                <div class="o-total-l">Total</div>
+                                <div class="o-total">&#8358;9,500</div>
+                            </div><button class="o-btn">Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="f-item reveal">
+                <div class="f-text">
+                    <div class="f-label">03 / Enjoy</div>
+                    <h2 class="f-head">Creator<br />Made</h2>
+                    <p class="f-desc">Every dish is crafted by a real person. Someone you follow, someone you trust. Not
+                        a ghost kitchen. Not a chain.</p>
+                </div>
+                <div class="f-vis">
+                    <div class="f-card-bg"></div>
+                    <div class="f-card"><img
+                            src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80"
+                            alt="Food Creator" />
+                        <div class="f-card-ov" style="align-items:flex-end;padding:24px">
+                            <div style="width:100%">
+                                <div style="font-family:var(--display);font-weight:600;font-size:17px">Chef Amara</div>
+                                <div style="font-size:13px;color:rgba(255,255,255,.6);margin-top:4px">Contemporary
+                                    Nigerian Cuisine</div>
+                                <div
+                                    style="display:inline-block;margin-top:8px;padding:4px 12px;background:rgba(33,181,55,.2);border:1px solid rgba(33,181,55,.3);border-radius:100px;font-size:11px;font-weight:600;color:#7ddb8b">
+                                    12 Active Drops</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="proof reveal">
+        <div class="container">
+            <div class="proof-grid">
+                <div class="proof-item">
+                    <h3>100+</h3>
+                    <p>Curated experiences delivered</p>
+                </div>
+                <div class="proof-item">
+                    <h3>20+</h3>
+                    <p>Select creators</p>
+                </div>
+                <div class="proof-item">
+                    <h3>Lagos</h3>
+                    <p>Now live</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="faq-hdr reveal">
+                <div class="label" style="margin-bottom:16px">FAQ</div>
+                <h2>Questions</h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>Where is Pusheat
+                            available?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>We are live in Lagos, Nigeria. New cities will follow soon.</p>
+                    </div>
+                </div>
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How do I
+                            order?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>Pick a deal, choose delivery or pickup, add your details, and pay from your wallet. All
+                            inside the app.</p>
+                    </div>
+                </div>
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How do deals
+                            work?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>Join a deal and pay from your wallet. If it hits its target, the creator cooks. If it does
+                            not, your payment goes back to your wallet.</p>
+                    </div>
+                </div>
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>How do creators earn
+                            on Pusheat?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>Creators post dishes, set prices and schedules, and cook on their terms. We handle delivery
+                            and payouts.</p>
+                    </div>
+                </div>
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>When will my meal be
+                            ready?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>Each deal shows the prep and delivery window before you pay. Pickup availability is also
+                            shown.</p>
+                    </div>
+                </div>
+                <div class="faq-i reveal">
+                    <div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span>What if a deal fails
+                            or I cancel?</span><span class="faq-ic">+</span></div>
+                    <div class="faq-a">
+                        <p>If a deal does not reach its target, your payment returns to your wallet. Same if you cancel
+                            within the allowed window.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="cta-ft">
+        <div class="cta-ft-in">
+            <div class="cta-grid reveal">
+                <div class="cta-txt">
+                    <h2>Your Table Awaits.</h2>
+                    <p>Join Lagos's most exciting food experience. Download the app and start discovering.</p>
+                </div>
+                <div class="cta-btns">
+                    <a href="https://apps.apple.com/app/pusheat/id6749077010" target="_blank" rel="noopener"
+                        class="btn-d">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
+                        </svg>
+                        App Store</a>
+                    <a href="https://play.google.com/store/apps/details?id=ng.pushEats" target="_blank" rel="noopener"
+                        class="btn-od">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M3.18 23.73L14.26 12.65 3.18.57C2.85.85 2.63 1.3 2.63 1.89v19.82c0 .59.22 1.04.55 1.02zM18.88 10.53l-3.6-2.1L11.87 12l3.41 3.57 3.6-2.1c.68-.4.68-2.54 0-2.94zM5.04.08l10.97 6.26-2.56 2.67L5.04.08zM5.04 23.52l8.41-8.93 2.56 2.67L5.04 23.52z" />
+                        </svg>
+                        Google Play</a>
+                </div>
+            </div>
+        </div>
+        <div class="ft-bar">
+            <div class="ft-links">
+                <a href="https://www.instagram.com/pusheat.ng/" target="_blank" rel="noopener">Instagram</a>
+                <a href="https://www.tiktok.com/@pusheat" target="_blank" rel="noopener">TikTok</a>
+                <a href="https://twitter.com/pusheat_ng" target="_blank" rel="noopener">Twitter</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="ft-copy">&copy; 2026 Pusheat. All rights reserved.</div>
+        </div>
+    </footer>
+
+    <section class="secondary-pages">
+        <div class="container">
+            <div class="sp-hdr reveal">
+                <div class="label" style="margin-bottom:16px">Information</div>
+                <h2>Everything You Need</h2>
+            </div>
+        </div>
+        <div class="sp-grid">
+            <a href="privacy.html" class="sp-card reveal reveal-delay-1">
+                <div class="sp-card-icon"><span class="material-symbols-outlined">shield</span></div>
+                <h3>Privacy Policy</h3>
+                <p>How we safeguard your data and protect your personal information with care.</p>
+                <span class="sp-card-link">Read More <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_forward</span></span>
+            </a>
+            <a href="terms.html" class="sp-card reveal reveal-delay-2">
+                <div class="sp-card-icon"><span class="material-symbols-outlined">gavel</span></div>
+                <h3>Terms of Service</h3>
+                <p>The agreements that shape your experience on our platform.</p>
+                <span class="sp-card-link">Read More <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_forward</span></span>
+            </a>
+            <a href="contact.html" class="sp-card reveal reveal-delay-3">
+                <div class="sp-card-icon"><span class="material-symbols-outlined">mail</span></div>
+                <h3>Contact Us</h3>
+                <p>Have a question or need help? Our team is ready to assist you.</p>
+                <span class="sp-card-link">Get in Touch <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_forward</span></span>
+            </a>
+            <a href="delete-account.html" class="sp-card reveal">
+                <div class="sp-card-icon"><span class="material-symbols-outlined">person_remove</span></div>
+                <h3>Delete Account</h3>
+                <p>Request the removal of your account and all associated data.</p>
+                <span class="sp-card-link">Learn More <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_forward</span></span>
+            </a>
+            <a href="#faq" class="sp-card reveal reveal-delay-1">
+                <div class="sp-card-icon"><span class="material-symbols-outlined">help</span></div>
+                <h3>FAQ</h3>
+                <p>Quick answers to the most common questions about Pusheat.</p>
+                <span class="sp-card-link">View FAQ <span class="material-symbols-outlined"
+                        style="font-size:16px">arrow_forward</span></span>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        function toggleDiscoveryVideo() {
+            var vid = document.getElementById('discovery-vid');
+            var ov = document.getElementById('discovery-ov');
+            var btn = document.getElementById('discovery-play-btn');
+            if (vid.paused) {
+                vid.play();
+                vid.classList.add('is-playing');
+                ov.classList.add('vid-playing');
+                btn.innerHTML = '<span class="material-symbols-outlined" style="color:white;font-size:28px">pause</span>';
+            } else {
+                vid.pause();
+                vid.classList.remove('is-playing');
+                ov.classList.remove('vid-playing');
+                btn.innerHTML = '<span class="material-symbols-outlined" style="color:white;font-size:28px">play_arrow</span>';
+            }
+        }
+
+        (function () {
+            var canvas = document.getElementById('pc');
+            var ctx = canvas.getContext('2d');
+            var boids = [];
+            var W, H;
+            var mouseX = -9999, mouseY = -9999;
+            var prevMouseX = -9999, prevMouseY = -9999;
+            var mouseVX = 0, mouseVY = 0;
+            var time = 0;
+            var COUNT = 90;
+            var MAX_SPEED = 1.6;
+            var MAX_FORCE = 0.03;
+            var SEP_DIST = 22;
+            var ALI_DIST = 70;
+            var COH_DIST = 100;
+            var CURSOR_DIST = 320;
+            var CURSOR_FORCE = 0.035;
+
+            function Boid() {
+                this.x = Math.random() * W;
+                this.y = Math.random() * H;
+                var a = Math.random() * Math.PI * 2;
+                var s = Math.random() * 0.5 + 0.3;
+                this.vx = Math.cos(a) * s;
+                this.vy = Math.sin(a) * s;
+                this.seed = Math.random() * 1000;
+                this.len = Math.random() * 2 + 2.5;
+                this.isGreen = Math.random() > 0.7;
+                this.baseAlpha = Math.random() * 0.2 + 0.12;
+            }
+
+            function limit(vx, vy, max) {
+                var mag = Math.sqrt(vx * vx + vy * vy);
+                if (mag > max) { vx = (vx / mag) * max; vy = (vy / mag) * max; }
+                return [vx, vy];
+            }
+
+            function init() {
+                W = canvas.width = window.innerWidth;
+                H = canvas.height = window.innerHeight;
+                boids = [];
+                for (var i = 0; i < COUNT; i++) boids.push(new Boid());
+            }
+
+            function draw() {
+                time++;
+                ctx.clearRect(0, 0, W, H);
+
+                if (mouseX > -9000 && prevMouseX > -9000) {
+                    mouseVX = (mouseX - prevMouseX) * 0.3;
+                    mouseVY = (mouseY - prevMouseY) * 0.3;
+                }
+                prevMouseX = mouseX;
+                prevMouseY = mouseY;
+
+                var mouseSpeed = Math.sqrt(mouseVX * mouseVX + mouseVY * mouseVY);
+                var dynamicForce = CURSOR_FORCE + Math.min(mouseSpeed * 0.003, 0.06);
+                var dynamicDist = CURSOR_DIST + Math.min(mouseSpeed * 8, 200);
+
+                var n = boids.length;
+                for (var i = 0; i < n; i++) {
+                    var b = boids[i];
+                    var sepX = 0, sepY = 0, sepN = 0;
+                    var aliX = 0, aliY = 0, aliN = 0;
+                    var cohX = 0, cohY = 0, cohN = 0;
+
+                    for (var j = 0; j < n; j++) {
+                        if (i === j) continue;
+                        var o = boids[j];
+                        var dx = o.x - b.x, dy = o.y - b.y;
+                        var d = Math.sqrt(dx * dx + dy * dy);
+
+                        if (d < SEP_DIST && d > 0) {
+                            sepX -= dx / d; sepY -= dy / d; sepN++;
+                        }
+                        if (d < ALI_DIST) {
+                            aliX += o.vx; aliY += o.vy; aliN++;
+                        }
+                        if (d < COH_DIST) {
+                            cohX += o.x; cohY += o.y; cohN++;
+                        }
+                    }
+
+                    var steerX = 0, steerY = 0;
+
+                    if (sepN > 0) {
+                        var sX = sepX / sepN, sY = sepY / sepN;
+                        var sv = limit(sX, sY, MAX_FORCE);
+                        steerX += sv[0] * 1.8;
+                        steerY += sv[1] * 1.8;
+                    }
+                    if (aliN > 0) {
+                        var aX = aliX / aliN - b.vx, aY = aliY / aliN - b.vy;
+                        var av = limit(aX, aY, MAX_FORCE);
+                        steerX += av[0] * 1.0;
+                        steerY += av[1] * 1.0;
+                    }
+                    if (cohN > 0) {
+                        var cx = cohX / cohN - b.x, cy = cohY / cohN - b.y;
+                        var cv = limit(cx, cy, MAX_FORCE);
+                        steerX += cv[0] * 0.8;
+                        steerY += cv[1] * 0.8;
+                    }
+
+                    if (mouseX > -9000) {
+                        var cdx = mouseX - b.x, cdy = mouseY - b.y;
+                        var cd = Math.sqrt(cdx * cdx + cdy * cdy);
+                        if (cd < dynamicDist && cd > 20) {
+                            var cf = dynamicForce * (1 - cd / dynamicDist);
+                            steerX += (cdx / cd) * cf;
+                            steerY += (cdy / cd) * cf;
+                            if (mouseSpeed > 2) {
+                                steerX += mouseVX * 0.008 * (1 - cd / dynamicDist);
+                                steerY += mouseVY * 0.008 * (1 - cd / dynamicDist);
+                            }
+                        }
+                    }
+
+                    steerX += Math.sin(time * 0.003 + b.seed) * 0.004;
+                    steerY += Math.cos(time * 0.002 + b.seed * 1.3) * 0.003;
+
+                    b.vx += steerX;
+                    b.vy += steerY;
+                    var lv = limit(b.vx, b.vy, MAX_SPEED);
+                    b.vx = lv[0]; b.vy = lv[1];
+
+                    b.x += b.vx;
+                    b.y += b.vy;
+
+                    if (b.x < -10) b.x += W + 20;
+                    if (b.x > W + 10) b.x -= W + 20;
+                    if (b.y < -10) b.y += H + 20;
+                    if (b.y > H + 10) b.y -= H + 20;
+
+                    var angle = Math.atan2(b.vy, b.vx);
+                    var speed = Math.sqrt(b.vx * b.vx + b.vy * b.vy);
+                    var drawLen = b.len + speed * 1.5;
+                    var ex = b.x + Math.cos(angle) * drawLen;
+                    var ey = b.y + Math.sin(angle) * drawLen;
+
+                    var posGrad = 0.5 + 0.5 * Math.sin(b.x / W * Math.PI + time * 0.001);
+                    var alpha = b.baseAlpha * (0.6 + posGrad * 0.6);
+
+                    if (mouseX > -9000) {
+                        var mdx = mouseX - b.x, mdy = mouseY - b.y;
+                        var md = Math.sqrt(mdx * mdx + mdy * mdy);
+                        if (md < dynamicDist * 0.6) {
+                            alpha = Math.min(0.65, alpha + (1 - md / (dynamicDist * 0.6)) * 0.4);
+                        }
+                    }
+
+                    ctx.beginPath();
+                    ctx.moveTo(b.x, b.y);
+                    ctx.lineTo(ex, ey);
+                    ctx.strokeStyle = b.isGreen
+                        ? 'rgba(33,181,55,' + alpha + ')'
+                        : 'rgba(250,250,248,' + alpha + ')';
+                    ctx.lineWidth = 1.2;
+                    ctx.lineCap = 'round';
+                    ctx.stroke();
+                }
+
+                requestAnimationFrame(draw);
+            }
+
+            init();
+            draw();
+            window.addEventListener('resize', init);
+            document.addEventListener('mousemove', function (e) {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            document.addEventListener('mouseleave', function () {
+                mouseX = -9999;
+                mouseY = -9999;
+                prevMouseX = -9999;
+                prevMouseY = -9999;
+            });
+        })();
+
+
+        var obs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    obs.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        document.querySelectorAll('.reveal').forEach(function (el) { obs.observe(el); });
+    </script>
+</body>
+
+</html>

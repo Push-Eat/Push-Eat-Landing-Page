@@ -1,0 +1,370 @@
+.features {
+    position: relative;
+    padding: clamp(60px, 8vw, 120px) 0;
+    overflow: hidden;
+}
+
+.features::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.04);
+    transform: translateX(-50%);
+}
+
+.fBlock {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 clamp(24px, 5vw, 80px);
+}
+
+.fItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 6vw, 100px);
+    align-items: center;
+    margin-bottom: clamp(100px, 12vw, 200px);
+}
+
+.fItem:last-child {
+    margin-bottom: 0;
+}
+
+.rev .fText {
+    order: 2;
+}
+
+.rev .fVis {
+    order: 1;
+}
+
+.fLabel {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    color: var(--green);
+    margin-bottom: 16px;
+}
+
+.fHead {
+    font-family: var(--display);
+    font-size: clamp(44px, 6vw, 88px);
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin-bottom: 24px;
+    background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: all 0.5s;
+}
+
+.fItem:hover .fHead {
+    background: linear-gradient(180deg, #fff 0%, rgba(33, 181, 55, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+.fDesc {
+    font-size: 17px;
+    color: var(--t2);
+    line-height: 1.7;
+    max-width: 440px;
+    font-weight: 300;
+}
+
+.fVis {
+    position: relative;
+    height: clamp(320px, 36vw, 480px);
+}
+
+.fCard {
+    position: absolute;
+    inset: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    transition: transform 0.6s var(--ease);
+}
+
+.fCardBg {
+    position: absolute;
+    inset: 0;
+    background: var(--bg2);
+    transform: rotate(3deg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: transform 0.5s var(--ease);
+}
+
+.fItem:hover .fCardBg {
+    transform: rotate(6deg);
+}
+
+.fCard img,
+.fCard video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.6s, transform 0.6s var(--ease);
+}
+
+.fItem:hover .fCard img,
+.fItem:hover .fCard video {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.isPlaying {
+    opacity: 1 !important;
+    transform: scale(1.02) !important;
+}
+
+.fCardOv {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 50%, rgba(0, 0, 0, 0.6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.4s;
+}
+
+.vidPlaying {
+    opacity: 0;
+}
+
+.vidPlaying:hover {
+    opacity: 1;
+}
+
+.playB {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s, background 0.3s;
+}
+
+.fItem:hover .playB {
+    transform: scale(1.1);
+    background: rgba(33, 181, 55, 0.3);
+}
+
+.chefBadge {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 4px 12px;
+    background: rgba(33, 181, 55, 0.2);
+    border: 1px solid rgba(33, 181, 55, 0.3);
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #7ddb8b;
+}
+
+.oCard {
+    position: absolute;
+    inset: 0;
+    background: var(--bg3);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    transform: rotate(-2deg);
+    transition: transform 0.5s var(--ease);
+}
+
+.fItem:hover .oCard {
+    transform: rotate(-4deg);
+}
+
+.oCardBg {
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 16px;
+    transform: rotate(3deg);
+    transition: transform 0.5s var(--ease);
+}
+
+.fItem:hover .oCardBg {
+    transform: rotate(5deg);
+}
+
+.oHdr {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin-bottom: 16px;
+}
+
+.oHdr span {
+    font-family: var(--display);
+    font-size: 13px;
+    color: var(--t2);
+    letter-spacing: 0.05em;
+}
+
+.cnt {
+    color: var(--green) !important;
+    font-weight: 600;
+}
+
+.oItem {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 10px;
+    border-radius: 10px;
+    transition: background 0.3s;
+    margin-bottom: 6px;
+}
+
+.oItem:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.oThumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 8px;
+    background: var(--bg2);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.oThumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.oName {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.oChef {
+    font-size: 11px;
+    color: var(--t3);
+}
+
+.oPrice {
+    font-family: var(--display);
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.oFoot {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.oTotalL {
+    font-size: 11px;
+    color: var(--t3);
+    margin-bottom: 4px;
+}
+
+.oTotal {
+    font-family: var(--display);
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.oBtn {
+    background: var(--green);
+    color: var(--bg);
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.oBtn:hover {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+
+    .fItem,
+    .fItem.rev {
+        grid-template-columns: 1fr;
+    }
+
+    .rev .fText,
+    .rev .fVis {
+        order: unset;
+    }
+
+    .rev .fText {
+        text-align: left !important;
+    }
+
+    .fVis {
+        height: 300px;
+    }
+
+    .features::before {
+        display: none;
+    }
+
+    .fHead {
+        font-size: clamp(36px, 10vw, 56px);
+    }
+
+    .fDesc {
+        font-size: 15px;
+        margin-left: 0 !important;
+    }
+
+    .oCard {
+        padding: 16px;
+    }
+
+    .oTotal {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .fVis {
+        height: 260px;
+    }
+
+    .oItem {
+        gap: 10px;
+        padding: 8px;
+    }
+
+    .oThumb {
+        width: 36px;
+        height: 36px;
+    }
+}

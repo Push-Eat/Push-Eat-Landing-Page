@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/UI/Layout";
 import Navbar from "./components/Navbar";
+import ParticleCursor from "./components/ParticleCursor";
 import Home from "./components/Home";
 import Privacy from "./components/pages/Privacy";
 import TermsService from "./components/pages/TermsService";
@@ -13,11 +14,9 @@ import Faq from "./components/pages/Faq";
 function App() {
   return (
     <>
+      <ParticleCursor />
       <Navbar />
-
-      {/* ✅ Place this outside the <Routes> */}
       <ScrollToTop />
-
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
@@ -27,7 +26,6 @@ function App() {
           <Route path="/delete-account" element={<DeletePage />} />
           <Route path="/faq" element={<Faq />} />
         </Route>
-        {/* Deal pages handled separately for full-screen experience */}
         <Route path="/deal/:dealId" element={<DealPage />} />
       </Routes>
     </>

@@ -1,6 +1,6 @@
 import React from "react";
-import Footer from "../Footer";
 import { Outlet } from "react-router-dom";
+import AppCTA from "../sections/AppCTA";
 
 const Layout = () => {
   return (
@@ -10,7 +10,7 @@ const Layout = () => {
       <main style={{ flex: 1 }}>
         <Outlet />
       </main>
-      <Footer />
+      <AppCTA />
     </div>
   );
 };
