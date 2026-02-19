@@ -3,8 +3,9 @@ import styles from './Features.module.css';
 import chefOyebeez from '../../assets/chef-oyebeez.png';
 import pennePasta from '../../assets/penne-pasta.jpg';
 import plantainBites from '../../assets/plantain-bites-real.jpg';
+import suyaThumb from '../../assets/suya.jpg';
 
-const SUYA_THUMB = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80';
+// const SUYA_THUMB = 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=100&q=80';
 
 const Features = () => {
     const [isPlaying, setIsPlaying] = useState(false);
@@ -85,7 +86,7 @@ const Features = () => {
                                 </div>
                                 <div className={styles.oItem}>
                                     <div className={styles.oThumb}>
-                                        <img src={SUYA_THUMB} alt="Grilled Suya" />
+                                        <img src={suyaThumb} alt="Grilled Suya" />
                                     </div>
                                     <div style={{ flex: 1 }}>
                                         <div className={styles.oName}>Grilled Suya</div>

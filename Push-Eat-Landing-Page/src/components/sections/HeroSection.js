@@ -1,11 +1,11 @@
-import React from 'react';
+import heroBgImg from '../../assets/hero-bg.jpg';
 import styles from './HeroSection.module.css';
 
 const HeroSection = () => {
     return (
         <section className={styles.hero}>
             <div className={styles.heroBg}>
-                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1920&q=80" alt="Artisanal food" />
+                <img src={heroBgImg} alt="Artisanal food" />
             </div>
             <div className={styles.heroOv} />
             <div className={styles.heroCt}>

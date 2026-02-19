@@ -26,6 +26,10 @@ function DeletePage() {
       title="Delete Your Account"
       subtitle="We're sorry to see you go. Please review what happens when you delete your account."
     >
+      <Helmet>
+        <title>Delete Account - Pusheat</title>
+        <meta name="description" content="Request account deletion for your Pusheat account. Understand the consequences and process." />
+      </Helmet>
       <div className={styles.warningBox}>
         <span className="material-symbols-outlined">warning</span>
         <div>
