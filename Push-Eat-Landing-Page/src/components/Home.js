@@ -8,6 +8,7 @@ import SecondaryPages from "./sections/SecondaryPages";
 
 const Home = () => {
   const bridgeRef = useRef(null);
+  const heroStageRef = useRef(null);
   const featuresStageRef = useRef(null);
 
   useEffect(() => {
@@ -15,16 +16,19 @@ const Home = () => {
 
     const updateBridge = () => {
       const el = bridgeRef.current;
+      const heroStage = heroStageRef.current;
       const featuresStage = featuresStageRef.current;
-      if (!el || !featuresStage) return;
+      if (!el || !heroStage || !featuresStage) return;
       const viewport = window.innerHeight || 1;
       const raw = window.scrollY / (viewport * 0.72);
       const progress = Math.max(0, Math.min(1, raw));
       const featuresLift = Math.max(0, Math.min(1, (window.scrollY - viewport * 0.2) / (viewport * 0.65)));
       el.style.setProperty("--bridge-progress", progress.toString());
       el.style.setProperty("--bridge-shift", `${progress * 42}px`);
+      heroStage.style.setProperty("--hero-progress", progress.toString());
+      heroStage.style.setProperty("--hero-shift", `${progress * -42}px`);
       featuresStage.style.setProperty("--features-progress", featuresLift.toString());
-      featuresStage.style.setProperty("--features-shift", `${(1 - featuresLift) * 56}px`);
+      featuresStage.style.setProperty("--features-shift", `${(1 - featuresLift) * 120}px`);
       rafId = null;
     };
 
@@ -49,7 +53,9 @@ const Home = () => {
 
   return (
     <>
-      <HeroSection />
+      <div ref={heroStageRef} className={styles.heroStage}>
+        <HeroSection />
+      </div>
       <div ref={bridgeRef} className={styles.heroBridge} aria-hidden="true">
         <div className={styles.bridgeGlow} />
         <div className={styles.bridgeWave} />

@@ -208,6 +208,15 @@
   overflow: hidden;
 }
 
+.heroStage {
+  --hero-progress: 0;
+  --hero-shift: 0px;
+  transform: translateY(var(--hero-shift)) scale(calc(1 - var(--hero-progress) * 0.03));
+  opacity: calc(1 - var(--hero-progress) * 0.22);
+  transform-origin: 50% 65%;
+  transition: transform 200ms linear, opacity 200ms linear;
+}
+
 .heroBridge::before {
   content: "";
   position: absolute;
@@ -271,12 +280,30 @@
 
 .featuresStage {
   --features-progress: 0;
-  --features-shift: 56px;
+  --features-shift: 120px;
   position: relative;
   z-index: 10;
-  transform: translateY(var(--features-shift)) scale(calc(0.985 + var(--features-progress) * 0.015));
-  opacity: calc(0.7 + var(--features-progress) * 0.3);
-  transition: transform 220ms linear, opacity 220ms linear;
+  transform: translateY(var(--features-shift)) scale(calc(0.95 + var(--features-progress) * 0.05));
+  opacity: calc(0.45 + var(--features-progress) * 0.55);
+  filter: blur(calc((1 - var(--features-progress)) * 7px));
+  transition: transform 220ms linear, opacity 220ms linear, filter 220ms linear;
+}
+
+.featuresStage::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -34px;
+  height: 70px;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgba(33, 181, 55, calc(0.35 - var(--features-progress) * 0.2)) 0%,
+    rgba(10, 10, 10, calc(0.66 - var(--features-progress) * 0.5)) 60%,
+    rgba(10, 10, 10, 0) 100%
+  );
+  opacity: calc(1 - var(--features-progress) * 0.7);
 }
     
 @media (min-width: 769px) and (max-width: 945px) {
