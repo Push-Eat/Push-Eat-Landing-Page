@@ -102,9 +102,6 @@
     display: flex;
     gap: 14px;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
-    width: fit-content;
 }
 
 .btnP {
@@ -190,8 +187,6 @@
 
     .heroBtns {
         flex-direction: column;
-        width: 100%;
-        align-items: stretch;
     }
 
     .btnP,
