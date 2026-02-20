@@ -1,6 +1,7 @@
 .hero {
     position: relative;
     width: 100%;
+    min-height: 100svh;
     min-height: 100vh;
     display: flex;
     align-items: center;
@@ -28,6 +29,7 @@
 .heroCt {
     position: relative;
     z-index: 2;
+    width: 100%;
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 clamp(24px, 5vw, 80px);
@@ -107,7 +109,6 @@
 .btnP {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
     gap: 10px;
     padding: 16px 36px;
     background: var(--green);
@@ -130,7 +131,6 @@
 .btnG {
     display: inline-flex;
     align-items: center;
-    justify-content: flex-start;
     gap: 10px;
     padding: 16px 36px;
     background: rgba(255, 255, 255, 0.08);
@@ -193,5 +193,30 @@
     .btnG {
         width: 100%;
         justify-content: center;
+    }
+}
+
+@media (max-height: 820px) and (min-width: 769px) {
+    .heroCt {
+        padding-top: 96px;
+    }
+
+    .heroEye {
+        margin-bottom: 28px;
+    }
+
+    .hero h1 {
+        font-size: clamp(42px, 7vw, 84px);
+        margin-bottom: 22px;
+    }
+
+    .heroSub {
+        line-height: 1.55;
+        margin-bottom: 32px;
+    }
+
+    .btnP,
+    .btnG {
+        padding: 14px 34px;
     }
 }

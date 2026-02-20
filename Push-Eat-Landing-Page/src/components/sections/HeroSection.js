@@ -16,7 +16,7 @@ const HeroSection = () => {
                 </p>
                 <div className={styles.heroBtns}>
                     <a
-                        href="https://apps.apple.com/ng/app/pusheat/id6749077010"
+                        href="https://apps.apple.com/app/pusheat/id6749077010"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.btnP}
@@ -27,7 +27,7 @@ const HeroSection = () => {
                         App Store
                     </a>
                     <a
-                        href="https://play.google.com/store/apps/details?id=ng.pushEats&pli=1"
+                        href="https://play.google.com/store/apps/details?id=ng.pushEats"
                         target="_blank"
                         rel="noopener noreferrer"
                         className={styles.btnG}
