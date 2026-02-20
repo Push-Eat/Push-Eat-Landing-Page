@@ -7,6 +7,52 @@
       "sha256_cert_fingerprints": [
         "3F:DF:66:0E:47:CC:E5:0E:9B:DD:E2:13:9F:48:C1:CA:B7:FF:84:15:BF:64:9A:D9:C5:27:92:64:77:2E:3D:77"
       ]
+    },
+    "relation_extensions": {
+      "delegate_permission/common.handle_all_urls": {
+        "dynamic_app_link_components": [
+          {
+            "/": "/",
+            "exclude": true
+          },
+          {
+            "/": "/privacy*",
+            "exclude": true
+          },
+          {
+            "/": "/terms*",
+            "exclude": true
+          },
+          {
+            "/": "/contact*",
+            "exclude": true
+          },
+          {
+            "/": "/faq*",
+            "exclude": true
+          },
+          {
+            "/": "/delete-account*",
+            "exclude": true
+          },
+          {
+            "/": "/deal/*"
+          },
+          {
+            "/": "/chef/*"
+          },
+          {
+            "/": "/order/*"
+          },
+          {
+            "/": "/rate-order/*"
+          },
+          {
+            "/": "*",
+            "exclude": true
+          }
+        ]
+      }
     }
   }
 ]

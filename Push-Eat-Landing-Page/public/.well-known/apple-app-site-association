@@ -5,6 +5,12 @@
       {
         "appID": "599Z83MBPM.co.pusheat.userapp",
         "paths": [
+          "NOT /",
+          "NOT /privacy*",
+          "NOT /terms*",
+          "NOT /contact*",
+          "NOT /faq*",
+          "NOT /delete-account*",
           "/deal/*",
           "/chef/*",
           "/order/*",
