@@ -4,7 +4,7 @@ import FAQ from "../sections/FAQ";
 
 const Faq = () => {
   return (
-    <div style={{ paddingTop: '80px' }}>
+    <div style={{ paddingTop: '20px' }}>
       <Helmet>
         <title>Pusheat FAQ | How Bites, deals, and payments work</title>
         <meta

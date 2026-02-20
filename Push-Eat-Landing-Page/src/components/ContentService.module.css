@@ -4,7 +4,7 @@
 }
 
 .pageHero {
-  padding: 180px 0 80px;
+  padding: clamp(130px, 16vh, 164px) 0 clamp(44px, 7vh, 72px);
   text-align: center;
   position: relative;
 }
@@ -29,10 +29,11 @@
 }
 
 .sub {
-  font-size: 16px;
+  font-size: clamp(15px, 1.8vw, 18px);
   color: var(--t2);
-  max-width: 500px;
+  max-width: 640px;
   margin: 0 auto 12px;
+  line-height: 1.65;
 }
 
 .meta {
@@ -42,9 +43,9 @@
 }
 
 .content {
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
-  padding: 0 clamp(24px, 5vw, 80px) 120px;
+  padding: 0 clamp(24px, 5vw, 80px) clamp(72px, 10vh, 112px);
 }
 
 .content h2 {
@@ -62,7 +63,7 @@
 .content p {
   color: var(--t2);
   margin-bottom: 20px;
-  font-size: 15px;
+  font-size: clamp(15px, 1.3vw, 16px);
   line-height: 1.8;
 }
 
@@ -74,7 +75,7 @@
 
 .content ul li {
   color: var(--t2);
-  font-size: 15px;
+  font-size: clamp(15px, 1.3vw, 16px);
   line-height: 1.8;
   padding-left: 24px;
   position: relative;
@@ -154,6 +155,14 @@
 
 @media (max-width: 768px) {
   .pageHero {
-    padding: 140px 0 60px;
+    padding: 118px 0 42px;
+  }
+
+  .content {
+    padding: 0 20px 72px;
+  }
+
+  .sub {
+    max-width: 100%;
   }
 }
