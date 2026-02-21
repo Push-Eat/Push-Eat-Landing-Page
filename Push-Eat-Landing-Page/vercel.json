@@ -6,6 +6,10 @@
   },
   "routes": [
     {
+      "src": "/chefs/(.*)",
+      "dest": "https://api.int.pusheat.co/chefs/$1"
+    },
+    {
       "src": "/deal/([^/]+)",
       "dest": "/api/deal-meta?dealId=$1",
       "headers": {
@@ -33,7 +37,7 @@
           "value": "application/json"
         },
         {
-          "key": "Cache-Control", 
+          "key": "Cache-Control",
           "value": "public, max-age=86400"
         }
       ]

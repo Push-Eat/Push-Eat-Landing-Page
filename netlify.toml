@@ -10,7 +10,12 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Headers for deal pages to improve SEO and social sharing
+[[redirects]]
+  from = "/chefs/*"
+  to = "https://api.int.pusheat.co/chefs/:splat"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/deal/*"
   [headers.values]

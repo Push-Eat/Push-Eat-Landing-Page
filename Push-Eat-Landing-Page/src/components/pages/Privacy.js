@@ -12,7 +12,7 @@ function Privacy() {
         <a href="#info-we-collect">2. Information We Collect</a>
         <a href="#info-use">3. How We Use Your Information</a>
         <a href="#info-share">4. How We Share Your Information</a>
-        <a href="#data-retention">5. Data Retention</a>
+        <a href="#data-retention">5. Data Retention and Enrichment Window</a>
         <a href="#your-rights">6. Your Rights and Choices</a>
         <a href="#security">7. Security</a>
         <a href="#international">8. International Data Transfers</a>

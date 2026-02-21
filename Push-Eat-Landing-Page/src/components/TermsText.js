@@ -14,7 +14,7 @@ export default function TermsText() {
         />
         <meta
           name="keywords"
-          content="Pusheat terms, Pusheat policy, terms of service, Pusheat legal"
+          content="Pusheat terms, AI profile enrichment terms, social enrichment consent, terms of service, Pusheat legal"
         />
 
         <meta property="og:title" content="Terms of Service - Pusheat" />
@@ -38,7 +38,7 @@ export default function TermsText() {
         <h1 className={styles.mainHeading}>Welcome to Pusheat!</h1>
 
         <section>
-          <h2 className={styles.heading}>1. YOUR RELATIONSHIP WITH US</h2>
+          <h2 id="relationship" className={styles.heading}>1. YOUR RELATIONSHIP WITH US</h2>
           <p>
             Welcome to Pusheat (the “Platform”), a social media-based food deals
             platform provided by PLUSH EAT Enterprise (“Pusheat,” “we,” “us,” or
@@ -52,7 +52,7 @@ export default function TermsText() {
         </section>
 
         <section>
-          <h2 className={styles.heading}>2. ACCEPTING THE TERMS</h2>
+          <h2 id="acceptance" className={styles.heading}>2. ACCEPTING THE TERMS</h2>
           <p>
             By accessing or using our Services, you confirm that you can form a
             binding contract with Pusheat, that you accept these Terms, and that
@@ -68,7 +68,7 @@ export default function TermsText() {
         </section>
 
         <section>
-          <h2 className={styles.heading}>3. CHANGES TO THE TERMS</h2>
+          <h2 id="changes" className={styles.heading}>3. CHANGES TO THE TERMS</h2>
           <p>
             We may amend these Terms from time to time to reflect changes in our
             Services, legal or regulatory requirements, or for other reasons. We
@@ -80,7 +80,7 @@ export default function TermsText() {
         </section>
 
         <section>
-          <h2 className={styles.heading}>4. YOUR ACCOUNT WITH US</h2>
+          <h2 id="accounts" className={styles.heading}>4. YOUR ACCOUNT WITH US</h2>
           <p>
             To access certain features of the Services, you must create an
             account. You agree to provide accurate and up-to-date information
@@ -118,7 +118,7 @@ export default function TermsText() {
         </section>
 
         <section>
-          <h2 className={styles.heading}>
+          <h2 id="usage" className={styles.heading}>
             5. YOUR ACCESS TO AND USE OF OUR SERVICES
           </h2>
           <p>
@@ -159,7 +159,7 @@ export default function TermsText() {
         </section>
 
         <section>
-          <h2 className={styles.heading}>6. INTELLECTUAL PROPERTY RIGHTS</h2>
+          <h2 id="ip" className={styles.heading}>6. INTELLECTUAL PROPERTY RIGHTS</h2>
           <h3 className={styles.subheading}>Pusheat Content</h3>
           <p>
             All content, software, images, text, graphics, logos, and other
@@ -180,6 +180,55 @@ export default function TermsText() {
             Content for any purpose, including commercial purposes, to improve
             our Services, and to increase our goodwill and value. This license
             includes the right to sublicense your User Content to third parties.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="ai-enrichment" className={styles.heading}>7. AI PROFILE ENRICHMENT AND PERSONALIZATION</h2>
+          <p>
+            To improve marketplace discovery, we may generate, optimize, or refresh
+            chef profile pages and related summaries using first-party platform
+            signals and permitted enrichment sources described in our{" "}
+            <a href="/privacy">Privacy Policy</a>.
+          </p>
+          <ul className={styles.list}>
+            <li>
+              We may process profile, deal, pricing, and review data to produce
+              profile-style content for web discovery pages.
+            </li>
+            <li>
+              We may use approved third-party AI/cloud providers, including Google
+              Cloud services, to process limited inputs for this purpose.
+            </li>
+            <li>
+              If you provide business social handles, you represent that you have
+              rights to provide them and that they may be used for profile
+              enrichment where permitted.
+            </li>
+            <li>
+              You may request correction or appeal of generated profile content and
+              may opt out of social enrichment without disabling core app usage.
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 id="liability" className={styles.heading}>8. LIMITATIONS AND DISCLAIMERS</h2>
+          <p>
+            Services are provided on an as-available basis. We work to keep all
+            marketplace content accurate and current, but we do not guarantee that
+            all profile narratives, rankings, or metadata will be error-free at all
+            times. You agree to notify us promptly if you identify incorrect or
+            misleading content.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="governing" className={styles.heading}>9. GOVERNING LAW</h2>
+          <p>
+            These Terms are governed by applicable laws in Nigeria, without regard
+            to conflict-of-law principles, unless otherwise required by mandatory
+            local law.
           </p>
         </section>
       </div>

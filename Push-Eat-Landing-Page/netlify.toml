@@ -5,6 +5,12 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[[redirects]]
+  from = "/chefs/*"
+  to = "https://api.int.pusheat.co/chefs/:splat"
+  status = 200
+  force = true
+
 [[headers]]
   for = "/deal/*"
   [headers.values]

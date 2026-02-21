@@ -8,6 +8,7 @@ import TermsService from "./components/pages/TermsService";
 import ContactUs from "./components/pages/ContactUs";
 import DeletePage from "./components/pages/DeletePage";
 import DealPage from "./components/pages/DealPage";
+import ChefProfilePage from "./components/pages/ChefProfilePage";
 import ScrollToTop from "./components/UI/ScrollToTop";
 import Faq from "./components/pages/Faq";
 
@@ -27,6 +28,8 @@ function App() {
           <Route path="/faq" element={<Faq />} />
         </Route>
         <Route path="/deal/:dealId" element={<DealPage />} />
+        <Route path="/chefs/:slug" element={<ChefProfilePage />} />
+        <Route path="/chefs/:slug/new" element={<ChefProfilePage isNew />} />
       </Routes>
     </>
   );

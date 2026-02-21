@@ -15,7 +15,7 @@ function PrivacyText() {
         />
         <meta
           name="keywords"
-          content="Pusheat privacy policy, data protection, personal data, user information, privacy"
+          content="Pusheat privacy policy, AI profile personalization, social profile enrichment, data protection, personal data, user information"
         />
         <meta property="og:title" content="Privacy Policy - Pusheat" />
         <meta
@@ -36,7 +36,7 @@ function PrivacyText() {
       </Helmet>
       <div className={Styles.wrapper}>
         <div className={Styles.section}>
-          <h2>1. INTRODUCTION</h2>
+          <h2 id="info-collect">1. INTRODUCTION</h2>
           <p>
             Welcome to <strong>Pusheat!</strong> This Privacy Policy explains
             how we collect, use, disclose, and protect your personal information
@@ -47,7 +47,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>2. INFORMATION WE COLLECT</h2>
+          <h2 id="info-we-collect">2. INFORMATION WE COLLECT</h2>
           <p>We collect the following types of information:</p>
           <h3>2.1 Information You Provide</h3>
           <ul>
@@ -104,6 +104,12 @@ function PrivacyText() {
               accounts.
             </li>
             <li>
+              <strong>Public Social Profile Enrichment:</strong> Where permitted by
+              law and your account settings, we may process publicly available
+              profile and post metadata tied to business handles you provide in
+              order to improve chef discovery pages and search relevance.
+            </li>
+            <li>
               <strong>Payment Processors:</strong> Payment confirmation and
               limited transaction details from third-party payment providers.
             </li>
@@ -111,7 +117,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>3. HOW WE USE YOUR INFORMATION</h2>
+          <h2 id="info-use">3. HOW WE USE YOUR INFORMATION</h2>
           <p>We use your information for the following purposes:</p>
           <ul>
             <li>To provide, maintain, and improve our Services.</li>
@@ -121,6 +127,15 @@ function PrivacyText() {
               updates.
             </li>
             <li>To personalize your experience and show relevant content.</li>
+            <li>
+              To generate and update chef profile pages, headings, summaries, and
+              other profile content using first-party platform data and approved
+              enrichment inputs.
+            </li>
+            <li>
+              To perform automated personalization and profiling for marketplace
+              ranking, SEO relevance, and content quality controls.
+            </li>
             <li>
               To enforce our Terms and Conditions and Community Guidelines.
             </li>
@@ -133,7 +148,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>4. HOW WE SHARE YOUR INFORMATION</h2>
+          <h2 id="info-share">4. HOW WE SHARE YOUR INFORMATION</h2>
           <p>We may share your information in the following circumstances:</p>
           <ul>
             <li>
@@ -144,6 +159,12 @@ function PrivacyText() {
             <li>
               <strong>With Service Providers:</strong> Third-party vendors who
               assist with payment processing, analytics, and customer support.
+            </li>
+            <li>
+              <strong>With AI/Cloud Processors:</strong> We may process limited
+              content inputs through approved providers (such as Google Cloud /
+              Vertex AI) to generate chef profile content, improve quality, and
+              maintain consistency of marketplace pages.
             </li>
             <li>
               <strong>For Legal Reasons:</strong> To comply with laws, respond
@@ -157,7 +178,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>5. DATA RETENTION</h2>
+          <h2 id="data-retention">5. DATA RETENTION</h2>
           <p>
             We retain your information only as long as necessary to fulfill the
             purposes outlined in this Privacy Policy, unless a longer retention
@@ -173,11 +194,21 @@ function PrivacyText() {
               User-generated content may be retained for archival purposes
               unless you delete it.
             </li>
+            <li>
+              Enrichment snapshots, generated profile revisions, and related audit
+              metadata may be retained for a limited window to support quality
+              checks, dispute resolution, and safe regeneration workflows.
+            </li>
           </ul>
+          <p>
+            Our target retention window for enrichment snapshots is up to 180
+            days, unless a longer period is required for security, legal, or
+            compliance reasons.
+          </p>
         </div>
 
         <div className={Styles.section}>
-          <h2>6. YOUR RIGHTS AND CHOICES</h2>
+          <h2 id="your-rights">6. YOUR RIGHTS AND CHOICES</h2>
           <p>
             You have the following rights regarding your personal information:
           </p>
@@ -198,6 +229,15 @@ function PrivacyText() {
               <strong>Data Portability</strong> – Request a copy of your data in
               a machine-readable format.
             </li>
+            <li>
+              <strong>Generated Content Correction and Appeal</strong> – Request
+              correction, review, or removal of generated profile content you
+              believe is inaccurate or misleading.
+            </li>
+            <li>
+              <strong>Social Enrichment Opt-Out</strong> – You may opt out of
+              social profile enrichment while keeping access to core app features.
+            </li>
           </ul>
           <p>
             To exercise these rights, contact us at{" "}
@@ -206,7 +246,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>7. SECURITY</h2>
+          <h2 id="security">7. SECURITY</h2>
           <p>
             We implement technical and organizational measures to protect your
             information, including:
@@ -227,7 +267,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>8. INTERNATIONAL DATA TRANSFERS</h2>
+          <h2 id="international">8. INTERNATIONAL DATA TRANSFERS</h2>
           <p>
             If we transfer your information outside Nigeria, we will ensure it
             is protected by appropriate safeguards, such as data transfer
@@ -236,7 +276,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>9. CHILDREN'S PRIVACY</h2>
+          <h2 id="children">9. CHILDREN'S PRIVACY</h2>
           <p>
             Pusheat is not intended for users under the age of 18. We do not
             knowingly collect personal information from children. If we become
@@ -245,7 +285,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>10. THIRD-PARTY LINKS</h2>
+          <h2 id="third-party">10. THIRD-PARTY LINKS</h2>
           <p>
             Our Platform may contain links to third-party websites or services.
             This Privacy Policy does not apply to those third parties. We
@@ -255,7 +295,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>11. CHANGES TO THIS PRIVACY POLICY</h2>
+          <h2 id="changes">11. CHANGES TO THIS PRIVACY POLICY</h2>
           <p>
             We may update this Privacy Policy from time to time. If we make
             material changes, we will notify you through the Platform or by
@@ -265,7 +305,7 @@ function PrivacyText() {
         </div>
 
         <div className={Styles.section}>
-          <h2>12. CONTACT US</h2>
+          <h2 id="contact-us">12. CONTACT US</h2>
           <p>
             If you have questions or concerns about this Privacy Policy or our
             data practices, please contact us at:{" "}
